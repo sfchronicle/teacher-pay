@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+  <head>
+    <title><%= json.project.title %></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <%= t.include("partials/_head.html") %>
+  </head>
+  <body>
+
+    <responsive-child>
+
+      <div class="bubble-graph"></div>
+
+      <div class="hed">Teacher salary database</div>
+      <div class="chatter">See how well teachers in your neighborhood get paid.</div>
+      <div ng-controller="SearchController" ng-app="searchbar">
+        <div class="search-container">
+          <div class="search-bar">
+            <span class="search">Search by school district or county:</span>
+            <input type="text" ng-change="search()" ng-model="searchText">
+          </div>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>School district
+              <th>County
+              <th>Teacher count
+              <th>Lowest salary
+              <th>Average salary
+              <th>Highest salary
+              <th>Step 10 salary
+
+          <tbody>
+            <tr ng-show="found.length == 0 && !untouched">
+              <td colspan=100><em>No results found.</em>
+            <tr ng-show="found.length == 0 && untouched">
+              <td colspan=100 class="empty-note"><em>
+                To search our teacher pay database, type a name above.</em>
+            <tr ng-repeat="row in found">
+              <td>{{row.school}}
+              <td>{{row.county}}
+              <td>{{row.full_time_teachers}}
+              <td>{{row.lowest_salary_offered}}
+              <td>{{row.average_salary}}
+              <td>{{row.highest_salary_offered}}
+              <td>{{row.step_10_salary}}
+            </tr>
+        </table>
+
+      </div>
+
+      <div class="hed">SF salaries are on the rise, but teacher pay is left behind</div>
+      <div class="chatter">The economy is booming, but that hasn't translated into prosperity for teachers in San Francisco.</div>
+      <div class="legend-container">
+        <div class="legend-element"><div class="teachers swatch"></div><div class="key">Median teachers salary</div></div>
+        <div class="legend-element"><div class="step10 swatch"></div><div class="key">Median step 10 teachers salary</div></div>
+        <div class="legend-element"><div class="overall swatch"></div><div class="key">Median salary</div></div>
+      </div>
+      <div class="stacked-bar-graph"></div>
+
+    </responsive-child>
+
+    <script>
+      var allSchoolData = <%= JSON.stringify(csv.all_school_data) %>;
+      console.log(allSchoolData);
+      var sfPayData = <%= JSON.stringify(csv.sf_pay) %>;
+      console.log(sfPayData);
+    </script>
+
+    <script src="app.js" async></script>
+    <%= t.include("partials/_foot.html") %>
+    <%= t.include("partials/_helloSFC.html") %>
+  </body>
+</html>
