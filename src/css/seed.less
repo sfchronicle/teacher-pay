@@ -27,6 +27,63 @@ body {
   padding-bottom: 5px;
 }
 
+// bubble graph styles ---------------------------------------------------------
+
+.bubble-graph {
+  svg {
+    display: block;
+    margin: auto;
+  }
+  text {
+    font-size: 14px;
+  }
+
+  .x.axis line,
+  .x.axis path,
+  .y.axis line,
+  .y.axis path {
+    fill: none;
+    stroke: #000;
+  }
+
+  .tooltip {
+    position: absolute;
+    width: 200px;
+    height: 100px;
+    pointer-events: none;
+  }
+  .dot {
+    cursor: pointer;
+  }
+
+}
+
+.area {
+  fill: lighten(#E6A8A8,10%);
+  stroke-width: 0;
+}
+
+.tooltip {
+  display: none;
+  position: absolute;
+  background: @df-off-white;
+  font-size: 12px;
+  padding: 5px;
+  border: 1px solid @df-light-gray;
+  border-radius: 5px;
+  white-space: nowrap;
+
+  &.show {
+    display: block;
+  }
+
+  &.flip {
+    -webkit-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    transform: translateX(-100%);
+  }
+}
+
 // search styles ---------------------------------------------------------------
 
 table {
@@ -53,6 +110,12 @@ td {
 }
 .search-bar {
   margin-bottom: 5px;
+}
+
+input {
+  width: 200px;
+  background: #F8F8F8;
+  font-size: 14px;
 }
 
 // bar graph styles ------------------------------------------------------------

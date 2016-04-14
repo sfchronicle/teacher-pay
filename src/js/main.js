@@ -19,6 +19,160 @@ height = 400 - margin.top - margin.bottom;
 
 // bubble graph ---------------------------------------------------------------
 
+// convert strings to numbers
+rentData.forEach(function(d) {
+  d.county = d.county;
+  d.salaryK = Math.round(d.average_salary/1000);
+  d.step_10 = +d.step_10;
+  d.rentK = Math.round(d.median_anual_rent/1000);
+  d.num_teachers = +d.full_time_employees;
+})
+
+// x-axis scale
+var x = d3.scale.linear()
+    .rangeRound([0, width]);
+
+// y-axis scale
+var y = d3.scale.linear()
+    .rangeRound([height, 0]);
+
+// color bands
+// var color = d3.scale.ordinal()
+//     .range(["#FFE599", "#DE8067"]);
+
+var color = d3.scale.category10();
+
+// use x-axis scale to set x-axis
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+
+// use y-axis scale to set y-axis
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left")
+
+// var valueline = d3.svg.line()
+//   .x(function(d) {return x(d.salaryK); })
+//   .y(function(d) {return y(d.salaryK/3); });
+
+// create SVG container for chart components
+var svg = d3.select(".bubble-graph").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+x.domain(d3.extent(rentData, function(d) { return d.salaryK; })).nice();//.nice();
+y.domain(d3.extent(rentData, function(d) { return d.rentK; })).nice(); //.nice();
+
+var xMin = x.domain()[0];
+var xMax = x.domain()[1];
+
+var line30 = [
+  {x: xMin, y: 0,},
+  {x: xMax, y: 0,},
+];
+
+console.log(line30);
+
+var area = d3.svg.area()
+  .x(function(d) {
+    return x(d.x);
+  })
+  .y0(0)
+  .y1(function(d) {
+    return y(d.x/3);
+  });
+
+svg.append("path")
+  .datum(line30)
+  .attr("class", "area")
+  .attr("d",area);
+
+console.log(area);
+
+svg.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + height + ")")
+    .call(xAxis)
+    .append("text")
+    .attr("class", "label")
+    .attr("x", width)
+    .attr("y", -6)
+    .style("text-anchor", "end")
+    .text("Yearly Salary (K)");
+
+svg.append("g")
+    .attr("class", "y axis")
+    .call(yAxis)
+    .append("text")
+    .attr("class", "label")
+    .attr("transform", "rotate(-90)")
+    .attr("y", 6)
+    .attr("dy", ".71em")
+    .style("text-anchor", "end")
+    .text("Yearly Rent (K)")
+
+// label the 30% shading / line
+svg.append("text")
+    .attr("x", (width-60))
+    .attr("y", 90 )
+    .attr("text-anchor", "middle")
+    .style("font-size", "16px")
+    .text("30% of income");
+
+//color in the dots
+svg.selectAll(".dot")
+    .data(rentData)
+    .enter().append("circle")
+    .attr("class", "dot")
+    .attr("r", function(d) {
+      //return 6;
+      return (d.num_teachers/500)+2.5;
+    })
+    .attr("cx", function(d) { return x(d.salaryK); })
+    .attr("cy", function(d) { return y(d.rentK); })
+    .style("fill", function(d) { return color(d.county); })
+    .on("mouseenter", function(d) {
+      showTooltip(d, this);
+    })
+    .on("mouseleave", function(d) {
+      hideTooltip(d, this);
+      tooltip.classList.remove("show");
+    });
+
+// show tooltip
+var tooltip = document.querySelector(".tooltip");
+
+var showTooltip = function(d, target) {
+  svg.selectAll('.dot').selectAll("circle")
+
+  // tooltip info
+  tooltip.classList.add("show");
+  tooltip.innerHTML = `
+    <div>School district: <b>${d.school}</b></div>
+    <div>County: <b>${d.county}</b></div>
+    <div>Median annual rent: <b>$${d.rentK}K</b></div>
+    <div>Median annual salary: <b>$${d.salaryK}K</b></div>
+    <div>Number of teachers: <b>${d.num_teachers}</b></div>
+  `;
+}
+
+var hideTooltip = function(d, target) {
+    tooltip.classList.remove("show");
+}
+
+// get tooltip to move with cursor
+document.querySelector(".bubble-graph").addEventListener("mousemove", function(e) {
+  var bounds = this.getBoundingClientRect();
+  var x = e.clientX - bounds.left;
+  var y = e.clientY - bounds.top;
+  tooltip.style.left = x + 10 + "px";
+  tooltip.style.top = y + 10 + "px";
+
+  tooltip.classList[x > bounds.width / 2 ? "add" : "remove"]("flip");
+});
 
 
 // searchbar code -------------------------------------------------------------

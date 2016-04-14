@@ -11,7 +11,11 @@
 
     <responsive-child>
 
-      <div class="bubble-graph"></div>
+      <div class="hed">Can teachers afford to rent in their school's neighborhood?</div>
+      <div class="chatter">Economists recommend spending no more than 30% of yearly income on rent, but this is all but impossible in San Francisco.</div>
+      <div class="bubble-graph">
+        <div class="tooltip"></div>
+      </div>
 
       <div class="hed">Teacher salary database</div>
       <div class="chatter">See how well teachers in your neighborhood get paid.</div>
@@ -19,7 +23,7 @@
         <div class="search-container">
           <div class="search-bar">
             <span class="search">Search by school district or county:</span>
-            <input type="text" ng-change="search()" ng-model="searchText">
+            <input type="text" ng-change="search()" ng-model="searchText" placeholder="Type here">
           </div>
         </div>
 
@@ -66,9 +70,9 @@
 
     <script>
       var allSchoolData = <%= JSON.stringify(csv.all_school_data) %>;
-      console.log(allSchoolData);
       var sfPayData = <%= JSON.stringify(csv.sf_pay) %>;
-      console.log(sfPayData);
+      var rentData = <%= JSON.stringify(csv.USD_CITY_RENT_emma) %>;
+      console.log(rentData);
     </script>
 
     <script src="app.js" async></script>

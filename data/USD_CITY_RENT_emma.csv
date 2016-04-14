@@ -1,0 +1,113 @@
+county,school_district,city,median_1br_zumper,median_anual_rent,full_time_employees,average_salary,step_10,average_salary_spent_on_rent,step_10_salary_spent_on_1br,school
+San Francisco County,SAN FRANCISCO UNIFIED,San Francisco,3500,42000,3518.98,65238,66584,0.64,0.63,San Francisco Unified
+Alameda County,OAKLAND UNIFIED,Oakland,1980,23760,1903.96,58033,58516,0.41,0.41,Oakland Unified
+Alameda County,BERKELEY UNIFIED,Berkeley,2400,28800,624.9,71133,70418,0.4,0.41,Berkeley Unified
+Santa Cruz County,PAJARO VALLEY JOINT UNIFIED,Santa Cruz County,1700,20400,1012.97,60690,60104,0.34,0.34,Pajaro Valley Joint Unified
+Contra Costa County,WEST CONTRA COSTA UNIFIED,Richmond,1870,22440,1393.06,59503,59640,0.38,0.38,West Contra Costa Unified
+Santa Clara County,SAN JOSE UNIFIED,San Jose,2230,26760,1674,70979,75277,0.38,0.36,San Jose Unified
+Contra Costa County,SAN RAMON VALLEY UNIFIED,Pleasanton,2110,25320,1505.13,71080,71484,0.36,0.35,San Ramon Valley Unified
+Santa Clara County,CUPERTINO UNION ELEMENTARY,Santa Clara,2150,25800,865.71,78280,80582,0.33,0.32,Cupertino Union Elementary
+Santa Clara County,EAST SIDE UNION HIGH,San Jose,2230,26760,1148.3,84725,85132,0.32,0.31,East Side Union High
+Santa Clara County,PALO ALTO UNIFIED,Palo Alto,2480,29760,809.51,95811,91635,0.31,0.32,Palo Alto Unified
+Santa Barbara County,SANTA BARBARA UNIFIED,Santa Barbara,1830,21960,634.69,71865,73826,0.31,0.3,Santa Barbara Unified
+Santa Clara County,SANTA CLARA UNIFIED,Santa Clara,2150,25800,778.45,85112,84312,0.3,0.31,Santa Clara Unified
+Alameda County,FREMONT UNIFIED,Fremont,2110,25320,1615.29,83968,84043,0.3,0.3,Fremont Unified
+Ventura County,CONEJO VALLEY UNIFIED,Thousand Oaks,1870,22440,898.08,76224,71801,0.29,0.31,Conejo Valley Unified
+Los Angeles County,PASADENA UNIFIED,Pasadena,1700,20400,780,69578,60566,0.29,0.34,Pasadena Unified
+Los Angeles County,LOS ANGELES UNIFIED,Los Angeles,1750,21000,25688,72495,67417,0.29,0.31,Los Angeles Unified
+Alameda County,PLEASANTON UNIFIED,Pleasanton,2110,25320,610.54,89522,83191,0.28,0.3,Pleasanton Unified
+Ventura County,SIMI VALLEY UNIFIED,Simi Valley,1570,18840,782.6,68764,66135,0.27,0.28,Simi Valley Unified
+Orange County,IRVINE UNIFIED,Irvine,1760,21120,1387.54,77121,78770,0.27,0.27,Irvine Unified
+Orange County,NEWPORT-MESA UNIFIED,Newport Beach,2000,24000,981.9,88376,83007,0.27,0.29,Newport-Mesa Unified
+Alameda County,HAYWARD UNIFIED,Hayward,1790,21480,1095.91,80220,79459,0.27,0.27,Hayward Unified
+Alameda County,LIVERMORE VALLEY JOINT UNIFIED,Livermore,1590,19080,629.34,72049,70262,0.26,0.27,Livermore Valley Joint Unified
+Orange County,SADDLEBACK VALLEY UNIFIED,Mission Viejo,1710,20520,1178.11,80136,73082,0.26,0.28,Saddleback Valley Unified
+Orange County,ORANGE UNIFIED,Orange,1650,19800,1160.98,78819,74538,0.25,0.27,Orange Unified
+Orange County,CAPISTRANO UNIFIED,Mission Viejo,1710,20520,2012.7,83235,74947,0.25,0.27,Capistrano Unified
+San Diego County,SAN DIEGO CITY UNIFIED,San Diego,1500,18000,5633.33,73582,64780,0.24,0.28,San Diego City Unified
+Alameda County,NEW HAVEN UNIFIED,Hayward,1790,21480,604.35,88820,85354,0.24,0.25,New Haven Unified
+Los Angeles County,GLENDALE UNIFIED,Glendale,1500,18000,1104.7,74441,67125,0.24,0.27,Glendale Unified
+Napa County,NAPA VALLEY UNIFIED,Napa,1450,17400,914.48,72801,70488,0.24,0.25,Napa Valley Unified
+Contra Costa County,MT. DIABLO UNIFIED,Concord,1350,16200,1564.28,67920,65474,0.24,0.25,Mt. Diablo Unified
+Ventura County,VENTURA UNIFIED,Ventura,1350,16200,781.41,68275,64259,0.24,0.25,Ventura Unified
+Los Angeles County,*MONTEBELLO UNIFIED,Los Angeles County,1650,19800,1167,83615,77730,0.24,0.25,*Montebello Unified
+Los Angeles County,BURBANK UNIFIED,Burbank,1500,18000,672.6,76762,72178,0.23,0.25,Burbank Unified
+Los Angeles County,WILLIAM S. HART UNION HIGH,Santa Clarita,1450,17400,853,75163,70840,0.23,0.25,William S. Hart Union High
+Sonoma County,SANTA ROSA CITY SCHOOLS,Santa Rosa,1320,15840,790.7,70046,65943,0.23,0.24,Santa Rosa City Schools
+Orange County,HUNTINGTON BEACH UNION HIGH,Huntington Beach,1600,19200,663.66,86034,88671,0.22,0.22,Huntington Beach Union High
+Los Angeles County,*COMPTON UNIFIED,Inglewood,1050,12600,1161.6,76161,69870,0.17,0.18,*Compton Unified
+San Diego County,OCEANSIDE CITY UNIFIED,Oceanside,1400,16800,880.44,76339,71070,0.22,0.24,Oceanside City Unified
+Los Angeles County,TORRANCE UNIFIED,Torrance,1400,16800,993.01,76851,78560,0.22,0.21,Torrance Unified
+Ventura County,OXNARD ELEMENTARY,Oxnard,1330,15960,765.06,74334,74385,0.21,0.21,Oxnard Elementary
+San Diego County,VISTA UNIFIED,Vista,1250,15000,1055.13,70690,67631,0.21,0.22,Vista Unified
+San Diego County,CHULA VISTA ELEMENTARY,Chula Vista,1250,15000,1210.41,71827,69717,0.21,0.22,Chula Vista Elementary
+Los Angeles County,ALHAMBRA UNIFIED,Alhambra,1250,15000,795.02,73025,69575,0.21,0.22,Alhambra Unified
+Los Angeles County,*ABC UNIFIED,Norwalk,1200,14400,925,78191,72328,0.18,0.2,*Abc Unified
+Solano County,*FAIRFIELD-SUISUN UNIFIED,Vacaville,1100,13200,985.48,64876,64904,0.2,0.2,*Fairfield-Suisun Unified
+Ventura County,OXNARD UNION HIGH,Oxnard,1330,15960,679.5,78948,84327,0.2,0.19,Oxnard Union High
+San Bernardino County,ETIWANDA ELEMENTARY,Rancho Cucamonga,1300,15600,623.16,77192,72557,0.2,0.22,Etiwanda Elementary
+Orange County,TUSTIN UNIFIED,Santa Ana,1320,15840,924.82,79250,77747,0.2,0.2,Tustin Unified
+Los Angeles County,LYNWOOD UNIFIED,Downey,1200,14400,676,73242,74995,0.2,0.19,Lynwood Unified
+Orange County,GARDEN GROVE UNIFIED,Garden Grove,1440,17280,1918.98,89105,86117,0.19,0.2,Garden Grove Unified
+Los Angeles County,HACIENDA LA PUENTE UNIFIED,West Covina,1200,14400,956,74555,73311,0.19,0.2,Hacienda La Puente Unified
+Monterey County,SALINAS UNION HIGH,Salinas,1120,13440,712.49,69796,70257,0.19,0.19,Salinas Union High
+Orange County,SANTA ANA UNIFIED,Santa Ana,1320,15840,2524.67,82966,77227,0.19,0.21,Santa Ana Unified
+San Diego County,SWEETWATER UNION HIGH,Chula Vista,1250,15000,1652,79715,73692,0.19,0.2,Sweetwater Union High
+San Diego County,SAN MARCOS UNIFIED,Escondido,1080,12960,907.88,68936,71212,0.19,0.18,San Marcos Unified
+Los Angeles County,ROWLAND UNIFIED,West Covina,1200,14400,669.4,77333,73548,0.19,0.2,Rowland Unified
+Orange County,ANAHEIM ELEMENTARY,Anaheim,1330,15960,841.87,85962,86032,0.19,0.19,Anaheim Elementary
+Los Angeles County,BELLFLOWER UNIFIED,"Norwalk, CA",1200,14400,607,73462,71420,0.2,0.2,Bellflower Unified
+Solano County,VALLEJO CITY UNIFIED,Vallejo,920,11040,604.9,61264,57812,0.18,0.19,Vallejo City Unified
+Los Angeles County,NORWALK-LA MIRADA UNIFIED,Norwalk,1200,14400,838.55,80236,74441,0.18,0.19,Norwalk-La Mirada Unified
+San Diego County,ESCONDIDO UNION ELEMENTARY,Escondido,1080,12960,967.52,72328,69748,0.18,0.19,Escondido Union Elementary
+San Bernardino County,ONTARIO-MONTCLAIR ELEMENTARY,Ontario,1220,14640,1186.46,82198,78733,0.18,0.19,Ontario-Montclair Elementary
+Orange County,ANAHEIM UNION HIGH,Anaheim,1330,15960,1301,90749,90682,0.18,0.18,Anaheim Union High
+Contra Costa County,ANTIOCH UNIFIED,Antioch,1020,12240,798.9,72849,68937,0.17,0.18,Antioch Unified
+San Diego County,POWAY UNIFIED,Escondido,1080,12960,1456.09,77791,79910,0.17,0.16,Poway Unified
+San Bernardino County,CHAFFEY UNION HIGH,Ontario,1220,14640,947.8,88427,80954,0.17,0.18,Chaffey Union High
+Riverside County,MURRIETA VALLEY UNIFIED,Temecula,1130,13560,909.61,82264,73522,0.16,0.18,Murrieta Valley Unified
+Riverside County,VAL VERDE UNIFIED,Moreno Valley,1040,12480,824,75804,75834,0.16,0.16,Val Verde Unified
+Riverside County,TEMECULA VALLEY UNIFIED,Temecula,1130,13560,1219.8,82811,76068,0.16,0.18,Temecula Valley Unified
+Los Angeles County,DOWNEY UNIFIED,Downey,1200,14400,942.9,88103,82996,0.16,0.17,Downey Unified
+San Diego County,CAJON VALLEY UNION ELEMENTARY,El Cajon,1000,12000,755.71,73966,70121,0.16,0.17,Cajon Valley Union Elementary
+Riverside County,MORENO VALLEY UNIFIED,Moreno Valley,1040,12480,1531,77108,73636,0.16,0.17,Moreno Valley Unified
+Sacramento County,SACRAMENTO CITY UNIFIED,Sacramento,900,10800,2110.2,67009,53467,0.16,0.2,Sacramento City Unified
+San Diego County,GROSSMONT UNION HIGH,El Cajon,1000,12000,784.39,75945,73025,0.16,0.16,Grossmont Union High
+Los Angeles County,LONG BEACH UNIFIED,Long Beach,1120,13440,3343.49,85062,71759,0.16,0.19,Long Beach Unified
+Los Angeles County,POMONA UNIFIED,Pomona,1030,12360,1207.7,78415,75723,0.16,0.16,Pomona Unified
+San Bernardino County,CHINO UNIFIED,Chino,1050,12600,1204,81554,72057,0.15,0.17,Chino Unified
+Sacramento County,TWIN RIVERS UNIFIED,Sacramento,900,10800,1095.25,71399,54748,0.15,0.2,Twin Rivers Unified
+Riverside County,PALM SPRINGS UNIFIED,Palm Springs,950,11400,1071,76546,68694,0.15,0.17,Palm Springs Unified
+Sacramento County,ELK GROVE UNIFIED,Sacramento,900,10800,3141.96,73322,62389,0.15,0.17,Elk Grove Unified
+Sacramento County,FOLSOM-CORDOVA UNIFIED,Sacramento,900,10800,881.06,73348,64088,0.15,0.17,Folsom-Cordova Unified
+Riverside County,RIVERSIDE UNIFIED,Riverside,980,11760,1803.5,81908,76557,0.14,0.15,Riverside Unified
+Riverside County,JURUPA UNIFIED,Riverside,980,11760,897.3,82263,72317,0.14,0.16,Jurupa Unified
+Riverside County,CORONA-NORCO UNIFIED,Corona,1060,12720,2326.5,89308,86860,0.14,0.15,Corona-Norco Unified
+Santa Barbara County,SANTA MARIA-BONITA ELEMENTARY,Santa Maria,930,11160,676.55,78953,79592,0.14,0.14,Santa Maria-Bonita Elementary
+Riverside County,ALVORD UNIFIED,Riverside,980,11760,737,85668,78914,0.14,0.15,Alvord Unified
+Madera County,MADERA UNIFIED,Fresno,750,9000,952.88,65616,63832,0.14,0.14,Madera Unified
+Fresno County,CENTRAL UNIFIED,Fresno,750,9000,710.19,67520,61731,0.13,0.15,Central Unified
+Fresno County,CLOVIS UNIFIED,Clovis,750,9000,1627.27,67972,60742,0.13,0.15,Clovis Unified
+Fresno County,FRESNO UNIFIED,Fresno,750,9000,3570.62,69938,67662,0.13,0.13,Fresno Unified
+Butte County,CHICO UNIFIED,Chico,680,8160,643.63,64053,55362,0.13,0.15,Chico Unified
+Los Angeles County,BALDWIN PARK UNIFIED,West Covina,1200,14400,655.7,82420,68513,0.17,0.21,Baldwin Park Unified
+Stanislaus County,TURLOCK UNIFIED,Modesto,750,9000,631.5,75122,70984,0.12,0.13,Turlock Unified
+Kern County,BAKERSFIELD CITY ELEMENTARY,Bakersfield,650,7800,1622,65456,65296,0.12,0.12,Bakersfield City Elementary
+San Joaquin County,STOCKTON CITY UNIFIED,Stockton,650,7800,1680,65674,64239,0.12,0.12,Stockton City Unified
+Los Angeles County,LANCASTER ELEMENTARY,Palmdale,700,8400,624,71577,68826,0.12,0.12,Lancaster Elementary
+Los Angeles County,PALMDALE ELEMENTARY,Palmdale,700,8400,779,71737,69045,0.12,0.12,Palmdale Elementary
+San Joaquin County,LODI UNIFIED,Stockton,650,7800,1434.88,67015,61457,0.12,0.13,Lodi Unified
+Sutter County,YUBA CITY UNIFIED,Yuba County,620,7440,719.47,64165,64057,0.12,0.12,Yuba City Unified
+Kern County,PANAMA-BUENA VISTA UN ELEMENTARY,Bakersfield,650,7800,780.73,67421,64251,0.12,0.12,Panama-Buena Vista Un Elementary
+San Bernardino County,FONTANA UNIFIED,San Bernardino,720,8640,1824.85,75070,71350,0.12,0.12,Fontana Unified
+San Joaquin County,TRACY JOINT UNIFIED,Stockton,650,7800,712.8,68082,63770,0.11,0.12,Tracy Joint Unified
+San Bernardino County,COLTON JOINT UNIFIED,San Bernardino,720,8640,1028,75782,71852,0.11,0.12,Colton Joint Unified
+San Bernardino County,SAN BERNARDINO CITY UNIFIED,San Bernardino,720,8640,2646,76890,74675,0.11,0.12,San Bernardino City Unified
+San Joaquin County,MANTECA UNIFIED,Stockton,650,7800,1096.57,70381,66446,0.11,0.12,Manteca Unified
+Stanislaus County,MODESTO CITY SCHOOLS,Modesto,750,9000,1384.2,82285,76320,0.11,0.12,Modesto City Schools
+San Bernardino County,RIALTO UNIFIED,San Bernardino,720,8640,1170.8,79084,74113,0.11,0.12,Rialto Unified
+Kern County,KERN UNION HIGH,Bakersfield,650,7800,1648,72199,65721,0.11,0.12,Kern Union High
+San Bernardino County,REDLANDS UNIFIED,San Bernardino,720,8640,976,80558,76873,0.11,0.11,Redlands Unified
+Tulare County,VISALIA UNIFIED,Visalia,590,7080,1206.31,67321,64706,0.11,0.11,Visalia Unified
+Riverside County,HEMET UNIFIED,Hemet,650,7800,975.2,76186,71781,0.1,0.11,Hemet Unified
+Tulare County,PORTERVILLE UNIFIED,Tulare County,550,6600,640,75802,70374,0.09,0.09,Porterville Unified
