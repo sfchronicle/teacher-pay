@@ -11,51 +11,68 @@
 
     <responsive-child>
 
+      <header>
+        <a class="logo" href="http://www.sfchronicle.com">
+          <img src="./assets/sf_logo_black.png">
+        </a>
+      </header>
+
+      <div class="title">Teacher salaries can't keep up in the booming Silicon Valley</div>
+      <div class="byline">By Joaquin Palomino and Heather Knight  |  April 15, 2015 </div>
+
+      <div class="text">This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text.</div>
+
       <div class="hed">Can teachers afford to rent in their school's neighborhood?</div>
       <div class="chatter">Economists recommend spending no more than 30% of yearly income on rent, but this is all but impossible in San Francisco.</div>
       <div class="bubble-graph">
         <div class="tooltip"></div>
       </div>
 
-      <div class="hed">Teacher salary database</div>
-      <div class="chatter">See how well teachers in your neighborhood get paid.</div>
-      <div ng-controller="SearchController" ng-app="searchbar">
-        <div class="search-container">
-          <div class="search-bar">
-            <span class="search">Search by school district or county:</span>
-            <input type="text" ng-change="search()" ng-model="searchText" placeholder="Type here">
+      <div class="text">This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text.</div>
+
+      <div class="search-section">
+        <div class="hed">Teacher salary database</div>
+        <div class="chatter">See how well teachers in your neighborhood get paid.</div>
+        <div ng-controller="SearchController" ng-app="searchbar">
+          <div class="search-container">
+            <div class="search-bar">
+              <span class="search">Search by school district or county:</span>
+              <input type="text" ng-change="search()" ng-model="searchText" placeholder="Type here">
+            </div>
           </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>School district
+                <th>County
+                <th>Teacher count
+                <th>Lowest salary
+                <th>Average salary
+                <th>Highest salary
+                <th>Step 10 salary
+
+            <tbody>
+              <tr ng-show="found.length == 0 && !untouched">
+                <td colspan=100><em>No results found.</em>
+              <tr ng-show="found.length == 0 && untouched">
+                <td colspan=100 class="empty-note"><em>
+                  To search our teacher pay database, type a name above.</em>
+              <tr ng-repeat="row in found">
+                <td>{{row.school}}
+                <td>{{row.county}}
+                <td>{{row.full_time_teachers}}
+                <td>{{row.lowest_salary_offered}}
+                <td>{{row.average_salary}}
+                <td>{{row.highest_salary_offered}}
+                <td>{{row.step_10_salary}}
+              </tr>
+          </table>
+
         </div>
-
-        <table>
-          <thead>
-            <tr>
-              <th>School district
-              <th>County
-              <th>Teacher count
-              <th>Lowest salary
-              <th>Average salary
-              <th>Highest salary
-              <th>Step 10 salary
-
-          <tbody>
-            <tr ng-show="found.length == 0 && !untouched">
-              <td colspan=100><em>No results found.</em>
-            <tr ng-show="found.length == 0 && untouched">
-              <td colspan=100 class="empty-note"><em>
-                To search our teacher pay database, type a name above.</em>
-            <tr ng-repeat="row in found">
-              <td>{{row.school}}
-              <td>{{row.county}}
-              <td>{{row.full_time_teachers}}
-              <td>{{row.lowest_salary_offered}}
-              <td>{{row.average_salary}}
-              <td>{{row.highest_salary_offered}}
-              <td>{{row.step_10_salary}}
-            </tr>
-        </table>
-
       </div>
+
+      <div class="text">This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text.</div>
 
       <div class="hed">SF salaries are on the rise, but teacher pay is left behind</div>
       <div class="chatter">The economy is booming, but that hasn't translated into prosperity for teachers in San Francisco.</div>
@@ -66,13 +83,47 @@
       </div>
       <div class="stacked-bar-graph"></div>
 
+      <div class="text">This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text.</div>
+
+      <div class="hed">SF salaries are on the rise, but teacher pay is left behind</div>
+      <div class="chatter">The economy is booming, but that hasn't translated into prosperity for teachers in San Francisco.</div>
+      <div class="legend-container">
+        <div class="legend-element"><div class="teachers swatch"></div><div class="key">Median teachers salary</div></div>
+        <div class="legend-element"><div class="step10 swatch"></div><div class="key">Median step 10 teachers salary</div></div>
+        <div class="legend-element"><div class="overall swatch"></div><div class="key">Median salary</div></div>
+      </div>
+      <div class="clustered-bar-graph"></div>
+
+      <div class="text">This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text.</div>
+
+      <div class="credits">
+        <div class="entry">
+          Joaquin Palomino is a San Francisco Chronicle staff writer. Email: <a>jpalomino@sfchronicle.com</a> Twitter: @jpalomino
+        </div>
+        <div class="entry">
+          Heather Knight is a San Francisco Chronicle staff writer. Email: <a>hknight@sfchronicle.com</a> Twitter: @hknight
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="divider-text">Don't Miss</div>
+      <div class="related-stories">
+        Here is where the related stories go.
+      </div>
+
+      <footer>
+        <a class="logo" href="http://www.sfchronicle.com">
+          <img src="./assets/sf_logo_white.png">
+        </a>
+      </footer>
+
     </responsive-child>
 
     <script>
       var allSchoolData = <%= JSON.stringify(csv.all_school_data) %>;
       var sfPayData = <%= JSON.stringify(csv.sf_pay) %>;
+      var payData = <%= JSON.stringify(csv.test_data) %>; //adjusted_median_incomes
       var rentData = <%= JSON.stringify(csv.USD_CITY_RENT_emma) %>;
-      console.log(rentData);
     </script>
 
     <script src="app.js" async></script>

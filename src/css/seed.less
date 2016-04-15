@@ -17,7 +17,7 @@ body {
 .hed {
   font-weight: bold;
   font-size: 20px;
-  margin-top: 50px;
+  margin-top: 5px;
   text-align: center;
 }
 
@@ -25,6 +25,98 @@ body {
   font-size: 15px;
   text-align: center;
   padding-bottom: 5px;
+}
+
+.title {
+  font-family: @bold;
+  font-weight: 400;
+  font-size: 30px;
+  padding: 10px 0;
+}
+
+.byline {
+  font-size: 12px;
+  text-align: left;
+}
+
+.text {
+  padding: 20px 0;
+  font-size: 18px;
+}
+
+header {
+  background: lighten(@teachers,40%);
+  opacity: 0.95;
+  padding: 0 10px;
+  position: relative;
+  z-index: 99;
+
+  .logo {
+    float: left;
+    margin-right: 10px;
+
+    img {
+      margin-top: 10px;
+      height: 20px;
+    }
+  }
+
+  &::after {
+    clear: both;
+    content: " ";
+    display: block;
+  }
+}
+
+footer {
+  background: @df-charcoal;
+  opacity: 0.95;
+  padding: 0 10px;
+  position: relative;
+  z-index: 99;
+  margin-top: 10px;
+
+  .logo {
+    float: left;
+    margin-right: 10px;
+
+    img {
+      margin-top: 10px;
+      height: 20px;
+    }
+  }
+
+  &::after {
+    clear: both;
+    content: " ";
+    display: block;
+  }
+}
+
+.credits {
+  margin: 30px 0;
+  font-style: italic;
+  background: lighten(@teachers,40%);
+  font-size: 18px;
+  .entry {
+    padding: 5px 0;
+  }
+}
+
+.divider {
+  border-bottom: 1px black solid;
+  height: 2px;
+}
+.divider-text {
+  margin: auto;
+  margin-top: -15px;
+  background: white;
+  width: 150px;
+  text-align: center;
+}
+
+.related-stories {
+  height: 100px;
 }
 
 // bubble graph styles ---------------------------------------------------------
@@ -49,7 +141,7 @@ body {
   .tooltip {
     position: absolute;
     width: 200px;
-    height: 100px;
+    height: 110px;
     pointer-events: none;
   }
   .dot {
@@ -86,6 +178,11 @@ body {
 
 // search styles ---------------------------------------------------------------
 
+.search-section {
+  background: lighten(@teachers,40%);
+  padding: 10px 5px;
+}
+
 table {
   margin: auto;
   tr:nth-child(even) td {background: #F8F8F8};
@@ -120,7 +217,7 @@ input {
 
 // bar graph styles ------------------------------------------------------------
 
-.stacked-bar-graph {
+.stacked-bar-graph, .clustered-bar-graph {
   svg {
     display: block;
     margin: auto;

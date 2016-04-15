@@ -14,10 +14,11 @@ var margin = {
   bottom: 20,
   left: 60
 },
-width = 500 - margin.left - margin.right,
-height = 400 - margin.top - margin.bottom;
 
 // bubble graph ---------------------------------------------------------------
+
+width = 700 - margin.left - margin.right,
+height = 400 - margin.top - margin.bottom;
 
 // convert strings to numbers
 rentData.forEach(function(d) {
@@ -26,6 +27,7 @@ rentData.forEach(function(d) {
   d.step_10 = +d.step_10;
   d.rentK = Math.round(d.median_anual_rent/1000);
   d.num_teachers = +d.full_time_employees;
+  d.percent = Math.round(d.average_salary_spent_on_rent*100);
 })
 
 // x-axis scale
@@ -156,6 +158,7 @@ var showTooltip = function(d, target) {
     <div>Median annual rent: <b>$${d.rentK}K</b></div>
     <div>Median annual salary: <b>$${d.salaryK}K</b></div>
     <div>Number of teachers: <b>${d.num_teachers}</b></div>
+    <div>Percent income spent on rent: <b>${d.percent}%</b></div>
   `;
 }
 
@@ -219,6 +222,9 @@ var debounce = function(f, interval) {
 };
 
 // stacked bar graph ----------------------------------------------------------
+
+width = 500 - margin.left - margin.right,
+height = 400 - margin.top - margin.bottom;
 
 // x-axis scale
 var x = d3.scale.ordinal()
@@ -327,3 +333,126 @@ year.selectAll("rect")
     .style("fill", function (d) {
     return color(d.name);
 });
+
+// clustered bar graph ----------------------------------------------------------
+
+width = 500 - margin.left - margin.right,
+height = 400 - margin.top - margin.bottom;
+
+// x-axis scale
+var x0 = d3.scale.ordinal()
+    .rangeRoundBands([0, width], bar_spacing);
+var x1 = d3.scale.ordinal()
+
+// y-axis scale
+var y = d3.scale.linear()
+    .rangeRound([height, 0]);
+
+// color bands
+var color = d3.scale.ordinal()
+    .range(["#6C85A5", "#FFCC32", "#889C6B"]);
+
+// use x-axis scale to set x-axis
+var xAxis = d3.svg.axis()
+    .scale(x0)
+    .orient("bottom");
+
+// use y-axis scale to set y-axis
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left")
+    .tickFormat(d3.format(".2s"));
+
+// create SVG container for chart components
+var svg = d3.select(".clustered-bar-graph").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+// convert strings to numbers
+// payData.forEach(function(d) {
+  // console.log(d);
+  // if (d.district == "San Francisco Unified"){
+  //   console.log("we have a winner");
+    // d.year = d.year;
+    // d.teacher = +d.adjusted_teacher;
+    // d.step_10 = +d.adjusted_step_10;
+    // d.median = +d.adjusted_median;
+  // }
+// })
+console.log(payData);
+
+// map columns to colors
+var yearMap = d3.keys(payData[0]).filter(function (key) {
+    return key !== "year";
+});
+
+payData.forEach(function (d) {
+    var y0 = 0;
+    d.types = yearMap.map(function (name) {
+        return {
+            name: name,
+            value: +d[name]
+        };
+    });
+});
+
+// x domain is set of years
+x0.domain(payData.map(function (d) {
+    return d.year;
+}));
+
+// x domain number 2
+x1.domain(yearMap).rangeRoundBands([0,x0.rangeBand()]);
+
+// y domain is scaled by highest total
+y.domain([0, d3.max(payData, function (d) {
+    return d3.max(d.types, function(d) { return d.value; });
+})]);
+
+svg.append("text")
+    .attr("class", "y label")
+    .attr("text-anchor", "end")
+    .attr("y", 6)
+    .attr("dy", -45)
+    .attr("x", -(height)/2)
+    .attr("transform", "rotate(-90)")
+    .text("Yearly Salary");
+
+svg.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + height + ")")
+    .call(xAxis);
+
+svg.append("g")
+    .attr("class", "y axis")
+    .call(yAxis);
+
+// generate rectangles for all the data values
+var year = svg.selectAll(".year")
+    .data(payData)
+    .enter().append("g")
+    .attr("class", "g")
+    .attr("transform", function (d) {
+      return "translate(" + x0(d.year) + ",0)";
+    });
+
+year.selectAll("rect")
+    .data(function (d) {
+      return d.types;
+    })
+    .enter().append("rect")
+    .attr("width", x1.rangeBand())
+    .attr("x", function (d) {
+      return x1(d.name);
+    })
+    .attr("y", function (d) {
+      return y(d.value);
+    })
+    .attr("height", function (d) {
+      return height - y(d.value);
+    })
+    .style("fill", function (d) {
+      return color(d.name);
+    });
