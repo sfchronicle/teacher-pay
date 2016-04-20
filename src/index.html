@@ -5,11 +5,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <%= t.include("partials/_head.html") %>
   </head>
   <body>
 
     <responsive-child>
+
+      <div ng-controller="TeacherController" ng-app="teachers">
 
       <header>
         <a class="logo" href="http://www.sfchronicle.com">
@@ -17,29 +20,45 @@
         </a>
       </header>
 
-      <div class="title">Teacher salaries can't keep up in the booming Silicon Valley</div>
-      <div class="byline">By Joaquin Palomino and Heather Knight  |  April 15, 2015 </div>
+      <div class="divider-container">
+        <div class="top divider"></div>
+        <div class="top divider-text">Chronicle investigations</div>
+      </div>
 
-      <div class="text">This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text.</div>
+      <div class="title">Teacher salaries can't keep up in the Silicon Valley</div>
+
+      <div id="social">
+      	<a id="twitter-icon" title="Share on Twitter">
+      	   <i class="fa fa-twitter"></i>
+      	</a>
+      	<a id="facebook-icon" title="Share on Facebook">
+  		      <i class="fa fa-facebook"></i>
+      	</a>
+        <a id="mail-icon">
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+        </a>
+      </div>
+
+      <div class="byline">By Joaquin Palomino and Heather Knight</div>
+      <div class="byline">April 15, 2015</div>
+
+      <div class="text">The pay gap between the sexes in San Francisco has been wide at times in the past. But in 2009, as the recession was winding down, fully employed men and women in the city had roughly the same median income: $66,000 and $64,000 per year, respectively, after adjusting for inflation. By 2014, men working full time made about $73,400 per year, $11,300 more than women on average.</div>
 
       <div class="hed">Can teachers afford to rent in their school's neighborhood?</div>
       <div class="chatter">Economists recommend spending no more than 30% of yearly income on rent, but this is all but impossible in San Francisco.</div>
-      <div class="bubble-graph">
-        <div class="tooltip"></div>
+      <div class="bubble-graph" id="bubble-graph">
       </div>
 
-      <div class="text">This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text.</div>
+      <div class="text">The pay gap between the sexes in San Francisco has been wide at times in the past. But in 2009, as the recession was winding down, fully employed men and women in the city had roughly the same median income: $66,000 and $64,000 per year, respectively, after adjusting for inflation. By 2014, men working full time made about $73,400 per year, $11,300 more than women on average.</div>
 
       <div class="search-section">
         <div class="hed">Teacher salary database</div>
         <div class="chatter">See how well teachers in your neighborhood get paid.</div>
-        <div ng-controller="SearchController" ng-app="searchbar">
           <div class="search-container">
             <div class="search-bar">
               <span class="search">Search by school district or county:</span>
               <input type="text" ng-change="search()" ng-model="searchText" placeholder="Type here">
             </div>
-          </div>
 
           <table>
             <thead>
@@ -72,43 +91,49 @@
         </div>
       </div>
 
-      <div class="text">This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text.</div>
+      <div class="text">The pay gap between the sexes in San Francisco has been wide at times in the past. But in 2009, as the recession was winding down, fully employed men and women in the city had roughly the same median income: $66,000 and $64,000 per year, respectively, after adjusting for inflation. By 2014, men working full time made about $73,400 per year, $11,300 more than women on average.</div>
 
       <div class="hed">SF salaries are on the rise, but teacher pay is left behind</div>
       <div class="chatter">The economy is booming, but that hasn't translated into prosperity for teachers in San Francisco.</div>
       <div class="legend-container">
-        <div class="legend-element"><div class="teachers swatch"></div><div class="key">Median teachers salary</div></div>
-        <div class="legend-element"><div class="step10 swatch"></div><div class="key">Median step 10 teachers salary</div></div>
-        <div class="legend-element"><div class="overall swatch"></div><div class="key">Median salary</div></div>
+        <div class="legend-element"><div class="teachers swatch"></div><div class="key">Average teachers salary</div></div>
+        <div class="legend-element"><div class="step10 swatch"></div><div class="key">Average step 10 teachers salary</div></div>
+        <div class="legend-element"><div class="overall swatch"></div><div class="key">Average salary</div></div>
       </div>
       <div class="stacked-bar-graph"></div>
 
-      <div class="text">This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text.</div>
+      <div class="text">The pay gap between the sexes in San Francisco has been wide at times in the past. But in 2009, as the recession was winding down, fully employed men and women in the city had roughly the same median income: $66,000 and $64,000 per year, respectively, after adjusting for inflation. By 2014, men working full time made about $73,400 per year, $11,300 more than women on average.</div>
 
-      <div class="hed">SF salaries are on the rise, but teacher pay is left behind</div>
-      <div class="chatter">The economy is booming, but that hasn't translated into prosperity for teachers in San Francisco.</div>
-      <div class="legend-container">
-        <div class="legend-element"><div class="teachers swatch"></div><div class="key">Median teachers salary</div></div>
-        <div class="legend-element"><div class="step10 swatch"></div><div class="key">Median step 10 teachers salary</div></div>
-        <div class="legend-element"><div class="overall swatch"></div><div class="key">Median salary</div></div>
+      <div class="bars-container" id="bars-container">
+        <div class="hed">SF salaries are on the rise, but teacher pay is left behind</div>
+        <div class="chatter">The economy is booming, but that hasn't translated into prosperity for teachers in San Francisco.</div>
+
+        <div class="select-container"> Choose a bay area school district:
+          <select class="select-class"
+                  ng-model="chosenDistrict"
+                  ng-change=reset()
+                  ng-init=reset()
+                  ng-options="d for d in districts_list">
+          </select>
+        </div>
+
+        <div class="legend-container">
+          <div class="legend-element"><div class="teachers swatch"></div><div class="key">Average teachers salary</div></div>
+          <div class="legend-element"><div class="step10 swatch"></div><div class="key">Average step 10 teachers salary</div></div>
+          <div class="legend-element"><div class="overall swatch"></div><div class="key">Average salary</div></div>
+        </div>
+
+        <div class="clustered-bar-graph" id="clustered-bar-graph"></div>
       </div>
-      <div class="clustered-bar-graph"></div>
 
-      <div class="text">This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text.</div>
+      <div class="text">The pay gap between the sexes in San Francisco has been wide at times in the past. But in 2009, as the recession was winding down, fully employed men and women in the city had roughly the same median income: $66,000 and $64,000 per year, respectively, after adjusting for inflation. By 2014, men working full time made about $73,400 per year, $11,300 more than women on average.</div>
 
       <div class="credits">
-        <div class="entry">
-          Joaquin Palomino is a San Francisco Chronicle staff writer. Email: <a>jpalomino@sfchronicle.com</a> Twitter: @jpalomino
-        </div>
-        <div class="entry">
-          Heather Knight is a San Francisco Chronicle staff writer. Email: <a>hknight@sfchronicle.com</a> Twitter: @hknight
-        </div>
-      </div>
-
-      <div class="divider"></div>
-      <div class="divider-text">Don't Miss</div>
-      <div class="related-stories">
-        Here is where the related stories go.
+        Reporting by
+          Joaquin Palomino <a>jpalomino@sfchronicle.com</a> and
+          Heather Knight <a>hknight@sfchronicle.com</a> &bull;
+        Web development by
+          Emma O'Neill <a>eoneill@sfchronicle.com</a>
       </div>
 
       <footer>
@@ -117,12 +142,14 @@
         </a>
       </footer>
 
+    </div>
+
     </responsive-child>
 
     <script>
       var allSchoolData = <%= JSON.stringify(csv.all_school_data) %>;
       var sfPayData = <%= JSON.stringify(csv.sf_pay) %>;
-      var payData = <%= JSON.stringify(csv.test_data) %>; //adjusted_median_incomes
+      var payData = <%= JSON.stringify(csv.adjusted_median_incomes) %>;
       var rentData = <%= JSON.stringify(csv.USD_CITY_RENT_emma) %>;
     </script>
 

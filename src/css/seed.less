@@ -1,15 +1,22 @@
 @import "sfchronicle";
 @import "fonts";
 
-@block: "AntennaExtraLight";
-@bold: "AntennaMedium";
+@block-graphics: "AntennaExtraLight";
+@bold-graphics: "AntennaMedium";
+@body: "FarnhamText";
+@body-bold: "FarnhamTextBold";
 
 @teachers: #6C85A5;
 @step10: #FFCC32;
 @overall: #889C6B;
 
+@red: #E6A8A8;
+@gray-blue: #6C85A5;
+@dark-gray: #696969;
+@light-gray: #B2B2B2;
+
 body {
-  font-family: @block;
+  font-family: @body;
   max-width: 700px;
   margin: auto;
 }
@@ -19,29 +26,57 @@ body {
   font-size: 20px;
   margin-top: 5px;
   text-align: center;
+  font-family: @bold-graphics;
 }
 
 .chatter {
   font-size: 15px;
   text-align: center;
   padding-bottom: 5px;
+  font-family: @block-graphics;
 }
 
 .title {
-  font-family: @bold;
+  font-family: @body;
   font-weight: 400;
   font-size: 30px;
   padding: 10px 0;
+  text-align: center;
+}
+
+#social {
+  text-align: center;
+  margin-bottom:10px;
+
+  a {
+    font-size: 20px;
+    padding: 0 8px;
+    color: @dark-gray;
+
+    @include media (max-width $small-breakpoint) {
+      font-size: 1.3em;
+    }
+
+    &:hover {
+      color: @light-gray;
+    }
+  }
+}
+
+.top-photo {
+  height: 100px;
 }
 
 .byline {
   font-size: 12px;
-  text-align: left;
+  text-align: center;
+  font-family: @body;
 }
 
 .text {
   padding: 20px 0;
   font-size: 18px;
+  font-family: @body;
 }
 
 header {
@@ -50,6 +85,7 @@ header {
   padding: 0 10px;
   position: relative;
   z-index: 99;
+  font-family: @bold-graphics;
 
   .logo {
     float: left;
@@ -94,10 +130,12 @@ footer {
 }
 
 .credits {
-  margin: 30px 0;
+  margin: 30px auto;
+  text-align: center;
   font-style: italic;
   background: lighten(@teachers,40%);
-  font-size: 18px;
+  font-size: 16px;
+  font-family: @body;
   .entry {
     padding: 5px 0;
   }
@@ -106,6 +144,12 @@ footer {
 .divider {
   border-bottom: 1px black solid;
   height: 2px;
+  &.top {
+    padding-top: 20px;
+    width: 90%;
+    margin: auto;
+    border-bottom: 1px white solid;
+  }
 }
 .divider-text {
   margin: auto;
@@ -113,6 +157,18 @@ footer {
   background: white;
   width: 150px;
   text-align: center;
+  font-family: @block-graphics;
+  &.top {
+    width: 280px;
+    background: darken(@gray-blue,30%);
+    color: white;
+    // font-style: italic;
+  }
+}
+.divider-container {
+  background: darken(@gray-blue,30%);
+  padding-bottom: 10px;
+  margin-top: 5px;
 }
 
 .related-stories {
@@ -121,6 +177,15 @@ footer {
 
 // bubble graph styles ---------------------------------------------------------
 
+// #bubble-graph {
+//   height: 900px;
+//   width: 900px;
+//   //font-family: 13px sans-serif;
+//   @media @mobile {
+//     width: 98%;
+//     margin: auto;
+//   }
+
 .bubble-graph {
   svg {
     display: block;
@@ -128,6 +193,7 @@ footer {
   }
   text {
     font-size: 14px;
+    font-family: @block-graphics;
   }
 
   .x.axis line,
@@ -151,12 +217,12 @@ footer {
 }
 
 .area {
-  fill: lighten(#E6A8A8,10%);
+  fill: darken(@red,30%);
   stroke-width: 0;
 }
 
 .tooltip {
-  display: none;
+  // display: none;
   position: absolute;
   background: @df-off-white;
   font-size: 12px;
@@ -165,9 +231,9 @@ footer {
   border-radius: 5px;
   white-space: nowrap;
 
-  &.show {
-    display: block;
-  }
+  // &.show {
+  //   display: block;
+  // }
 
   &.flip {
     -webkit-transform: translateX(-100%);
@@ -179,8 +245,9 @@ footer {
 // search styles ---------------------------------------------------------------
 
 .search-section {
-  background: lighten(@teachers,40%);
+  background: lighten(@teachers,35%);
   padding: 10px 5px;
+  font-family: @block-graphics;
 }
 
 table {
@@ -191,7 +258,7 @@ table {
 
 thead {
   background: lighten(@teachers,20%);
-  font-size: 14px;
+  font-size: 13px;
   th {
     width: 100px;
     padding: 5px 0;
@@ -218,6 +285,7 @@ input {
 // bar graph styles ------------------------------------------------------------
 
 .stacked-bar-graph, .clustered-bar-graph {
+
   svg {
     display: block;
     margin: auto;
@@ -239,17 +307,29 @@ input {
   }
 }
 
+.select-container {
+  text-align: center;
+  padding: 5px 0;
+  font-family: @block-graphics;
+  select {
+    width: 200px;
+    font-size: 16px;
+    background: lighten(@gray-blue,20%);
+  }
+}
+
 // legend styles --------------------------------------------------------------
 
 .legend-container {
-  width: 250px;
+  width: 300px;
   margin: 5px auto;
-  @media @mobile {
-    margin-top: -10px;
-  }
+  // @media @mobile {
+  //   margin-top: -10px;
+  // }
   border: 2px black solid;
   border-radius: 5px;
   font-size: 14px;
+  font-family: @block-graphics;
   .legend {
     font-weight: bold;
     text-align: center;

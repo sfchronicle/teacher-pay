@@ -4,21 +4,35 @@
 require("component-responsive-frame/child");
 var d3 = require('d3');
 require("angular");
-var app = angular.module("searchbar", []);
+var app = angular.module("teachers", []);
 
 // setting sizes of interactive features
 var bar_spacing = 0.2;
 var margin = {
-  top: 20,
-  right: 20,
-  bottom: 20,
-  left: 60
-},
+  top: 15,
+  right: 15,
+  bottom: 25,
+  left: 55
+};
 
 // bubble graph ---------------------------------------------------------------
 
-width = 700 - margin.left - margin.right,
-height = 400 - margin.top - margin.bottom;
+if (screen.width > 768) {
+  var width = 700 - margin.left - margin.right;
+  var height = 400 - margin.top - margin.bottom;
+} else if (screen.width <= 768 && screen.width > 480) {
+  var width = 480 - margin.left - margin.right;
+  var height = 300 - margin.top - margin.bottom;
+} else if (screen.width <= 480) {
+  var margin = {
+    top: 15,
+    right: 15,
+    bottom: 25,
+    left: 30
+  };
+  var width = 300 - margin.left - margin.right;
+  var height = 200 - margin.top - margin.bottom;
+}
 
 // convert strings to numbers
 rentData.forEach(function(d) {
@@ -76,8 +90,6 @@ var line30 = [
   {x: xMax, y: 0,},
 ];
 
-console.log(line30);
-
 var area = d3.svg.area()
   .x(function(d) {
     return x(d.x);
@@ -92,17 +104,16 @@ svg.append("path")
   .attr("class", "area")
   .attr("d",area);
 
-console.log(area);
-
 svg.append("g")
     .attr("class", "x axis")
     .attr("transform", "translate(0," + height + ")")
     .call(xAxis)
     .append("text")
     .attr("class", "label")
-    .attr("x", width)
-    .attr("y", -6)
+    .attr("x", width-10)
+    .attr("y", -10)
     .style("text-anchor", "end")
+    .style("font-size", "18px")
     .text("Yearly Salary (K)");
 
 svg.append("g")
@@ -112,17 +123,28 @@ svg.append("g")
     .attr("class", "label")
     .attr("transform", "rotate(-90)")
     .attr("y", 6)
+    .attr("x", -10)
     .attr("dy", ".71em")
     .style("text-anchor", "end")
+    .style("fill","white")
+    .style("font-size", "18px")
     .text("Yearly Rent (K)")
 
 // label the 30% shading / line
 svg.append("text")
-    .attr("x", (width-60))
-    .attr("y", 90 )
+    .attr("x", (width/1.5+10))
+    .attr("y", 25 )
     .attr("text-anchor", "middle")
-    .style("font-size", "16px")
-    .text("30% of income");
+    .style("font-size", "15px")
+    .style("fill", "white")
+    .text("For school districts in the red,");
+svg.append("text")
+    .attr("x", (width/1.5+10))
+    .attr("y", 50 )
+    .attr("text-anchor", "middle")
+    .style("font-size", "15px")
+    .style("fill", "white")
+    .text("annual neighborhood rent exceeds 30% of income.");
 
 //color in the dots
 svg.selectAll(".dot")
@@ -136,75 +158,33 @@ svg.selectAll(".dot")
     .attr("cx", function(d) { return x(d.salaryK); })
     .attr("cy", function(d) { return y(d.rentK); })
     .style("fill", function(d) { return color(d.county); })
-    .on("mouseenter", function(d) {
-      showTooltip(d, this);
+    .on("mouseover", function(d) {
+        tooltip.html(`
+            <div>School district: <b>${d.school}</b></div>
+            <div>County: <b>${d.county}</b></div>
+            <div>Median annual rent: <b>$${d.rentK}K</b></div>
+            <div>Median annual salary: <b>$${d.salaryK}K</b></div>
+            <div>Number of teachers: <b>${d.num_teachers}</b></div>
+            <div>Percent income spent on rent: <b>${d.percent}%</b></div>
+        `);
+        tooltip.style("visibility", "visible");
     })
-    .on("mouseleave", function(d) {
-      hideTooltip(d, this);
-      tooltip.classList.remove("show");
-    });
+    .on("mousemove", function() {
+        return tooltip
+          .style("top", (d3.event.pageY+20)+"px")
+          .style("left",(d3.event.pageX-80)+"px");
+    })
+    .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
 
 // show tooltip
-var tooltip = document.querySelector(".tooltip");
-
-var showTooltip = function(d, target) {
-  svg.selectAll('.dot').selectAll("circle")
-
-  // tooltip info
-  tooltip.classList.add("show");
-  tooltip.innerHTML = `
-    <div>School district: <b>${d.school}</b></div>
-    <div>County: <b>${d.county}</b></div>
-    <div>Median annual rent: <b>$${d.rentK}K</b></div>
-    <div>Median annual salary: <b>$${d.salaryK}K</b></div>
-    <div>Number of teachers: <b>${d.num_teachers}</b></div>
-    <div>Percent income spent on rent: <b>${d.percent}%</b></div>
-  `;
-}
-
-var hideTooltip = function(d, target) {
-    tooltip.classList.remove("show");
-}
-
-// get tooltip to move with cursor
-document.querySelector(".bubble-graph").addEventListener("mousemove", function(e) {
-  var bounds = this.getBoundingClientRect();
-  var x = e.clientX - bounds.left;
-  var y = e.clientY - bounds.top;
-  tooltip.style.left = x + 10 + "px";
-  tooltip.style.top = y + 10 + "px";
-
-  tooltip.classList[x > bounds.width / 2 ? "add" : "remove"]("flip");
-});
-
+var tooltip = d3.select(".bubble-graph")
+    .append("div")
+    .attr("class","tooltip")
+    .style("position", "absolute")
+    .style("z-index", "10")
+    .style("visibility", "hidden")
 
 // searchbar code -------------------------------------------------------------
-
-app.controller("SearchController", ["$scope", function($scope) {
-  var all = allSchoolData;
-
-  $scope.untouched = true;
-
-  $scope.search = debounce(function() {
-
-    var value = $scope.searchText;
-
-    if (!value) {
-      $scope.found = [];
-      $scope.untouched = true;
-    } else {
-      value = value.toLowerCase();
-      var filtered = all.filter(function(item) {
-        return (item.county.toLowerCase().indexOf(value) == 0 || item.school_district.toLowerCase().indexOf(value) == 0);
-      });
-      $scope.found = filtered;
-      $scope.untouched = false;
-    }
-    $scope.$apply();
-  });
-
-  $scope.found = [];
-}]);
 
 var debounce = function(f, interval) {
   var timeout = null;
@@ -334,125 +314,195 @@ year.selectAll("rect")
     return color(d.name);
 });
 
-// clustered bar graph ----------------------------------------------------------
+// Angular controller ----------------------------------------------------------
 
-width = 500 - margin.left - margin.right,
-height = 400 - margin.top - margin.bottom;
+app.controller("TeacherController", ["$scope", function($scope) {
 
-// x-axis scale
-var x0 = d3.scale.ordinal()
-    .rangeRoundBands([0, width], bar_spacing);
-var x1 = d3.scale.ordinal()
+  // for interactive search bar
+  var all = allSchoolData;
+  $scope.untouched = true;
+  $scope.search = debounce(function() {
+    var value = $scope.searchText;
+    if (!value) {
+      $scope.found = [];
+      $scope.untouched = true;
+    } else {
+      value = value.toLowerCase();
+      var filtered = all.filter(function(item) {
+        return (item.county.toLowerCase().indexOf(value) == 0 || item.school_district.toLowerCase().indexOf(value) == 0);
+      });
+      $scope.found = filtered;
+      $scope.untouched = false;
+    }
+    $scope.$apply();
+  });
+  $scope.found = [];
 
-// y-axis scale
-var y = d3.scale.linear()
-    .rangeRound([height, 0]);
-
-// color bands
-var color = d3.scale.ordinal()
-    .range(["#6C85A5", "#FFCC32", "#889C6B"]);
-
-// use x-axis scale to set x-axis
-var xAxis = d3.svg.axis()
-    .scale(x0)
-    .orient("bottom");
-
-// use y-axis scale to set y-axis
-var yAxis = d3.svg.axis()
-    .scale(y)
-    .orient("left")
-    .tickFormat(d3.format(".2s"));
-
-// create SVG container for chart components
-var svg = d3.select(".clustered-bar-graph").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-// convert strings to numbers
-// payData.forEach(function(d) {
-  // console.log(d);
-  // if (d.district == "San Francisco Unified"){
-  //   console.log("we have a winner");
-    // d.year = d.year;
-    // d.teacher = +d.adjusted_teacher;
-    // d.step_10 = +d.adjusted_step_10;
-    // d.median = +d.adjusted_median;
-  // }
-// })
-console.log(payData);
-
-// map columns to colors
-var yearMap = d3.keys(payData[0]).filter(function (key) {
-    return key !== "year";
-});
-
-payData.forEach(function (d) {
-    var y0 = 0;
-    d.types = yearMap.map(function (name) {
-        return {
-            name: name,
-            value: +d[name]
-        };
+  // filtering data for the bar chart
+  var districts_list = ["San Francisco", "Oakland", "Palo Alto", "San Jose", "Santa Clara"];
+  var data_by_district = {};
+  var temp_data = [];
+  var pay_element = [];
+  districts_list.forEach(function(d) {
+    payData.forEach(function(p) {
+      if (p.district == d) {
+        delete p.district;
+        temp_data.push(p);
+      }
     });
-});
+    data_by_district[d] = temp_data;
+    temp_data = [];
+  });
+  $scope.districts_list = districts_list;
+  $scope.data_by_district = data_by_district;
 
-// x domain is set of years
-x0.domain(payData.map(function (d) {
-    return d.year;
-}));
+  var chosenDistrict = "San Francisco";
+  $scope.chosenDistrict = chosenDistrict;
+  var districtPay = data_by_district[chosenDistrict];
 
-// x domain number 2
-x1.domain(yearMap).rangeRoundBands([0,x0.rangeBand()]);
+  $scope.reset = function () {
+    districtPay = data_by_district[$scope.chosenDistrict];
 
-// y domain is scaled by highest total
-y.domain([0, d3.max(payData, function (d) {
-    return d3.max(d.types, function(d) { return d.value; });
-})]);
+    // clustered bar graph ----------------------------------------------------------
 
-svg.append("text")
-    .attr("class", "y label")
-    .attr("text-anchor", "end")
-    .attr("y", 6)
-    .attr("dy", -45)
-    .attr("x", -(height)/2)
-    .attr("transform", "rotate(-90)")
-    .text("Yearly Salary");
+    d3.select("#clustered-bar-graph").select("svg").remove();
 
-svg.append("g")
-    .attr("class", "x axis")
-    .attr("transform", "translate(0," + height + ")")
-    .call(xAxis);
+    if (screen.width > 768) {
+      var width = 500 - margin.left - margin.right;
+      var height = 400 - margin.top - margin.bottom;
+    } else if (screen.width <= 768 && screen.width > 480) {
+      var width = 480 - margin.left - margin.right;
+      var height = 300 - margin.top - margin.bottom;
+    } else if (screen.width <= 480) {
+      var margin = {
+        top: 15,
+        right: 15,
+        bottom: 25,
+        left: 55
+      };
+      var width = 310 - margin.left - margin.right;
+      var height = 200 - margin.top - margin.bottom;
+    }
 
-svg.append("g")
-    .attr("class", "y axis")
-    .call(yAxis);
+    // x-axis scale
+    var x0 = d3.scale.ordinal()
+        .rangeRoundBands([0, width], bar_spacing);
+    var x1 = d3.scale.ordinal()
 
-// generate rectangles for all the data values
-var year = svg.selectAll(".year")
-    .data(payData)
-    .enter().append("g")
-    .attr("class", "g")
-    .attr("transform", function (d) {
-      return "translate(" + x0(d.year) + ",0)";
+    // y-axis scale
+    var y = d3.scale.linear()
+        .rangeRound([height, 0]);
+
+    // color bands
+    var color = d3.scale.ordinal()
+        .range(["#6C85A5", "#FFCC32", "#889C6B"]);
+
+    // use x-axis scale to set x-axis
+    var xAxis = d3.svg.axis()
+        .scale(x0)
+        .orient("bottom");
+
+    // use y-axis scale to set y-axis
+    var yAxis = d3.svg.axis()
+        .scale(y)
+        .orient("left")
+        .tickFormat(d3.format(".2s"));
+
+    // create SVG container for chart components
+    var svg = d3.select(".clustered-bar-graph").append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    // map columns to colors
+    var yearMap = d3.keys(districtPay[0]).filter(function (key) {
+        if (key != "types") {
+          return key !== "year";
+        }
     });
 
-year.selectAll("rect")
-    .data(function (d) {
-      return d.types;
-    })
-    .enter().append("rect")
-    .attr("width", x1.rangeBand())
-    .attr("x", function (d) {
-      return x1(d.name);
-    })
-    .attr("y", function (d) {
-      return y(d.value);
-    })
-    .attr("height", function (d) {
-      return height - y(d.value);
-    })
-    .style("fill", function (d) {
-      return color(d.name);
-    });
+    if (!districtPay[0].types) {
+      districtPay.forEach(function (d) {
+          var y0 = 0;
+          d.types = yearMap.map(function (name) {
+              return {
+                  name: name,
+                  value: +d[name]
+              };
+          });
+      });
+    };
+
+    // x domain is set of years
+    x0.domain(districtPay.map(function (d) {
+        return d.year;
+    }));
+
+    // x domain number 2
+    x1.domain(yearMap).rangeRoundBands([0,x0.rangeBand()]);
+
+    // y domain is scaled by highest total
+    y.domain([0, d3.max(districtPay, function (d) {
+        return d3.max(d.types, function(d) {
+          return d.value;
+        });
+    })]);
+
+    svg.append("text")
+        .attr("class", "y label")
+        .attr("text-anchor", "end")
+        .attr("y", 6)
+        .attr("dy", -45)
+        .attr("x", -(height)/2)
+        .attr("transform", "rotate(-90)")
+        .text("Yearly Salary");
+
+    svg.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis);
+
+    svg.append("g")
+        .attr("class", "y axis")
+        .call(yAxis);
+
+    // generate rectangles for all the data values
+    var year = svg.selectAll(".year")
+        .data(districtPay)
+        .enter().append("g")
+        .attr("class", "g")
+        .attr("transform", function (d) {
+          return "translate(" + x0(d.year) + ",0)";
+        });
+
+    year.selectAll("rect")
+        .data(function (d) {
+          return d.types;
+        })
+        .enter().append("rect")
+        .attr("width", x1.rangeBand())
+        .attr("x", function (d) {
+          return x1(d.name);
+        })
+        .attr("y", function (d) {
+          return y(d.value);
+        })
+        .attr("height", function (d) {
+          return height - y(d.value);
+        })
+        .style("fill", function (d) {
+          return color(d.name);
+        });
+
+    var canvasBounds = document.getElementById("clustered-bar-graph").getBoundingClientRect();
+    console.log(canvasBounds);
+    console.log(width);
+    console.log(height);
+
+  };
+
+
+
+
+}]);
