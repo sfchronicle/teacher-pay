@@ -12,7 +12,7 @@ var margin = {
   top: 15,
   right: 15,
   bottom: 25,
-  left: 55
+  left: 40
 };
 
 // bubble graph ---------------------------------------------------------------
@@ -21,12 +21,12 @@ if (screen.width > 768) {
   var width = 700 - margin.left - margin.right;
   var height = 400 - margin.top - margin.bottom;
 } else if (screen.width <= 768 && screen.width > 480) {
-  var width = 480 - margin.left - margin.right;
-  var height = 300 - margin.top - margin.bottom;
+  var width = 650 - margin.left - margin.right;
+  var height = 350 - margin.top - margin.bottom;
 } else if (screen.width <= 480) {
   var margin = {
     top: 15,
-    right: 15,
+    right: 10,
     bottom: 25,
     left: 30
   };
@@ -113,7 +113,6 @@ svg.append("g")
     .attr("x", width-10)
     .attr("y", -10)
     .style("text-anchor", "end")
-    .style("font-size", "18px")
     .text("Yearly Salary (K)");
 
 svg.append("g")
@@ -127,24 +126,25 @@ svg.append("g")
     .attr("dy", ".71em")
     .style("text-anchor", "end")
     .style("fill","white")
-    .style("font-size", "18px")
     .text("Yearly Rent (K)")
 
 // label the 30% shading / line
-svg.append("text")
-    .attr("x", (width/1.5+10))
-    .attr("y", 25 )
-    .attr("text-anchor", "middle")
-    .style("font-size", "15px")
-    .style("fill", "white")
-    .text("For school districts in the red,");
-svg.append("text")
-    .attr("x", (width/1.5+10))
-    .attr("y", 50 )
-    .attr("text-anchor", "middle")
-    .style("font-size", "15px")
-    .style("fill", "white")
-    .text("annual neighborhood rent exceeds 30% of income.");
+if (screen.width > 480) {
+  svg.append("text")
+      .attr("x", (width/1.5+10))
+      .attr("y", 25 )
+      .attr("text-anchor", "middle")
+      .style("font-size", "15px")
+      .style("fill", "white")
+      .text("For school districts in the red,");
+  svg.append("text")
+      .attr("x", (width/1.5+10))
+      .attr("y", 50 )
+      .attr("text-anchor", "middle")
+      .style("font-size", "15px")
+      .style("fill", "white")
+      .text("annual neighborhood rent exceeds 30% of income.");
+}
 
 //color in the dots
 svg.selectAll(".dot")
@@ -170,9 +170,15 @@ svg.selectAll(".dot")
         tooltip.style("visibility", "visible");
     })
     .on("mousemove", function() {
+      if (screen.width <= 480) {
+        return tooltip
+          .style("top", (d3.event.pageY+20)+"px")
+          .style("left",10+"px");
+      } else {
         return tooltip
           .style("top", (d3.event.pageY+20)+"px")
           .style("left",(d3.event.pageX-80)+"px");
+      }
     })
     .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
 
@@ -367,6 +373,12 @@ app.controller("TeacherController", ["$scope", function($scope) {
 
     d3.select("#clustered-bar-graph").select("svg").remove();
 
+    var margin = {
+      top: 15,
+      right: 15,
+      bottom: 25,
+      left: 55
+    };
     if (screen.width > 768) {
       var width = 500 - margin.left - margin.right;
       var height = 400 - margin.top - margin.bottom;
@@ -398,9 +410,16 @@ app.controller("TeacherController", ["$scope", function($scope) {
         .range(["#6C85A5", "#FFCC32", "#889C6B"]);
 
     // use x-axis scale to set x-axis
-    var xAxis = d3.svg.axis()
-        .scale(x0)
-        .orient("bottom");
+    if (screen.width <= 480) {
+      var xAxis = d3.svg.axis()
+          .scale(x0)
+          .orient("bottom")
+          .tickValues(["2005", ,"2007", , "2009", , "2011", "2013", ]);
+    } else {
+      var xAxis = d3.svg.axis()
+          .scale(x0)
+          .orient("bottom")
+    }
 
     // use y-axis scale to set y-axis
     var yAxis = d3.svg.axis()
@@ -452,9 +471,9 @@ app.controller("TeacherController", ["$scope", function($scope) {
     svg.append("text")
         .attr("class", "y label")
         .attr("text-anchor", "end")
-        .attr("y", 6)
+        .attr("y", 2)
         .attr("dy", -45)
-        .attr("x", -(height)/2)
+        .attr("x", -(height)/3)
         .attr("transform", "rotate(-90)")
         .text("Yearly Salary");
 
@@ -495,14 +514,6 @@ app.controller("TeacherController", ["$scope", function($scope) {
           return color(d.name);
         });
 
-    var canvasBounds = document.getElementById("clustered-bar-graph").getBoundingClientRect();
-    console.log(canvasBounds);
-    console.log(width);
-    console.log(height);
-
   };
-
-
-
 
 }]);

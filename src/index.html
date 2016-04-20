@@ -22,7 +22,7 @@
 
       <div class="divider-container">
         <div class="top divider"></div>
-        <div class="top divider-text">Chronicle investigations</div>
+        <div class="top divider-text">Chronicle investigation</div>
       </div>
 
       <div class="title">Teacher salaries can't keep up in the Silicon Valley</div>
@@ -46,6 +46,7 @@
 
       <div class="hed">Can teachers afford to rent in their school's neighborhood?</div>
       <div class="chatter">Economists recommend spending no more than 30% of yearly income on rent, but this is all but impossible in San Francisco.</div>
+      <div class="chatter mobile">Economists recommend spending no more than 30% of yearly income on rent, but this is all but impossible in San Francisco. For school districts in the red, annual neighborhood rent exceeds 30% of income.</div>
       <div class="bubble-graph" id="bubble-graph">
       </div>
 
@@ -69,7 +70,7 @@
                 <th>Lowest salary
                 <th>Average salary
                 <th>Highest salary
-                <th>Step 10 salary
+                <th class="step10">Mid-career salary
 
             <tbody>
               <tr ng-show="found.length == 0 && !untouched">
@@ -84,7 +85,7 @@
                 <td>{{row.lowest_salary_offered}}
                 <td>{{row.average_salary}}
                 <td>{{row.highest_salary_offered}}
-                <td>{{row.step_10_salary}}
+                <td class="step10">{{row.step_10_salary}}
               </tr>
           </table>
 
@@ -97,7 +98,7 @@
       <div class="chatter">The economy is booming, but that hasn't translated into prosperity for teachers in San Francisco.</div>
       <div class="legend-container">
         <div class="legend-element"><div class="teachers swatch"></div><div class="key">Average teachers salary</div></div>
-        <div class="legend-element"><div class="step10 swatch"></div><div class="key">Average step 10 teachers salary</div></div>
+        <div class="legend-element"><div class="step10 swatch"></div><div class="key">Average mid-career teachers salary</div></div>
         <div class="legend-element"><div class="overall swatch"></div><div class="key">Average salary</div></div>
       </div>
       <div class="stacked-bar-graph"></div>
@@ -119,7 +120,7 @@
 
         <div class="legend-container">
           <div class="legend-element"><div class="teachers swatch"></div><div class="key">Average teachers salary</div></div>
-          <div class="legend-element"><div class="step10 swatch"></div><div class="key">Average step 10 teachers salary</div></div>
+          <div class="legend-element"><div class="step10 swatch"></div><div class="key">Average mid-career teachers salary</div></div>
           <div class="legend-element"><div class="overall swatch"></div><div class="key">Average salary</div></div>
         </div>
 
@@ -132,7 +133,7 @@
         Reporting by
           Joaquin Palomino <a>jpalomino@sfchronicle.com</a> and
           Heather Knight <a>hknight@sfchronicle.com</a> &bull;
-        Web development by
+        Web development and design by
           Emma O'Neill <a>eoneill@sfchronicle.com</a>
       </div>
 

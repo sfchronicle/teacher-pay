@@ -5,6 +5,8 @@
 @bold-graphics: "AntennaMedium";
 @body: "FarnhamText";
 @body-bold: "FarnhamTextBold";
+@title: "FarnhamDisplayLight";
+@banner: "DispatchLight";
 
 @teachers: #6C85A5;
 @step10: #FFCC32;
@@ -34,10 +36,19 @@ body {
   text-align: center;
   padding-bottom: 5px;
   font-family: @block-graphics;
+  &.mobile {
+    display: none;
+    @media @mobile {
+      display: block;
+    }
+  }
+  @media @mobile {
+    display: none;
+  }
 }
 
 .title {
-  font-family: @body;
+  font-family: @title;
   font-weight: 400;
   font-size: 30px;
   padding: 10px 0;
@@ -153,15 +164,18 @@ footer {
 }
 .divider-text {
   margin: auto;
-  margin-top: -15px;
+  margin-top: -13px;
   background: white;
   width: 150px;
   text-align: center;
-  font-family: @block-graphics;
+  font-family: @banner;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   &.top {
-    width: 280px;
+    width: 320px;
     background: darken(@gray-blue,30%);
     color: white;
+    font-size: 15px;
     // font-style: italic;
   }
 }
@@ -203,12 +217,27 @@ footer {
     fill: none;
     stroke: #000;
   }
+  .label {
+    font-size: 18px;
+    @media @mobile {
+      font-size: 10px;
+      z-index: 100;
+    }
+  }
+  .tick {
+    text {
+      @media @mobile {
+        font-size: 12px;
+      }
+    }
+  }
 
   .tooltip {
     position: absolute;
-    width: 200px;
-    height: 110px;
+    width: 220px;
+    height: 115px;
     pointer-events: none;
+    background: lighten(@light-gray,20%);
   }
   .dot {
     cursor: pointer;
@@ -262,11 +291,27 @@ thead {
   th {
     width: 100px;
     padding: 5px 0;
+    &.step10 {
+      @media @mobile {
+        display: none;
+      }
+    }
+    @media @mobile {
+      font-size: 10px;
+    }
   }
 }
 td {
   font-size: 14px;
   padding-left: 10px;
+  &.step10 {
+    @media @mobile {
+      display: none;
+    }
+  }
+  @media @mobile {
+    font-size: 10px;
+  }
 }
 
 .search-bar, .empty-note {
@@ -292,6 +337,7 @@ input {
   }
   text {
     font-size: 14px;
+    font-family: @block-graphics;
   }
 
   .x.axis line,
@@ -305,6 +351,7 @@ input {
     fill: none;
     stroke: #000;
   }
+
 }
 
 .select-container {
@@ -321,7 +368,7 @@ input {
 // legend styles --------------------------------------------------------------
 
 .legend-container {
-  width: 300px;
+  width: 305px;
   margin: 5px auto;
   // @media @mobile {
   //   margin-top: -10px;
