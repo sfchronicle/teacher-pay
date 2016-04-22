@@ -17,9 +17,11 @@
 @dark-gray: #696969;
 @light-gray: #B2B2B2;
 
+@share-gray: lighten(#4F5C70,10%);
+
 body {
   font-family: @body;
-  max-width: 700px;
+  max-width: 800px;
   margin: auto;
 }
 
@@ -66,7 +68,7 @@ body {
   a {
     font-size: 20px;
     padding: 0 8px;
-    color: @dark-gray;
+    color: @share-gray;
 
     @include media (max-width $small-breakpoint) {
       font-size: 1.3em;
@@ -146,13 +148,14 @@ footer {
 
 .credits {
   margin: 30px auto;
+  padding: 10px;
   text-align: center;
   font-style: italic;
   background: lighten(@teachers,40%);
   font-size: 16px;
   font-family: @body;
   .entry {
-    padding: 5px 0;
+    // padding: 5px 0;
   }
 }
 
@@ -191,6 +194,40 @@ footer {
 
 .related-stories {
   height: 100px;
+}
+
+.dont-miss {
+  .display-flex;
+  .flex-wrap(wrap);
+  margin-bottom: 20px;
+  font-size: 17px;
+  font-family: @block-graphics;
+
+  .story {
+    .flex(0 0 25%);
+
+    @media @mobile {
+      .flex(1 1 50%)
+    }
+  }
+  .padded {
+    padding: 10px;
+  }
+  .small {
+    font-weight: bold;
+    font-size: 15px;
+  }
+  img {
+    width: 100%;
+  }
+  // a {
+  //   color: @dark-gray;
+  //   transition: color .1s linear;
+  //
+  //   &:hover {
+  //     color: @df-blue;
+  //   }
+  // }
 }
 
 // bubble graph styles ---------------------------------------------------------

@@ -15,7 +15,7 @@
       <div ng-controller="TeacherController" ng-app="teachers">
 
       <header>
-        <a class="logo" href="http://www.sfchronicle.com">
+        <a class="logo" href="http://www.sfchronicle.com" target="_blank">
           <img src="./assets/sf_logo_black.png">
         </a>
       </header>
@@ -31,13 +31,13 @@
       </div>
 
       <div id="social">
-      	<a id="twitter-icon" title="Share on Twitter">
-      	   <i class="fa fa-twitter"></i>
+        <a id="twitter-icon" title="Share on Twitter" href="https://twitter.com/intent/tweet?url=http%3A//projects.sfchronicle.com/2016/teacher-pay/&amp;text=Check out our great investigative journalism.">
+      		<i class="fa fa-twitter"></i>
       	</a>
-      	<a id="facebook-icon" title="Share on Facebook">
-  		      <i class="fa fa-facebook"></i>
-      	</a>
-        <a id="mail-icon">
+        <a id="facebook-icon" title="Share on Facebook" href="#" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fprojects.sfchronicle.com%2F2016%2Fteacher-pay%2F', 'facebook-share-dialog', 'width=626,height=436'); return false;">
+            <i class="fa fa-facebook"></i>
+        </a>
+        <a id="mail-icon" href="mailto:?subject=Teacher Pay - San Francisco Chronicle special report.&body=http://projects.sfchronicle.com/2016/teacher-pay/">
           <i class="fa fa-envelope" aria-hidden="true"></i>
         </a>
       </div>
@@ -133,15 +133,53 @@
       <div class="text">The pay gap between the sexes in San Francisco has been wide at times in the past. But in 2009, as the recession was winding down, fully employed men and women in the city had roughly the same median income: $66,000 and $64,000 per year, respectively, after adjusting for inflation. By 2014, men working full time made about $73,400 per year, $11,300 more than women on average.</div>
 
       <div class="credits">
-        Reporting by
-          Joaquin Palomino <a>jpalomino@sfchronicle.com</a> and
-          Heather Knight <a>hknight@sfchronicle.com</a> &bull;
-        Web development and design by
-          Emma O'Neill <a>eoneill@sfchronicle.com</a>
+        <div class="entry">Reporters: Joaquin Palomino &bull; <a>jpalomino@sfchronicle.com</a></div>
+        <div class="entry">Heather Knight &bull; <a>hknight@sfchronicle.com</a></div>
+        <div class="entry">Developer: Emma O'Neill &bull; <a>eoneill@sfchronicle.com</a></div>
+      </div>
+
+      <div class="divider">
+      </div>
+
+      <div class="dont-miss">
+        <div class="story">
+          <div class="padded">
+          <a href="http://projects.sfchronicle.com/2016/living-with-aids/" target="_blank">
+            <img src="http://ww4.hdnux.com/photos/44/14/17/9487327/6/landscape_43.jpg"></img>
+          </a>
+            <div class="small">Living with AIDS</div>
+          <a href="http://projects.sfchronicle.com/2016/living-with-aids/">
+          </a>
+          </div>
+        </div>
+        <div class="story">
+          <div class="padded">
+          <a href="http://projects.sfchronicle.com/2016/top100-restaurants/" target="_blank">
+            <img src="./assets/dont-miss-top100.jpg"></img>
+          </a>
+            <div class="small">Michael Bauer's Top 100 Restaurants</div>
+          </div>
+        </div>
+        <div class="story">
+          <div class="padded">
+          <a href="http://projects.sfchronicle.com/2016/living-with-aids/" target="_blank">
+            <img src="http://ww4.hdnux.com/photos/44/14/17/9487327/6/landscape_43.jpg"></img>
+          </a>
+            <div class="small">Living with AIDS</div>
+          </div>
+        </div>
+        <div class="story">
+          <div class="padded">
+          <a href="http://projects.sfchronicle.com/2016/drought-status/" target="_blank">
+            <img src="./assets/dont-miss-drought.jpg"></img>
+          </a>
+            <div class="small">Check the California drought status</div>
+          </div>
+        </div>
       </div>
 
       <footer>
-        <a class="logo" href="http://www.sfchronicle.com">
+        <a class="logo" href="http://www.sfchronicle.com" target="_blank">
           <img src="./assets/sf_logo_white.png">
         </a>
       </footer>
@@ -156,6 +194,8 @@
       var payData = <%= JSON.stringify(csv.adjusted_median_incomes) %>;
       var rentData = <%= JSON.stringify(csv.USD_CITY_RENT_emma) %>;
     </script>
+
+    <script type="text/javascript" async src="//platform.twitter.com/widgets.js"></script>
 
     <script src="app.js" async></script>
     <%= t.include("partials/_foot.html") %>
