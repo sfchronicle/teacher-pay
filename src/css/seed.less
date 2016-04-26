@@ -18,6 +18,7 @@
 @light-gray: #B2B2B2;
 
 @share-gray: lighten(#4F5C70,10%);
+@back-gray: lighten(#6C85A5,35%);
 
 body {
   font-family: @body;
@@ -32,6 +33,19 @@ body {
   text-align: center;
   font-family: @block-graphics;
   font-weight: bold;
+}
+
+.special-head {
+  color: darken(@gray-blue,30%);
+  text-align: right;
+  font-family: @banner;
+  text-transform: uppercase;
+  width: 200px;
+  float: right;
+  vertical-align: bottom;
+  padding-top: 10px;
+  font-weight: bold;
+  font-size: 16px;
 }
 
 .chatter {
@@ -97,7 +111,7 @@ body {
 }
 
 header {
-  background: lighten(@teachers,40%);
+  background: @back-gray;
   opacity: 0.95;
   padding: 0 10px;
   position: relative;
@@ -151,7 +165,7 @@ footer {
   padding: 10px;
   text-align: center;
   font-style: italic;
-  background: lighten(@teachers,40%);
+  background: @back-gray;
   font-size: 16px;
   font-family: @body;
   .entry {
@@ -162,11 +176,17 @@ footer {
 .divider {
   border-bottom: 1px black solid;
   height: 2px;
+  // &.top {
+  //   padding-top: 20px;
+  //   width: 90%;
+  //   margin: auto;
+  //   border-bottom: 1px white solid;
+  // }
   &.top {
-    padding-top: 20px;
-    width: 90%;
-    margin: auto;
-    border-bottom: 1px white solid;
+    width: 100%;
+    border-bottom: 2px black solid;
+    margin-bottom: 10px;
+    background-color: darken(@gray-blue,30%);
   }
 }
 .divider-text {
@@ -315,7 +335,7 @@ footer {
 // search styles ---------------------------------------------------------------
 
 .search-section {
-  background: lighten(@teachers,35%);
+  background: @back-gray;
   padding: 10px 5px;
   font-family: @block-graphics;
 }
@@ -327,7 +347,7 @@ table {
 }
 
 thead {
-  background: lighten(@teachers,20%);
+  background: darken(@back-gray,10%);
   font-size: 13px;
   th {
     width: 100px;
