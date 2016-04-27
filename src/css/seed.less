@@ -108,10 +108,16 @@ body {
   padding: 20px 0;
   font-size: 18px;
   font-family: @body;
+  @media @mobile {
+  padding: 20px 5px;
+  }
+  @media @tablet {
+    padding: 20px 15px;
+  }
 }
 
 header {
-  background: @back-gray;
+  background: lighten(@teachers,40%);
   opacity: 0.95;
   padding: 0 10px;
   position: relative;
@@ -121,10 +127,22 @@ header {
   .logo {
     float: left;
     margin-right: 10px;
-
     img {
       margin-top: 10px;
       height: 20px;
+    }
+    @media @mobile {
+      display: none;
+    }
+  }
+  .mobile-logo {
+    display: none;
+    @media @mobile {
+      display: inline;
+    }
+    img {
+      margin-top: 10px;
+      height: 18px;
     }
   }
 
@@ -168,8 +186,8 @@ footer {
   background: @back-gray;
   font-size: 16px;
   font-family: @body;
-  .entry {
-    // padding: 5px 0;
+  @media @mobile {
+    font-size: 12px;
   }
 }
 
@@ -295,7 +313,7 @@ footer {
 
   .tooltip {
     position: absolute;
-    width: 220px;
+    width: 230px;
     height: 115px;
     pointer-events: none;
     background: lighten(@light-gray,20%);
@@ -307,7 +325,7 @@ footer {
 }
 
 .area {
-  fill: darken(@red,30%);
+  fill: darken(@red,35%);
   stroke-width: 0;
 }
 
@@ -429,7 +447,7 @@ input {
 // legend styles --------------------------------------------------------------
 
 .legend-container {
-  width: 305px;
+  width: 250px;
   margin: 5px auto;
   // @media @mobile {
   //   margin-top: -10px;

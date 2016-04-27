@@ -22,7 +22,7 @@ if (screen.width > 768) {
   var height = 400 - margin.top - margin.bottom;
 } else if (screen.width <= 768 && screen.width > 480) {
   var width = 650 - margin.left - margin.right;
-  var height = 350 - margin.top - margin.bottom;
+  var height = 400 - margin.top - margin.bottom;
 } else if (screen.width <= 480) {
   var margin = {
     top: 15,
@@ -30,8 +30,8 @@ if (screen.width > 768) {
     bottom: 25,
     left: 30
   };
-  var width = 300 - margin.left - margin.right;
-  var height = 200 - margin.top - margin.bottom;
+  var width = 310 - margin.left - margin.right;
+  var height = 280 - margin.top - margin.bottom;
 }
 
 // convert strings to numbers
@@ -96,7 +96,7 @@ var area = d3.svg.area()
   })
   .y0(0)
   .y1(function(d) {
-    return y(d.x/3);
+    return y(d.x*0.3);
   });
 
 svg.append("path")
@@ -144,6 +144,21 @@ if (screen.width > 480) {
       .style("font-size", "15px")
       .style("fill", "white")
       .text("annual neighborhood rent exceeds 30% of income.");
+} else {
+  svg.append("text")
+      .attr("x", (width/1.5-10))
+      .attr("y", 36 )
+      .attr("text-anchor", "middle")
+      .style("font-size", "11px")
+      .style("fill", "white")
+      .text("For school districts in the red, annual");
+  svg.append("text")
+      .attr("x", (width/1.5-30))
+      .attr("y", 50 )
+      .attr("text-anchor", "middle")
+      .style("font-size", "11px")
+      .style("fill", "white")
+      .text("neighborhood rent exceeds 30% of income.");
 }
 
 //color in the dots
@@ -153,7 +168,11 @@ svg.selectAll(".dot")
     .attr("class", "dot")
     .attr("r", function(d) {
       //return 6;
-      return (d.num_teachers/500)+2.5;
+      if (screen.width <= 480) {
+        return (d.num_teachers/1400)+4;
+      } else {
+        return (d.num_teachers/800)+4;
+      }
     })
     .attr("cx", function(d) { return x(d.salaryK); })
     .attr("cy", function(d) { return y(d.rentK); })
@@ -182,6 +201,37 @@ svg.selectAll(".dot")
     })
     .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
 
+var node = svg.selectAll(".circle")
+    .data(rentData)
+    .enter().append("g")
+    .attr("class","node");
+
+if (screen.width <= 480) {
+  node.append("text")
+      .attr("x", function(d) { return x(d.salaryK); })
+      .attr("y", function(d) { return y(d.rentK); })
+      .style("fill","BFBFBF")
+      .style("font-size","10px")
+      .style("font-style","italic")
+      .text(function(d) {
+        if (d.percent > 35 || d.school == "Los Angeles Unified") {
+          return d.school
+        }
+      });
+} else {
+  node.append("text")
+      .attr("x", function(d) { return x(d.salaryK); })
+      .attr("y", function(d) { return y(d.rentK); })
+      .style("fill","CCCCCC")
+      .style("font-size","12px")
+      .style("font-style","italic")
+      .text(function(d) {
+        if (d.percent > 35 || d.school == "Los Angeles Unified") {
+          return d.school
+        }
+      });
+}
+
 // show tooltip
 var tooltip = d3.select(".bubble-graph")
     .append("div")
@@ -206,119 +256,6 @@ var debounce = function(f, interval) {
     }, interval || 400);
   };
 };
-
-// stacked bar graph ----------------------------------------------------------
-
-width = 500 - margin.left - margin.right,
-height = 400 - margin.top - margin.bottom;
-
-// x-axis scale
-var x = d3.scale.ordinal()
-    .rangeRoundBands([0, width], bar_spacing);
-
-// y-axis scale
-var y = d3.scale.linear()
-    .rangeRound([height, 0]);
-
-// color bands
-var color = d3.scale.ordinal()
-    .range(["#6C85A5", "#FFCC32", "#889C6B"]);
-
-// use x-axis scale to set x-axis
-var xAxis = d3.svg.axis()
-    .scale(x)
-    .orient("bottom");
-
-// use y-axis scale to set y-axis
-var yAxis = d3.svg.axis()
-    .scale(y)
-    .orient("left")
-    .tickFormat(d3.format(".2s"));
-
-// create SVG container for chart components
-var svg = d3.select(".stacked-bar-graph").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-// convert strings to numbers
-sfPayData.forEach(function(d) {
-  d.year = d["year"];
-  d.teacher = +d.teacher;
-  d.step_10 = +d.step_10-d.teacher;
-  d.median = +d.median-d.step_10-d.teacher;
-})
-
-// map columns to colors
-color.domain(d3.keys(sfPayData[0]).filter(function (key) {
-    return key !== "year";
-}));
-
-sfPayData.forEach(function (d) {
-    var y0 = 0;
-    d.types = color.domain().map(function (name) {
-        return {
-            name: name,
-            y0: y0,
-            y1: y0 += +d[name]
-        };
-    });
-    d.total = d.types[d.types.length - 1].y1;
-});
-
-// x domain is set of years
-x.domain(sfPayData.map(function (d) {
-    return d.year;
-}));
-
-svg.append("text")
-    .attr("class", "y label")
-    .attr("text-anchor", "end")
-    .attr("y", 6)
-    .attr("dy", -45)
-    .attr("x", -(height)/2)
-    .attr("transform", "rotate(-90)")
-    .text("Yearly Salary");
-
-// y domain is scaled by highest total
-y.domain([0, d3.max(sfPayData, function (d) {
-    return d.total;
-})]);
-
-svg.append("g")
-    .attr("class", "x axis")
-    .attr("transform", "translate(0," + height + ")")
-    .call(xAxis);
-
-svg.append("g")
-    .attr("class", "y axis")
-    .call(yAxis);
-
-// generate rectangles for all the data values
-var year = svg.selectAll(".year")
-    .data(sfPayData)
-    .enter().append("g")
-    .attr("class", "g")
-    .attr("transform", function (d) {
-    return "translate(" + x(d.year) + ",0)";
-});
-
-year.selectAll("rect")
-    .data(function (d) {
-    return d.types;
-})
-    .enter().append("rect")
-    .attr("width", x.rangeBand())
-    .attr("y", function (d) {
-    return y(d.y1);
-})
-    .attr("height", function (d) {
-    return y(d.y0) - y(d.y1);
-})
-    .style("fill", function (d) {
-    return color(d.name);
-});
 
 // Angular controller ----------------------------------------------------------
 
@@ -393,7 +330,7 @@ app.controller("TeacherController", ["$scope", function($scope) {
         left: 55
       };
       var width = 310 - margin.left - margin.right;
-      var height = 200 - margin.top - margin.bottom;
+      var height = 220 - margin.top - margin.bottom;
     }
 
     // x-axis scale
@@ -414,11 +351,18 @@ app.controller("TeacherController", ["$scope", function($scope) {
       var xAxis = d3.svg.axis()
           .scale(x0)
           .orient("bottom")
-          .tickValues(["2005", ,"2007", , "2009", , "2011", "2013", ]);
+          .tickFormat(function(d) {
+            if ((d & 1) == 0) {
+              return '';
+            } else {
+              return d;
+            }
+          });
+          // .tickValues([2005, ,2007, ,2009, ,2011, ,2013, ]);
     } else {
       var xAxis = d3.svg.axis()
           .scale(x0)
-          .orient("bottom")
+          .orient("bottom");
     }
 
     // use y-axis scale to set y-axis
