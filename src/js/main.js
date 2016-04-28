@@ -182,7 +182,7 @@ svg.selectAll(".dot")
             <div>School district: <b>${d.school}</b></div>
             <div>County: <b>${d.county}</b></div>
             <div>Median annual rent: <b>$${d.rentK}K</b></div>
-            <div>Median annual salary: <b>$${d.salaryK}K</b></div>
+            <div>Average teacher salary: <b>$${d.salaryK}K</b></div>
             <div>Number of teachers: <b>${d.num_teachers}</b></div>
             <div>Percent income spent on rent: <b>${d.percent}%</b></div>
         `);
@@ -209,7 +209,7 @@ var node = svg.selectAll(".circle")
 if (screen.width <= 480) {
   node.append("text")
       .attr("x", function(d) { return x(d.salaryK); })
-      .attr("y", function(d) { return y(d.rentK); })
+      .attr("y", function(d) { return y(d.rentK)-4; })
       .style("fill","BFBFBF")
       .style("font-size","10px")
       .style("font-style","italic")
@@ -309,6 +309,14 @@ app.controller("TeacherController", ["$scope", function($scope) {
     // clustered bar graph ----------------------------------------------------------
 
     d3.select("#clustered-bar-graph").select("svg").remove();
+
+    // show tooltip
+    var bar_tooltip = d3.select(".clustered-bar-graph")
+        .append("div")
+        .attr("class","bar_tooltip")
+        .style("position", "absolute")
+        .style("z-index", "10")
+        .style("visibility", "hidden")
 
     var margin = {
       top: 15,
@@ -437,7 +445,29 @@ app.controller("TeacherController", ["$scope", function($scope) {
         .attr("class", "g")
         .attr("transform", function (d) {
           return "translate(" + x0(d.year) + ",0)";
-        });
+        })
+        .on("mouseover", function(d) {
+            console.log(d);
+            bar_tooltip.html(`
+                <div>Year: <b>${d.year}</b></div>
+                <div>Average teachers salary: <b>$${d.adj_teacher}</b></div>
+                <div>Mid-career teacher salary: <b>$${d.adj_step_10}</b></div>
+                <div>Median household income: <b>$${d.adj_median}</b></div>
+            `);
+            bar_tooltip.style("visibility", "visible");
+        })
+        .on("mousemove", function() {
+          if (screen.width <= 480) {
+            return bar_tooltip
+              .style("top", (d3.event.pageY+20)+"px")
+              .style("left",10+"px");
+          } else {
+            return bar_tooltip
+              .style("top", (d3.event.pageY+20)+"px")
+              .style("left",(d3.event.pageX-80)+"px");
+          }
+        })
+        .on("mouseout", function(){return bar_tooltip.style("visibility", "hidden");});
 
     year.selectAll("rect")
         .data(function (d) {
@@ -457,7 +487,6 @@ app.controller("TeacherController", ["$scope", function($scope) {
         .style("fill", function (d) {
           return color(d.name);
         });
-
   };
 
 }]);

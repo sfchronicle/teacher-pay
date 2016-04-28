@@ -24,12 +24,16 @@ body {
   font-family: @body;
   max-width: 800px;
   margin: auto;
+  @media @tablet {
+    padding: 0 10px;
+  }
 }
 
 .hed {
   font-weight: bold;
   font-size: 20px;
   margin-top: 5px;
+  margin-bottom: 5px;
   text-align: center;
   font-family: @block-graphics;
   font-weight: bold;
@@ -108,11 +112,11 @@ body {
   padding: 20px 0;
   font-size: 18px;
   font-family: @body;
-  @media @mobile {
-  padding: 20px 5px;
-  }
   @media @tablet {
-    padding: 20px 15px;
+    padding: 20px 10px;
+  }
+  @media @mobile {
+    padding: 10px 5px;
   }
 }
 
@@ -258,14 +262,21 @@ footer {
   img {
     width: 100%;
   }
-  // a {
-  //   color: @dark-gray;
-  //   transition: color .1s linear;
-  //
-  //   &:hover {
-  //     color: @df-blue;
-  //   }
-  // }
+}
+
+.source {
+  padding-top: 10px;
+  font-size: 11.5px;
+  color: @dark-gray;
+  font-style: italic;
+  font-family: @block-graphics;
+  @media @tablet {
+    padding: 10px 20px;
+  }
+  @media @mobile {
+    padding: 10px;
+  }
+  // text-transform: capitalize;
 }
 
 // bubble graph styles ---------------------------------------------------------
@@ -311,10 +322,8 @@ footer {
     }
   }
 
-  .tooltip {
+  .tooltip, .bar_tooltip {
     position: absolute;
-    width: 230px;
-    height: 115px;
     pointer-events: none;
     background: lighten(@light-gray,20%);
   }
@@ -329,7 +338,7 @@ footer {
   stroke-width: 0;
 }
 
-.tooltip {
+.tooltip, .bar_tooltip {
   // display: none;
   position: absolute;
   background: @df-off-white;
@@ -348,6 +357,15 @@ footer {
     -ms-transform: translateX(-100%);
     transform: translateX(-100%);
   }
+}
+
+.tooltip {
+  width: 230px;
+  height: 115px;
+}
+.bar_tooltip {
+  width: 210px;
+  height: 80px;
 }
 
 // search styles ---------------------------------------------------------------
