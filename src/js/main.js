@@ -18,8 +18,8 @@ var margin = {
 // bubble graph ---------------------------------------------------------------
 
 if (screen.width > 768) {
-  var width = 700 - margin.left - margin.right;
-  var height = 400 - margin.top - margin.bottom;
+  var width = 800 - margin.left - margin.right;
+  var height = 500 - margin.top - margin.bottom;
 } else if (screen.width <= 768 && screen.width > 480) {
   var width = 650 - margin.left - margin.right;
   var height = 400 - margin.top - margin.bottom;
