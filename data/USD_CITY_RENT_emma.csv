@@ -1,4 +1,5 @@
 county,school_district,city,median_1br_zumper,median_anual_rent,full_time_employees,average_salary,step_10,average_salary_spent_on_rent,step_10_salary_spent_on_1br,school
+Los Angeles County,LOS ANGELES UNIFIED,Los Angeles,1750,21000,25688,72495,67417,0.29,0.31,Los Angeles Unified
 San Francisco County,SAN FRANCISCO UNIFIED,San Francisco,3500,42000,3518.98,65238,66584,0.64,0.63,San Francisco Unified
 Alameda County,OAKLAND UNIFIED,Oakland,1980,23760,1903.96,58033,58516,0.41,0.41,Oakland Unified
 Alameda County,BERKELEY UNIFIED,Berkeley,2400,28800,624.9,71133,70418,0.4,0.41,Berkeley Unified
@@ -14,7 +15,6 @@ Santa Clara County,SANTA CLARA UNIFIED,Santa Clara,2150,25800,778.45,85112,84312
 Alameda County,FREMONT UNIFIED,Fremont,2110,25320,1615.29,83968,84043,0.3,0.3,Fremont Unified
 Ventura County,CONEJO VALLEY UNIFIED,Thousand Oaks,1870,22440,898.08,76224,71801,0.29,0.31,Conejo Valley Unified
 Los Angeles County,PASADENA UNIFIED,Pasadena,1700,20400,780,69578,60566,0.29,0.34,Pasadena Unified
-Los Angeles County,LOS ANGELES UNIFIED,Los Angeles,1750,21000,25688,72495,67417,0.29,0.31,Los Angeles Unified
 Alameda County,PLEASANTON UNIFIED,Pleasanton,2110,25320,610.54,89522,83191,0.28,0.3,Pleasanton Unified
 Ventura County,SIMI VALLEY UNIFIED,Simi Valley,1570,18840,782.6,68764,66135,0.27,0.28,Simi Valley Unified
 Orange County,IRVINE UNIFIED,Irvine,1760,21120,1387.54,77121,78770,0.27,0.27,Irvine Unified
@@ -30,20 +30,20 @@ Los Angeles County,GLENDALE UNIFIED,Glendale,1500,18000,1104.7,74441,67125,0.24,
 Napa County,NAPA VALLEY UNIFIED,Napa,1450,17400,914.48,72801,70488,0.24,0.25,Napa Valley Unified
 Contra Costa County,MT. DIABLO UNIFIED,Concord,1350,16200,1564.28,67920,65474,0.24,0.25,Mt. Diablo Unified
 Ventura County,VENTURA UNIFIED,Ventura,1350,16200,781.41,68275,64259,0.24,0.25,Ventura Unified
-Los Angeles County,*MONTEBELLO UNIFIED,Los Angeles County,1650,19800,1167,83615,77730,0.24,0.25,*Montebello Unified
+Los Angeles County,MONTEBELLO UNIFIED,Los Angeles County,1650,19800,1167,83615,77730,0.24,0.25,Montebello Unified
 Los Angeles County,BURBANK UNIFIED,Burbank,1500,18000,672.6,76762,72178,0.23,0.25,Burbank Unified
 Los Angeles County,WILLIAM S. HART UNION HIGH,Santa Clarita,1450,17400,853,75163,70840,0.23,0.25,William S. Hart Union High
 Sonoma County,SANTA ROSA CITY SCHOOLS,Santa Rosa,1320,15840,790.7,70046,65943,0.23,0.24,Santa Rosa City Schools
 Orange County,HUNTINGTON BEACH UNION HIGH,Huntington Beach,1600,19200,663.66,86034,88671,0.22,0.22,Huntington Beach Union High
-Los Angeles County,*COMPTON UNIFIED,Inglewood,1050,12600,1161.6,76161,69870,0.17,0.18,*Compton Unified
+Los Angeles County,COMPTON UNIFIED,Inglewood,1050,12600,1161.6,76161,69870,0.17,0.18,Compton Unified
 San Diego County,OCEANSIDE CITY UNIFIED,Oceanside,1400,16800,880.44,76339,71070,0.22,0.24,Oceanside City Unified
 Los Angeles County,TORRANCE UNIFIED,Torrance,1400,16800,993.01,76851,78560,0.22,0.21,Torrance Unified
 Ventura County,OXNARD ELEMENTARY,Oxnard,1330,15960,765.06,74334,74385,0.21,0.21,Oxnard Elementary
 San Diego County,VISTA UNIFIED,Vista,1250,15000,1055.13,70690,67631,0.21,0.22,Vista Unified
 San Diego County,CHULA VISTA ELEMENTARY,Chula Vista,1250,15000,1210.41,71827,69717,0.21,0.22,Chula Vista Elementary
 Los Angeles County,ALHAMBRA UNIFIED,Alhambra,1250,15000,795.02,73025,69575,0.21,0.22,Alhambra Unified
-Los Angeles County,*ABC UNIFIED,Norwalk,1200,14400,925,78191,72328,0.18,0.2,*Abc Unified
-Solano County,*FAIRFIELD-SUISUN UNIFIED,Vacaville,1100,13200,985.48,64876,64904,0.2,0.2,*Fairfield-Suisun Unified
+Los Angeles County,ABC UNIFIED,Norwalk,1200,14400,925,78191,72328,0.18,0.2,Abc Unified
+Solano County,FAIRFIELD-SUISUN UNIFIED,Vacaville,1100,13200,985.48,64876,64904,0.2,0.2,Fairfield-Suisun Unified
 Ventura County,OXNARD UNION HIGH,Oxnard,1330,15960,679.5,78948,84327,0.2,0.19,Oxnard Union High
 San Bernardino County,ETIWANDA ELEMENTARY,Rancho Cucamonga,1300,15600,623.16,77192,72557,0.2,0.22,Etiwanda Elementary
 Orange County,TUSTIN UNIFIED,Santa Ana,1320,15840,924.82,79250,77747,0.2,0.2,Tustin Unified

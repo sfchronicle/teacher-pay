@@ -12,13 +12,39 @@
 @step10: #FFCC32;
 @overall: #889C6B;
 
-@red: #E6A8A8;
+@red: lighten(#66101F,50%);//lighten(#DE8067,30%);//#E6A8A8;
 @gray-blue: #6C85A5;
 @dark-gray: #696969;
 @light-gray: #B2B2B2;
 
 @share-gray: lighten(#4F5C70,10%);
 @back-gray: lighten(#6C85A5,35%);
+
+@alamedacounty: #FFE599;
+@buttecounty: #D13D59;
+@contracostacounty: #889C6B;
+@fresnocounty: #996B7D;
+@kerncounty: #A89170;
+@losangelescounty: #6C85A5;//'#61988E;
+@maderacounty: #6E7B8E;
+@montereycounty: #80A9D0;
+@napacounty: #FFE599;
+@orangecounty: #FFCC32;
+@riversidecounty: #99B4CF;
+@sacramentocounty: #99B4CF;
+@sanbernardinocounty: #61988E;
+@sandiegocounty: #9FA7B3;
+@sanfranciscocounty: #DE8067;
+@sanjoaquincounty: #E59FA6;
+@santabarbaracounty: #E89EAC;
+@santaclaracounty: #846A6A;
+@santacruzcounty: #EB8F6A;
+@solanocounty: #6F7D8C;
+@sonomacounty: #DE8067;
+@stanislauscounty: #667A96;
+@suttercounty: #FFE599;
+@tularecounty: #9C8B9E;
+@venturacounty: #D04B61;
 
 body {
   font-family: @body;
@@ -285,6 +311,10 @@ footer {
 //   }
 
 .bubble-graph {
+  margin-top: 30px;
+  @media @mobile {
+    margin-top: 0;
+  }
   svg {
     display: block;
     margin: auto;
@@ -292,6 +322,69 @@ footer {
   text {
     font-size: 14px;
     font-family: @block-graphics;
+  }
+
+  circle {
+    &.alamedacounty {
+      &.highlight {fill: darken(@alamedacounty,20%) !important;}}
+    &.buttecounty {
+      &.highlight {fill: darken(@buttecounty,20%) !important;}}
+    &.contracostacounty {
+      &.highlight {fill: darken(@contracostacounty,20%) !important;}}
+    &.fresnocounty {
+      &.highlight {fill: darken(@fresnocounty,20%) !important;}}
+    &.kerncounty {
+      &.highlight {fill: darken(@kerncounty,20%) !important;}}
+    &.losangelescounty {
+      &.highlight {fill: darken(@losangelescounty,20%) !important;}}
+    &.maderacounty {
+      &.highlight {fill: darken(@maderacounty,20%) !important;}}
+    &.montereycounty {
+      &.highlight {fill: darken(@montereycounty,20%) !important;}}
+    &.napacounty {
+      &.highlight {fill: darken(@napacounty,20%) !important;}}
+    &.orangecounty {
+      &.highlight {fill: darken(@orangecounty,20%) !important;}}
+    &.riversidecounty {
+      &.highlight {fill: darken(@riversidecounty,20%) !important;}}
+    &.sacramentocounty {
+      &.highlight {fill: darken(@sacramentocounty,20%) !important;}}
+    &.sanbernardinocounty {
+      &.highlight {fill: darken(@sanbernardinocounty,20%) !important;}}
+    &.sandiegocounty {
+      &.highlight {fill: darken(@sandiegocounty,20%) !important;}}
+    &.sanjoaquincounty {
+      &.highlight {fill: darken(@sanjoaquincounty,20%) !important;}}
+    &.santabarbaracounty {
+      &.highlight {fill: darken(@santabarbaracounty,20%) !important;}}
+    &.santaclaracounty {
+      &.highlight {fill: darken(@santaclaracounty,20%) !important;}}
+    &.santacruzcounty {
+      &.highlight {fill: darken(@santacruzcounty,20%) !important;}}
+    &.sanfranciscocounty {
+      &.highlight {fill: darken(@sanfranciscocounty,20%) !important;}}
+    &.solanocounty {
+      &.highlight {fill: darken(@solanocounty,20%) !important;}}
+    &.sonomacounty {
+      &.highlight {fill: darken(@sonomacounty,20%) !important;}}
+    &.stanislauscounty {
+      &.highlight {fill: darken(@stanislauscounty,20%) !important;}}
+    &.suttercounty {
+      &.highlight {fill: darken(@suttercounty,20%) !important;}}
+    &.tularecounty {
+      &.highlight {fill: darken(@tularecounty,20%) !important;}}
+    &.venturacounty {
+      &.highlight {fill: darken(@venturacounty,20%) !important; }}
+  }
+  .node {
+    text {
+      visibility: hidden;
+      &.highlight {
+        visibility: visible;
+        stroke: black;
+        fill: none !important;
+      }
+    }
   }
 
   .x.axis line,
@@ -320,6 +413,9 @@ footer {
     position: absolute;
     pointer-events: none;
     background: lighten(@light-gray,20%);
+    @media @mobile {
+      background: lighten(@light-gray,10%);
+    }
   }
   .dot {
     cursor: pointer;
@@ -354,12 +450,58 @@ footer {
 }
 
 .tooltip {
-  width: 230px;
+  width: 260px;
   height: 115px;
+  .swatch {
+    width: 200px;
+    height: 15px;
+    // width: 15px;
+    // height: 15px;
+    // margin-left: 5px;
+    // border-radius: 10px;
+    // vertical-align: top;
+    &.alamedacounty {background: @alamedacounty;}
+    &.buttecounty {background: @buttecounty;}
+    &.contracostacounty {background: @contracostacounty;}
+    &.fresnocounty {background: @fresnocounty;}
+    &.kerncounty {background: @kerncounty;}
+    &.losangelescounty {background: @losangelescounty;}
+    &.maderacounty {background: @maderacounty;}
+    &.montereycounty {background: @montereycounty;}
+    &.napacounty {background: @napacounty;}
+    &.orangecounty {background: @orangecounty;}
+    &.riversidecounty {background: @riversidecounty;}
+    &.sacramentocounty {background: @sacramentocounty;}
+    &.sanbernardinocounty {background: @sanbernardinocounty;}
+    &.sandiegocounty {background: @sandiegocounty;}
+    &.sanjoaquincounty {background: @sanjoaquincounty;}
+    &.santabarbaracounty {background: @santabarbaracounty;}
+    &.santaclaracounty {background: @santaclaracounty;}
+    &.santacruzcounty {background: @santacruzcounty;}
+    &.sanfranciscocounty {background: @sanfranciscocounty;}
+    &.solanocounty {background: @solanocounty;}
+    &.sonomacounty {background: @sonomacounty;}
+    &.stanislauscounty {background: @stanislauscounty;}
+    &.suttercounty {background: @suttercounty;}
+    &.tularecounty {background: @tularecounty;}
+    &.venturacounty {background: @venturacounty;}
+  }
 }
 .bar_tooltip {
   width: 210px;
   height: 80px;
+}
+
+.mobile-chatter {
+  display: none;
+  font-family: @block-graphics;
+  font-size: 16px;
+  text-align: center;
+  margin: auto 10px;
+  margin-top: 30px;
+  @media @mobile {
+    display: block;
+  }
 }
 
 // search styles ---------------------------------------------------------------
@@ -368,6 +510,11 @@ footer {
   background: @back-gray;
   padding: 10px 5px;
   font-family: @block-graphics;
+}
+
+.scroll-section {
+  height: 200px;
+  overflow:auto;
 }
 
 table {
@@ -418,6 +565,33 @@ input {
   font-size: 14px;
 }
 
+.bubble-search {
+  background: @back-gray;
+  padding: 10px 5px;
+  font-family: @block-graphics;
+  text-align: center;
+  font-size: 14px;
+}
+
+.selectbubble-class {
+  display: none;
+  position: absolute;
+  width: 33%;
+  max-height: 100px;
+  height: auto;
+  left: 40%;
+  @media @mobile {
+    left: 10px;
+  }
+  opacity: 0.7;
+  margin: 5px auto !important;
+  &.active {
+    display: block;
+    text-align: center;
+    padding: 5px 0;
+  }
+}
+
 // bar graph styles ------------------------------------------------------------
 
 .stacked-bar-graph, .clustered-bar-graph {
@@ -453,6 +627,9 @@ input {
     width: 200px;
     font-size: 16px;
     background: lighten(@gray-blue,20%);
+    &.selectbubble-class {
+      width: 300px;
+    }
   }
 }
 

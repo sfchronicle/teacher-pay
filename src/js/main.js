@@ -15,11 +15,42 @@ var margin = {
   left: 40
 };
 
+// colors for bubble graph
+var colors = {
+  'alamedacounty': '#FFE599',
+  'buttecounty': '#D13D59',
+  'contracostacounty': '#889C6B',
+  'fresnocounty': '#996B7D',
+  'kerncounty': '#A89170',
+  'losangelescounty': '#6C85A5',//'#61988E',
+  'maderacounty': '#6E7B8E',
+  'montereycounty': '#80A9D0',
+  'napacounty': '#FFE599',
+  'orangecounty': '#FFCC32',
+  'riversidecounty': '#99B4CF',
+  'sacramentocounty': '#99B4CF',
+  'sanbernardinocounty': '#61988E',
+  'sandiegocounty': '#9FA7B3',
+  'sanfranciscocounty': '#DE8067',
+  'sanjoaquincounty': '#E59FA6',
+  'santabarbaracounty': '#E89EAC',
+  'santaclaracounty': '#846A6A',
+  'santacruzcounty': '#EB8F6A',
+  'solanocounty': '#6F7D8C',
+  'sonomacounty': '#DE8067',
+  'stanislauscounty': '#667A96',
+  'suttercounty': '#FFE599',
+  'tularecounty': '#9C8B9E',
+  'venturacounty': '#D04B61',
+
+  'fallback': 'red'
+}
+
 // bubble graph ---------------------------------------------------------------
 
 if (screen.width > 768) {
   var width = 800 - margin.left - margin.right;
-  var height = 500 - margin.top - margin.bottom;
+  var height = 550 - margin.top - margin.bottom;
 } else if (screen.width <= 768 && screen.width > 480) {
   var width = 650 - margin.left - margin.right;
   var height = 400 - margin.top - margin.bottom;
@@ -37,6 +68,7 @@ if (screen.width > 768) {
 // convert strings to numbers
 rentData.forEach(function(d) {
   d.county = d.county;
+  d.countyshortcut = d.county.replace(/\s/g, '').toLowerCase();
   d.salaryK = Math.round(d.average_salary/1000);
   d.step_10 = +d.step_10;
   d.rentK = Math.round(d.median_anual_rent/1000);
@@ -57,6 +89,7 @@ var y = d3.scale.linear()
 //     .range(["#FFE599", "#DE8067"]);
 
 var color = d3.scale.category10();
+// var color = "red";
 
 // use x-axis scale to set x-axis
 var xAxis = d3.svg.axis()
@@ -144,43 +177,52 @@ if (screen.width > 480) {
       .style("font-size", "15px")
       .style("fill", "white")
       .text("annual neighborhood rent exceeds 30% of income.");
-} else {
-  svg.append("text")
-      .attr("x", (width/1.5-10))
-      .attr("y", 36 )
-      .attr("text-anchor", "middle")
-      .style("font-size", "11px")
-      .style("fill", "white")
-      .text("For school districts in the red, annual");
-  svg.append("text")
-      .attr("x", (width/1.5-30))
-      .attr("y", 50 )
-      .attr("text-anchor", "middle")
-      .style("font-size", "11px")
-      .style("fill", "white")
-      .text("neighborhood rent exceeds 30% of income.");
 }
+// } else {
+//   svg.append("text")
+//       .attr("x", (width/1.5-10))
+//       .attr("y", 36 )
+//       .attr("text-anchor", "middle")
+//       .style("font-size", "11px")
+//       .style("fill", "white")
+//       .text("For school districts in the red, annual");
+//   svg.append("text")
+//       .attr("x", (width/1.5-30))
+//       .attr("y", 50 )
+//       .attr("text-anchor", "middle")
+//       .style("font-size", "11px")
+//       .style("fill", "white")
+//       .text("neighborhood rent exceeds 30% of income.");
+// }
 
 //color in the dots
 svg.selectAll(".dot")
     .data(rentData)
     .enter().append("circle")
-    .attr("class", "dot")
+    // .attr("class", "dot")
+    .attr("id", function(d) {
+      return d.school.replace(/\s/g, '').toLowerCase();
+    })
+    .attr("class", function(d) {
+      return "dot "+d.county.replace(/\s/g, '').toLowerCase();
+    })
     .attr("r", function(d) {
       //return 6;
       if (screen.width <= 480) {
-        return (d.num_teachers/1400)+4;
+        return (d.num_teachers/1400)+5;
       } else {
-        return (d.num_teachers/800)+4;
+        return (d.num_teachers/800)+6.5;
       }
     })
     .attr("cx", function(d) { return x(d.salaryK); })
     .attr("cy", function(d) { return y(d.rentK); })
-    .style("fill", function(d) { return color(d.county); })
+    .style("fill", function(d) {
+      return color_function(d.county) || colors.fallback;
+    })
     .on("mouseover", function(d) {
         tooltip.html(`
             <div>School district: <b>${d.school}</b></div>
-            <div>County: <b>${d.county}</b></div>
+            <div>County: <div class="swatch ${d.countyshortcut}"><b>${d.county}</b></div></div>
             <div>Median annual rent: <b>$${d.rentK}K</b></div>
             <div>Average teacher salary: <b>$${d.salaryK}K</b></div>
             <div>Number of teachers: <b>${d.num_teachers}</b></div>
@@ -191,7 +233,7 @@ svg.selectAll(".dot")
     .on("mousemove", function() {
       if (screen.width <= 480) {
         return tooltip
-          .style("top", (d3.event.pageY+20)+"px")
+          .style("top", 1350+"px")//(d3.event.pageY+40)+"px")
           .style("left",10+"px");
       } else {
         return tooltip
@@ -200,6 +242,15 @@ svg.selectAll(".dot")
       }
     })
     .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
+
+function color_function(county) {
+  var id = county.toLowerCase().split(" ").join("");
+  if (colors[id]) {
+    return colors[id];
+  } else {
+    return null;
+  }
+}
 
 var node = svg.selectAll(".circle")
     .data(rentData)
@@ -210,25 +261,44 @@ if (screen.width <= 480) {
   node.append("text")
       .attr("x", function(d) { return x(d.salaryK); })
       .attr("y", function(d) { return y(d.rentK)-4; })
+      .attr("id", function(d) {
+        return (d.school.replace(/\s/g, '').toLowerCase()+"text");
+      })
       .style("fill","BFBFBF")
       .style("font-size","10px")
       .style("font-style","italic")
-      .text(function(d) {
+      .style("visibility",function(d) {
         if (d.percent > 35 || d.school == "Los Angeles Unified") {
-          return d.school
+          return "visible"
         }
+      })
+      .text(function(d) {
+          return d.school
       });
 } else {
   node.append("text")
-      .attr("x", function(d) { return x(d.salaryK); })
-      .attr("y", function(d) { return y(d.rentK); })
+      .attr("x", function(d) { return x(d.salaryK)-40; })
+      .attr("y", function(d) {
+        if (d.school != "Los Angeles Unified") {
+          return y(d.rentK)-10;
+        } else {
+          return y(d.rentK)+10;
+        }
+      })
+      .attr("id", function(d) {
+        return (d.school.replace(/\s/g, '').toLowerCase()+"text");
+      })
+      .attr("class","dottext")
       .style("fill","CCCCCC")
       .style("font-size","12px")
       .style("font-style","italic")
-      .text(function(d) {
+      .style("visibility",function(d) {
         if (d.percent > 35 || d.school == "Los Angeles Unified") {
-          return d.school
+          return "visible"
         }
+      })
+      .text(function(d) {
+          return d.school
       });
 }
 
@@ -261,6 +331,65 @@ var debounce = function(f, interval) {
 
 app.controller("TeacherController", ["$scope", function($scope) {
 
+  // for bubble graph search bar
+  $scope.bubbleschools = rentData;
+  var allbubbles = rentData;
+  $scope.untouchedbubbles = true;
+  $scope.searchbubbles = debounce(function() {
+    var valuebubble = $scope.searchBubbles;
+    if (!valuebubble) {
+      $scope.foundbubbles = [];
+      $scope.untouchedbubbles = true;
+    } else {
+      valuebubble = valuebubble.toLowerCase().replace(/ /g,'');
+      var filteredbubbles = allbubbles.filter(function(item) {
+        return (item.school.replace(/ /g,'').toLowerCase().indexOf(valuebubble) != -1);
+      });
+      if (filteredbubbles.length == 0) {
+        $scope.foundbubbles = [];
+        $scope.untouchedbubbles = true;
+      } else {
+        $scope.foundbubbles = filteredbubbles;
+        $scope.untouchedbubbles = false;
+      }
+    }
+    $scope.$apply();
+  });
+  $scope.foundbubbles = [];
+
+  $scope.reset_bubbles = function () {
+    if ($scope.lastEl) {
+      $scope.lastEl.removeClass("highlight");
+      $scope.lastEltext.removeClass("highlight");
+    }
+    if (($scope.chosenBubble != "") & ($scope.chosenBubble != null)) {
+      var chosenBubbleClass = $scope.chosenBubble.toString().toLowerCase().replace(/ /g,'');
+      var myEl = angular.element(document.querySelector("#"+chosenBubbleClass));
+      var myEltext = angular.element(document.querySelector("#"+chosenBubbleClass+"text"));
+      if (myEl) {
+        myEl.addClass("highlight");
+        myEltext.addClass("highlight");
+        $scope.lastEl = myEl;
+        $scope.lastEltext = myEltext;
+        $scope.searchBubbles = $scope.chosenBubble;
+        var filtered = all.filter(function(item) {
+          return (item.school.replace(/ /g,'').toLowerCase().indexOf(chosenBubbleClass) != -1);
+        });
+        $scope.foundbubbles = filtered;
+        $scope.untouchedbubbles = true;
+
+        var circles = svg.selectAll(".dot").attr("opacity", "0.5");
+        var circlestext = svg.selectAll(".dottext").attr("opacity", "0.5");
+        myEl.attr("opacity","1.0");
+        myEltext.attr("opacity","1.0");
+
+      }
+    } else {
+      var circles = svg.selectAll(".dot").attr("opacity", "1.0");
+      var circlestext = svg.selectAll(".dottext").attr("opacity", "1.0");
+    }
+  }
+
   // for interactive search bar
   var all = allSchoolData;
   $scope.untouched = true;
@@ -272,7 +401,7 @@ app.controller("TeacherController", ["$scope", function($scope) {
     } else {
       value = value.toLowerCase();
       var filtered = all.filter(function(item) {
-        return (item.county.toLowerCase().indexOf(value) == 0 || item.school_district.toLowerCase().indexOf(value) == 0);
+        return (item.county.toLowerCase().indexOf(value) != -1 || item.school_district.toLowerCase().indexOf(value) != -1);
       });
       $scope.found = filtered;
       $scope.untouched = false;
@@ -447,7 +576,6 @@ app.controller("TeacherController", ["$scope", function($scope) {
           return "translate(" + x0(d.year) + ",0)";
         })
         .on("mouseover", function(d) {
-            console.log(d);
             bar_tooltip.html(`
                 <div>Year: <b>${d.year}</b></div>
                 <div>Average teachers salary: <b>$${d.adj_teacher}</b></div>
