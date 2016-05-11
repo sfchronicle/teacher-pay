@@ -17,7 +17,7 @@ var margin = {
 
 // colors for bubble graph
 var colors = {
-  'alamedacounty': '#FFE599',
+  'alamedacounty': '#DE8067',
   'buttecounty': '#D13D59',
   'contracostacounty': '#889C6B',
   'fresnocounty': '#996B7D',
@@ -31,7 +31,7 @@ var colors = {
   'sacramentocounty': '#99B4CF',
   'sanbernardinocounty': '#61988E',
   'sandiegocounty': '#9FA7B3',
-  'sanfranciscocounty': '#DE8067',
+  'sanfranciscocounty': '#FFE599',
   'sanjoaquincounty': '#E59FA6',
   'santabarbaracounty': '#E89EAC',
   'santaclaracounty': '#846A6A',
@@ -62,7 +62,7 @@ if (screen.width > 768) {
     left: 30
   };
   var width = 310 - margin.left - margin.right;
-  var height = 280 - margin.top - margin.bottom;
+  var height = 300 - margin.top - margin.bottom;
 }
 
 // convert strings to numbers
@@ -222,7 +222,7 @@ svg.selectAll(".dot")
     .on("mouseover", function(d) {
         tooltip.html(`
             <div>School district: <b>${d.school}</b></div>
-            <div>County: <div class="swatch ${d.countyshortcut}"><b>${d.county}</b></div></div>
+            <div>County: <b>${d.county}</b><div class="swatch ${d.countyshortcut}"></div></div>
             <div>Median annual rent: <b>$${d.rentK}K</b></div>
             <div>Average teacher salary: <b>$${d.salaryK}K</b></div>
             <div>Number of teachers: <b>${d.num_teachers}</b></div>
@@ -233,7 +233,7 @@ svg.selectAll(".dot")
     .on("mousemove", function() {
       if (screen.width <= 480) {
         return tooltip
-          .style("top", 1350+"px")//(d3.event.pageY+40)+"px")
+          .style("top",(d3.event.pageY+40)+"px")//(d3.event.pageY+40)+"px")
           .style("left",10+"px");
       } else {
         return tooltip
@@ -259,7 +259,13 @@ var node = svg.selectAll(".circle")
 
 if (screen.width <= 480) {
   node.append("text")
-      .attr("x", function(d) { return x(d.salaryK); })
+      .attr("x", function(d) {
+        if (d.school == "Palo Alto Unified") {
+          return x(d.salaryK)-50
+        } else {
+          return x(d.salaryK)-10
+        }
+      })
       .attr("y", function(d) { return y(d.rentK)-4; })
       .attr("id", function(d) {
         return (d.school.replace(/\s/g, '').toLowerCase()+"text");
@@ -331,6 +337,32 @@ var debounce = function(f, interval) {
 
 app.controller("TeacherController", ["$scope", function($scope) {
 
+  // for sidebars
+  $scope.sidebar_black = false;
+  $scope.toggleSidebarBlack = function() {
+    $scope.sidebar_black = !$scope.sidebar_black;
+  }
+
+  $scope.sidebar_graber = false;
+  $scope.toggleSidebarGraber = function() {
+    $scope.sidebar_graber = !$scope.sidebar_graber;
+  }
+
+  $scope.sidebar_hanson = false;
+  $scope.toggleSidebarHanson = function() {
+    $scope.sidebar_hanson = !$scope.sidebar_hanson;
+  }
+
+  $scope.sidebar_tigerman = false;
+  $scope.toggleSidebarTigerman = function() {
+    $scope.sidebar_tigerman = !$scope.sidebar_tigerman;
+  }
+
+  $scope.sidebar_varalli = false;
+  $scope.toggleSidebarVaralli = function() {
+    $scope.sidebar_varalli = !$scope.sidebar_varalli;
+  }
+
   // for bubble graph search bar
   $scope.bubbleschools = rentData;
   var allbubbles = rentData;
@@ -341,6 +373,7 @@ app.controller("TeacherController", ["$scope", function($scope) {
       $scope.foundbubbles = [];
       $scope.untouchedbubbles = true;
     } else {
+      $scope.chosenBubble = [];
       valuebubble = valuebubble.toLowerCase().replace(/ /g,'');
       var filteredbubbles = allbubbles.filter(function(item) {
         return (item.school.replace(/ /g,'').toLowerCase().indexOf(valuebubble) != -1);
@@ -348,6 +381,10 @@ app.controller("TeacherController", ["$scope", function($scope) {
       if (filteredbubbles.length == 0) {
         $scope.foundbubbles = [];
         $scope.untouchedbubbles = true;
+      } else if (filteredbubbles.length == 1){
+        $scope.foundbubbles = filteredbubbles;
+        $scope.untouchedbubbles = false;
+        $scope.chosenBubble = filteredbubbles[0].school;
       } else {
         $scope.foundbubbles = filteredbubbles;
         $scope.untouchedbubbles = false;
@@ -382,7 +419,6 @@ app.controller("TeacherController", ["$scope", function($scope) {
         var circlestext = svg.selectAll(".dottext").attr("opacity", "0.5");
         myEl.attr("opacity","1.0");
         myEltext.attr("opacity","1.0");
-
       }
     } else {
       var circles = svg.selectAll(".dot").attr("opacity", "1.0");
@@ -411,7 +447,7 @@ app.controller("TeacherController", ["$scope", function($scope) {
   $scope.found = [];
 
   // filtering data for the bar chart
-  var districts_list = ["San Francisco", "Oakland", "Palo Alto", "San Jose", "Santa Clara"];
+  var districts_list = ["San Francisco", "Oakland", "San Jose", "Santa Clara"];
   var data_by_district = {};
   var temp_data = [];
   var pay_element = [];

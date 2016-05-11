@@ -20,7 +20,7 @@
 @share-gray: lighten(#4F5C70,10%);
 @back-gray: lighten(#6C85A5,35%);
 
-@alamedacounty: #FFE599;
+@alamedacounty: #DE8067;
 @buttecounty: #D13D59;
 @contracostacounty: #889C6B;
 @fresnocounty: #996B7D;
@@ -34,7 +34,7 @@
 @sacramentocounty: #99B4CF;
 @sanbernardinocounty: #61988E;
 @sandiegocounty: #9FA7B3;
-@sanfranciscocounty: #DE8067;
+@sanfranciscocounty: #FFE599;
 @sanjoaquincounty: #E59FA6;
 @santabarbaracounty: #E89EAC;
 @santaclaracounty: #846A6A;
@@ -48,8 +48,128 @@
 
 body {
   font-family: @body;
+  max-width: 900px;
+  margin: auto;
+}
+
+.text, .interactive {
   max-width: 800px;
   margin: auto;
+}
+
+.interactive {
+  margin: 40px auto;
+  @media @mobile {
+    margin: 0 auto;
+  }
+}
+
+.sidebar-heading {
+  @media @mobile {
+    font-size: 16px !important;
+  }
+}
+
+// p {
+//   @media @mobile {
+//     margin: 5px 5px;
+//   }
+// }
+
+.sidebar-click {
+  cursor: pointer;
+  width: 400px;
+  margin: 10px 0;
+  float: right;
+  margin-left: 20px;
+  margin-right: 0;
+  background: lighten(@share-gray,45%);
+  padding: 10px;
+  @media @tablet {
+    width: 350px;
+    margin-right: 20px;
+  }
+  @media @mobile {
+    width: 100%;
+    margin: 0;
+    margin-bottom: 20px;
+  }
+  &.left {
+    margin: 20px;
+    float: left;
+    @media @tablet {
+      margin: 20px;
+    }
+    @media @mobile {
+      width: 100%;
+      margin: 0;
+      margin-bottom: 20px;
+    }
+  }
+  &.vertical {
+    width: 300px !important;
+    @media @mobile {
+      // margin: 15px 0;
+      margin-bottom: 20px;
+      // width: 100%;
+      width: 100% !important;
+      // width: 100% !important;
+      img {
+        width: 250px !important;
+      }
+    }
+  }
+  .fa-expand {
+    font-size: 35px;
+    position: absolute;
+    opacity: 1.0;
+    padding: 10px;
+    z-index: 50;
+    background: rgba(248,248,255, 0.6);
+    &.white {
+      color: white;
+      background: rgba(178,178,178, 0.6);
+    }
+  }
+}
+
+.sidebar-content {
+  background: lighten(@share-gray,45%);
+  position: absolute;
+  transition: 300ms left;
+  max-width: 800px;
+  width: 70%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  opacity: 0.98;
+  border-radius: 5px;
+  padding: 20px;
+  z-index: 100;
+  @media @tablet {
+    width: 80%;
+  }
+  @media @mobile {
+    width: 90%;
+    padding: 15px;
+  }
+  .fa-times {
+    cursor: pointer;
+    font-size: 25px;
+    z-index: 100;
+    float: right;
+    margin-bottom: 20px;
+    @media @mobile {
+      margin-bottom: 15px;
+    }
+  }
+  .credits {
+    margin: 0;
+    padding: 10px;
+  }
+  .text {
+    padding: 0 5px;
+  }
 }
 
 .hed {
@@ -93,10 +213,17 @@ body {
   font-weight: 400;
   font-size: 30px;
   padding: 0 10px;
+  width: 80%;
+  margin: auto;
   text-align: center;
+  @media @mobile {
+    font-size: 25px;
+    width: 100%;
+  }
 }
 .title-img {
-  margin: 10px 0;
+  margin-bottom: 10px;
+  // margin: 10px 0;
 }
 
 #social {
@@ -129,14 +256,102 @@ body {
 }
 
 .text {
-  padding: 20px 0;
+  padding: 0 20px;
   font-size: 18px;
   font-family: @body;
   @media @tablet {
-    padding: 20px 10px;
+    font-size: 15px;
+    // padding: 20px 10px;
   }
   @media @mobile {
     padding: 10px 10px;
+  }
+}
+
+.title-img {
+  .credit {
+    @media @mobile {
+      // margin-top: -25px;
+      margin-top: -5px;
+      color: @light-gray !important;
+    }
+  }
+}
+
+.photo, .title-img, .sidebar-click {
+  .caption {
+    font-size: 14px;
+    padding-left: 5px;
+    font-family: @body;
+    color: @dark-gray;
+    @media @mobile {
+      font-size: 10px;
+    }
+  }
+  .credit {
+    // padding: 5px 0;
+    font-size: 12px;
+    padding-left: 5px;
+    font-style: italic;
+    color: @dark-gray;
+  }
+}
+.photo, .title-img {
+  &.large {
+    width: 100%;
+  }
+  &.inset {
+    width: 350px;
+    @media @mobile {
+      width: 100%;
+    }
+    margin: 10px 0;
+    &.right {
+      float: right;
+      margin-left: 20px;
+      margin-right: 0;
+      @media @tablet {
+        margin: 20px;
+      }
+      @media @mobile {
+        width: 100%;
+        margin: 0;
+        margin-bottom: 10px;
+      }
+    }
+    &.left {
+      float: left;
+      margin-right: 20px;
+      margin-left: 0;
+      @media @tablet {
+        margin: 20px;
+      }
+      @media @mobile {
+        width: 100%;
+        margin: 0;
+        margin-bottom: 10px;
+        // img {
+        //   width: 80%;
+        // }
+      }
+      &.vertical {
+        img {
+          width: 80%;
+        }
+      }
+    }
+  }
+  &.vertical {
+    width: 250px;
+  }
+  &.sidebar {
+    &.vertical {
+      width: 50%;
+      float: left;
+      margin-top: 20px;
+      margin-right: 20px;
+      margin-bottom: 5px;
+    }
   }
 }
 
@@ -204,7 +419,7 @@ footer {
 
 .credits {
   margin: 30px auto;
-  padding: 10px;
+  padding: 20px;
   text-align: center;
   font-style: italic;
   background: @back-gray;
@@ -309,6 +524,10 @@ footer {
 //     width: 98%;
 //     margin: auto;
 //   }
+
+.graph-text {
+  padding-bottom: 4px;
+}
 
 .bubble-graph {
   margin-top: 30px;
@@ -450,16 +669,16 @@ footer {
 }
 
 .tooltip {
-  width: 260px;
+  width: 300px;
   height: 115px;
   .swatch {
-    width: 200px;
-    height: 15px;
-    // width: 15px;
+    // width: 200px;
     // height: 15px;
-    // margin-left: 5px;
-    // border-radius: 10px;
-    // vertical-align: top;
+    width: 15px;
+    height: 15px;
+    margin-left: 5px;
+    border-radius: 10px;
+    vertical-align: top;
     &.alamedacounty {background: @alamedacounty;}
     &.buttecounty {background: @buttecounty;}
     &.contracostacounty {background: @contracostacounty;}
@@ -579,7 +798,14 @@ input {
   width: 33%;
   max-height: 100px;
   height: auto;
-  left: 40%;
+  // left: 40%;
+  right: 40%;
+  @media @tablet {
+    right: 20%;
+  }
+  @media @mobile {
+    right: clear;
+  }
   @media @mobile {
     left: 10px;
   }
@@ -623,6 +849,9 @@ input {
   text-align: center;
   padding: 5px 0;
   font-family: @block-graphics;
+  &.bubbles {
+    margin-top: -15px;
+  }
   select {
     width: 200px;
     font-size: 16px;
