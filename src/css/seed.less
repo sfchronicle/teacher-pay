@@ -2,6 +2,7 @@
 @import "fonts";
 
 @block-graphics: "AntennaExtraLight";
+@med-graphics: "AntennaRegular";
 @bold-graphics: "AntennaMedium";
 @body: "FarnhamText";
 @body-bold: "FarnhamTextBold";
@@ -81,17 +82,47 @@ body {
   }
 }
 
-.sidebar-heading {
-  @media @mobile {
-    font-size: 16px !important;
+.sidebar-hed-container {
+  display:block;
+  text-align: center;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  .sidebar-heading {
+    display: inline;
+    padding: 0 50px;
+    @media @mobile {
+      padding: 0 10px;
+      width: 80%;
+      margin-top: -5px;
+    }
+  }
+  .fa-times {
+    cursor: pointer;
+    font-size: 25px;
+    z-index: 100;
+    margin-bottom: 20px;
+    display: inline;
+    padding: 0 20px;
+    @media @mobile {
+      margin-bottom: 15px;
+      display: inline;
+      margin-top: 10px;
+      margin-right: 20px;
+      padding: 0 10px;
+    }
   }
 }
 
-// p {
-//   @media @mobile {
-//     margin: 5px 5px;
-//   }
-// }
+.sidebar-heading {
+  font-family: @med-graphics !important;
+  @media @mobile {
+    font-size: 16px !important;
+    display: inline;
+    width: 85%;
+    float: left;
+    margin-bottom: 10px !important;
+  }
+}
 
 .sidebar-click {
   cursor: pointer;
@@ -176,22 +207,15 @@ body {
     width: 100%;
     padding: 15px;
   }
-  .fa-times {
-    cursor: pointer;
-    font-size: 25px;
-    z-index: 100;
-    float: right;
-    margin-bottom: 20px;
-    @media @mobile {
-      margin-bottom: 15px;
-    }
-  }
   .credits {
     margin: 0;
     padding: 10px;
   }
   .text {
     padding: 0 5px;
+    &.clearleft {
+      clear:left;
+    }
   }
 }
 
@@ -243,6 +267,21 @@ body {
     padding: 10px;
   }
 }
+
+.special-title {
+  font-family: @body;
+  font-weight: 800;
+  font-size: 50px;
+  padding: 0 10px;
+  width: 80%;
+  margin: auto;
+  text-align: center;
+  @media @mobile {
+    font-size: 36px;
+    width: 100%;
+  }
+}
+
 
 .title {
   font-family: @title;
@@ -322,6 +361,11 @@ body {
       font-size: 10px;
       padding-bottom: 2px;
     }
+    &.vertical {
+      @media @mobile {
+        width: 250px !important;
+      }
+    }
   }
   .credit {
     // padding: 5px 0;
@@ -385,7 +429,7 @@ body {
     &.vertical {
       width: 50%;
       float: right;
-      margin-top: 20px;
+      margin-top: 15px;
       margin-left: 20px;
       margin-bottom: 5px;
     }
@@ -470,12 +514,6 @@ footer {
 .divider {
   border-bottom: 1px black solid;
   height: 2px;
-  // &.top {
-  //   padding-top: 20px;
-  //   width: 90%;
-  //   margin: auto;
-  //   border-bottom: 1px white solid;
-  // }
   &.top {
     width: 100%;
     border-bottom: 2px black solid;
@@ -548,7 +586,6 @@ footer {
   @media @mobile {
     padding: 10px;
   }
-  // text-transform: capitalize;
 }
 
 // bubble graph styles ---------------------------------------------------------
@@ -796,6 +833,7 @@ thead {
   }
 }
 td {
+  margin-top: 50px;
   font-size: 14px;
   padding-left: 10px;
   &.step10 {

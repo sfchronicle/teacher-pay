@@ -8,11 +8,16 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <%= t.include("partials/_head.html") %>
     <%= t.include("partials/_analytics_hearst.html") %>
+    <style>
+    [ng-cloak] {
+    display: none;
+    }
+    </style>
   </head>
   <body>
 
     <responsive-child>
-    <div ng-controller="TeacherController" ng-app="teachers">
+    <div ng-controller="TeacherController" ng-app="teachers" ng-cloak>
 
       <header>
         <a class="logo" href="http://www.sfchronicle.com" target="_blank">
@@ -30,7 +35,8 @@
           <div class="caption">Kindergarten instructor Rebecca Sheehan-Stross sits with her students at Cesar Chavez Elementary School.</div>
           <div class="credit">Photo: Michael Macor, The Chronicle</div>
         </div>
-        <div class="title">SF teachers struggle to stay amid costly housing, stagnant salaries</div>
+        <div class="special-title">Teachers priced out</div>
+        <div class="title">SF educators struggle to stay amid costly housing, stagnant salaries</div>
       </div>
 
       <div id="social">
@@ -115,6 +121,7 @@
                   <th>Average salary
                   <th>Highest salary
                   <th class="step10">Mid-career salary
+              </thead>
 
               <tbody>
                 <tr ng-show="found.length == 0 && !untouched">
@@ -157,9 +164,8 @@
           <div class="credit">Photo: Lea Suzuki, The Chronicle</div>
         </div>
         <div class="sidebar-content" ng-show="sidebar_black">
-          <div class="sidebar-heading hed">Couple may have to move to fulfill family dream
-            <i class="fa fa-times" aria-hidden="true" ng-click="toggleSidebarBlack()"></i>
-          </div>
+          <div class="sidebar-hed-container"><div class="sidebar-heading hed">Couple may have to move to fulfill family dream</div><i class="fa fa-times" aria-hidden="true" ng-click="toggleSidebarBlack()"></i></div>
+
           <div class="photo sidebar">
             <img class="img" src="./assets/photos/teachers0515_black_PH3.JPG">
             <div class="caption">Jessica Black gives instructions during a spelling test to her second-grade students at Rosa Parks Elementary School.</div>
@@ -232,15 +238,13 @@
           <div class="credit">Photo: Lea Suzuki, The Chronicle</div>
         </div>
         <div class="sidebar-content" ng-show="sidebar_varalli">
-          <div class="sidebar-heading hed">Affordable home is last hope for staying in SF
-            <i class="fa fa-times" aria-hidden="true" ng-click="toggleSidebarVaralli()"></i>
-          </div>
+          <div class="sidebar-hed-container"><div class="sidebar-heading hed">Affordable home is last hope for staying in SF</div><i class="fa fa-times" aria-hidden="true" ng-click="toggleSidebarVaralli()"></i></div>
           <div class="photo sidebar vertical">
             <img class="img" src="./assets/photos/teachers0515_varalli_PH1.jpg">
             <div class="caption">Marisa Varalli, world languages teacher at Balboa High School, has stayed put as her relatives moved to other cities.</div>
             <div class="credit">Photo: Lea Suzuki, The Chronicle</div>
           </div>
-          <div class="text">
+          <div class="text clearleft">
 
             <p>All eight of Marisa Varalli’s great-grandparents — four of them Mexican, four Filipino — moved to San Francisco as children. Three generations later, Varalli is the last family member left.
 
@@ -345,13 +349,12 @@
         <div class="sidebar-click vertical left" ng-click="toggleSidebarGraber()">
           <div class="click-here">Read profile<i class="fa fa-long-arrow-right" aria-hidden="true"></i></div>
           <img class="img" src="./assets/photos/teachers0515_graber_PH1.jpg">
-          <div class="caption">Meghan Graber, social worker at Everett Middle School, works with a student to resolve a conflict.</div>
+          <div class="caption vertical">Meghan Graber, social worker at Everett Middle School, works with a student to resolve a conflict.</div>
           <div class="credit">Photo: Lea Suzuki, The Chronicle</div>
         </div>
         <div class="sidebar-content" ng-show="sidebar_graber">
-          <div class="sidebar-heading hed">Family loses out on city grant for home
-            <i class="fa fa-times" aria-hidden="true" ng-click="toggleSidebarGraber()"></i>
-          </div>
+          <div class="sidebar-hed-container"><div class="sidebar-heading hed">Family loses out on city grant for home</div><i class="fa fa-times" aria-hidden="true" ng-click="toggleSidebarGraber()"></i></div>
+
           <div class="photo sidebar">
             <img class="img" src="./assets/photos/teachers0515_graber_web2.jpg">
             <div class="caption">Meghan Graber (center), social worker at Everett Middle School, commutes to work with her family.</div>
@@ -455,7 +458,7 @@
       <div class="photo inset left">
         <img class="img" src="./assets/photos/teachers0515_PH2.jpg">
         <div class="caption">Brian Raber, a special education teacher in the San Francisco Unified School District, shows the room where he had lived that was once a stairwell in an apartment.</div>
-        <div class="credit">Photo: Carlos Avilia Gonzalez, The Chronicle</div>
+        <div class="credit">Photo: Carlos Avila Gonzalez, The Chronicle</div>
       </div>
 
       <div class="text">
@@ -463,6 +466,9 @@
         <p>Many are seeking financial assistance from the union, which doles out grants ranging from $200 to $1,500 from its hardship fund. Normally, there are 12 applications a year, including some for unexpected medical bills or hospitalizations. “Last year, we had three times the number of applications, ranging from people living in their cars to a paraprofessional wanting to buy a bed for her children,” said union President Lita Blanc. “I sat at my kitchen table and cried.”
 
         <p>Low pay has helped make teaching a less popular profession across California. By some estimates, the state would need to hire 60,000 educators just to bring staffing back to pre-recession levels. San Francisco Unified still has about 300 fewer certified teachers, including substitutes, than it did in 2009.
+
+        <p>The Learning Policy Institute, a nonpartisan research organization focused on elementary and secondary education, recently released a report showing enrollment in teacher training programs statewide dropped 70 percent in the past decade. Many schools remain especially short-staffed when it comes to special education teachers, science and math teachers, aides and substitutes.
+
 
       </div>
 
@@ -474,13 +480,9 @@
           <div class="credit">Photo: Scott Strazzante, The Chronicle</div>
         </div>
         <div class="sidebar-content" ng-show="sidebar_tigerman">
-          <div class="sidebar-heading hed">Rent rising, but teacher can’t afford to move
-            <i class="fa fa-times" aria-hidden="true" ng-click="toggleSidebarTigerman()"></i>
-          </div>
+          <div class="sidebar-hed-container"><div class="sidebar-heading hed">Rent rising, but teacher can’t afford to move</div><i class="fa fa-times" aria-hidden="true" ng-click="toggleSidebarTigerman()"></i></div>
           <div class="photo sidebar">
-            <img class="img" src="./assets/photos/teachers0515_tigerman_PH1.jpg">
-            <div class="caption">Lawton Alternative elementary school teacher Amy Tigerman greets her second-grade class. The rent keeps rising on the South San Francisco apartment she shares with her disabled son, but they can’t afford to move.</div>
-            <div class="credit">Photo: Liz Hafalia, The Chronicle</div>
+            <div style="position: relative; padding-bottom: 56.25%; height: 0px;"><iframe src="//player.hearstdigitalstudios.com/572bc451d559305883d4193a?width=100%25&autostart=0&aratio=16:9&duration=&cc%5B%5D=" frameborder="0" allowfullscreen="true" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; padding-top: 5px; padding-bottom: 10px"></iframe></div>
           </div>
           <div class="text">
 
@@ -493,12 +495,6 @@
             <p>“Lead the way, dude!” she tells him. “It’s all you!”
 
             <p>Max Brown is 26, but a 2½-hour seizure he suffered as a toddler left him with just a few words and a halting, shaky walk.
-
-          </div>
-
-          <div style="position: relative; padding-bottom: 56.25%; height: 0px;"><iframe src="//player.hearstdigitalstudios.com/572bc451d559305883d4193a?width=100%25&autostart=0&aratio=16:9&duration=&cc%5B%5D=" frameborder="0" allowfullscreen="true" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;"></iframe></div>
-
-          <div class="text">
 
             <p>Tigerman, 55, spends her days teaching second grade at Lawton Alternative School in the Outer Sunset. Brown spends his days at the Janet Pomeroy Center, a recreation and rehabilitation center for disabled people near the San Francisco Zoo. They reunite joyfully at 4:20 p.m. in the parking lot.
 
@@ -522,6 +518,12 @@
 
           </div>
 
+          <div class="photo">
+            <img class="img" src="./assets/photos/teachers0515_tigerman_PH1.jpg">
+            <div class="caption">Lawton Alternative elementary school teacher Amy Tigerman greets her second-grade class. The rent keeps rising on the South San Francisco apartment she shares with her disabled son, but they can’t afford to move.</div>
+            <div class="credit">Photo: Liz Hafalia, The Chronicle</div>
+          </div>
+
           <div class="credits">
               <div class="entry">Heather Knight  &bull; <a href="mailto:hknight@sfchronicle.com">hknight@sfchronicle.com</a>   &bull; <a href = "https://twitter.com/hknightsf" target="_blank">@hknightsf</a></div>
           </div>
@@ -530,8 +532,6 @@
       </div>
 
       <div class="text">
-
-        <p>The Learning Policy Institute, a nonpartisan research organization focused on elementary and secondary education, recently released a report showing enrollment in teacher training programs statewide dropped 70 percent in the past decade. Many schools remain especially short-staffed when it comes to special education teachers, science and math teachers, aides and substitutes.
 
         <p>To fill the gaps, some districts are increasingly relying on noncredentialed teachers. The number of educators in California with temporary permits, waivers and intern credentials grew by 40 percent between 2010 and 2014, according to the state Commission on Teacher Credentialing.
 
@@ -593,9 +593,8 @@
           <div class="credit">Photo: Michael Macor, The Chronicle</div>
         </div>
         <div class="sidebar-content" ng-show="sidebar_hanson">
-          <div class="sidebar-heading hed">New job, big home in El Dorado County
-            <i class="fa fa-times" aria-hidden="true" ng-click="toggleSidebarHanson()"></i>
-          </div>
+          <div class="sidebar-hed-container"><div class="sidebar-heading hed">New job, big home in El Dorado County</div><i class="fa fa-times" aria-hidden="true" ng-click="toggleSidebarHanson()"></i></div>
+
           <div class="photo sidebar">
             <img class="img" src="./assets/photos/teachers0515_hanson_PH2.jpg">
             <div class="caption">Former San Francisco teacher Emilee Hanson walks with her dog, Skillet, on the trail near her home in Georgetown (El Dorado County).</div>
@@ -702,12 +701,10 @@
       <div class="dont-miss">
         <div class="story">
           <div class="padded">
-          <a href="http://www.sfchronicle.com/style/article/Fashion-Warriors-Golden-State-shows-its-style-7271312.php" target="_blank">
-            <img src="./assets/warriors2.jpeg"></img>
+          <a href="http://projects.sfchronicle.com/2016/visas/" target="_blank">
+            <img src="./assets/dont-miss-visas.png"></img>
           </a>
-            <div class="small">Warriors fashion: Players show off their style</div>
-          <a href="http://projects.sfchronicle.com/2016/living-with-aids/">
-          </a>
+            <div class="small">H-1B visas: who gets them, where they go</div>
           </div>
         </div>
         <div class="story">
