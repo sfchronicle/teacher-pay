@@ -337,6 +337,43 @@ var debounce = function(f, interval) {
 
 app.controller("TeacherController", ["$scope", function($scope) {
 
+  // testing new search
+  $scope.setBubble = function(bubble) {
+    $scope.chosenBubble = bubble;
+    if ($scope.lastEl) {
+      $scope.lastEl.removeClass("highlight");
+      $scope.lastEltext.removeClass("highlight");
+    }
+    if (($scope.chosenBubble != "") & ($scope.chosenBubble != null)) {
+      var chosenBubbleClass = $scope.chosenBubble.school.toString().toLowerCase().replace(/ /g,'');
+      var myEl = angular.element(document.querySelector("#"+chosenBubbleClass));
+      var myEltext = angular.element(document.querySelector("#"+chosenBubbleClass+"text"));
+      if (myEl) {
+        myEl.addClass("highlight");
+        myEltext.addClass("highlight");
+        $scope.lastEl = myEl;
+        $scope.lastEltext = myEltext;
+        $scope.searchBubbles = $scope.chosenBubble.school;
+        var filtered = all.filter(function(item) {
+          return (item.school.replace(/ /g,'').toLowerCase().indexOf(chosenBubbleClass) != -1);
+        });
+        $scope.foundbubbles = filtered;
+        $scope.untouchedbubbles = true;
+
+        var circles = svg.selectAll(".dot").attr("opacity", "0.5");
+        var circlestext = svg.selectAll(".dottext").attr("opacity", "0.5");
+        myEl.attr("opacity","1.0");
+        myEltext.attr("opacity","1.0");
+      }
+    } else {
+      var circles = svg.selectAll(".dot").attr("opacity", "1.0");
+      var circlestext = svg.selectAll(".dottext").attr("opacity", "1.0");
+    }
+  }
+  $scope.isSelected = function(bubble) {
+    return $scope.chosenBubble == bubble;
+  }
+
   // for sidebars
   $scope.sidebar_black = false;
   $scope.toggleSidebarBlack = function() {

@@ -12,8 +12,7 @@
   <body>
 
     <responsive-child>
-
-      <div ng-controller="TeacherController" ng-app="teachers">
+    <div ng-controller="TeacherController" ng-app="teachers">
 
       <header>
         <a class="logo" href="http://www.sfchronicle.com" target="_blank">
@@ -68,15 +67,10 @@
           <span class="search">Find your school district:</span>
           <input type="text" ng-change="searchbubbles()" ng-model="searchBubbles" placeholder="Type here"></input>
         </div>
-        <div class="select-container bubbles">
-          <select class="selectbubble-class"
-              ng-model="chosenBubble"
-              ng-class="{active: untouchedbubbles == false}"
-              ng-change=reset_bubbles()
-              ng-click=reset_bubbles()
-              ng-options="d.school as d.school for d in foundbubbles">
-              <option style="display:none" value="">Click to see results.</option>
-          </select>
+        <div class="list-container" ng-show="foundbubbles.length > 0 && !untouchedbubbles">
+          <div ng-repeat="bubble in foundbubbles" ng-class="{active: isSelected(bubble)}">
+            <div ng-click="setBubble(bubble)">{{bubble.school}}</div>
+          </div>
         </div>
 
         <div class="mobile-chatter">For school districts in the red, annual neighborhood rent exceeds 30% of income.</div>
@@ -152,66 +146,66 @@
 
         <p>It’s not the lifestyle she pictured after earning her credential and master’s degree from UCLA, but teaching children living in poverty is her passion. She was a kindergarten and first-grade teacher in Watts and South Central Los Angeles before taking the Cesar Chavez job two years ago. She says she plans to stick it out one more year, then probably leave California altogether.
 
-        </div>
+      </div>
 
-        <div class="sidebar">
-          <div class="sidebar-click" ng-click="toggleSidebarBlack()">
-            <i class="fa fa-expand" aria-hidden="true"></i>
-            <img class="img" src="./assets/photos/teachers0515_black_PH1.JPG">
+      <div class="sidebar">
+        <div class="sidebar-click" ng-click="toggleSidebarBlack()">
+          <div class="click-here">Read profile<i class="fa fa-long-arrow-right" aria-hidden="true"></i></div>
+          <img class="img" src="./assets/photos/teachers0515_black_PH1.JPG">
+          <div class="caption">This is a caption.</div>
+          <div class="credit">Photo: Lea Suzuki, The Chronicle</div>
+        </div>
+        <div class="sidebar-content" ng-show="sidebar_black">
+          <div class="sidebar-heading hed">This is a sidebar heading
+            <i class="fa fa-times" aria-hidden="true" ng-click="toggleSidebarBlack()"></i>
+          </div>
+          <div class="photo sidebar">
+            <img class="img" src="./assets/photos/teachers0515_black_PH3.JPG">
             <div class="caption">This is a caption.</div>
             <div class="credit">Photo: Lea Suzuki, The Chronicle</div>
           </div>
-          <div class="sidebar-content" ng-show="sidebar_black">
-            <div class="sidebar-heading hed">This is a sidebar heading
-              <i class="fa fa-times" aria-hidden="true" ng-click="toggleSidebarBlack()"></i>
-            </div>
-            <div class="photo sidebar">
-              <img class="img" src="./assets/photos/teachers0515_black_PH3.JPG">
-              <div class="caption">This is a caption.</div>
-              <div class="credit">Photo: Lea Suzuki, The Chronicle</div>
-            </div>
-            <div class="text">
-              <p>If Jessica Black√ and Dara Peters√ are able to have a baby, as they hope, the good news will come with a tinge of regret. They know expanding their family will mean leaving the teaching jobs they love — and leaving San Francisco altogether.
+          <div class="text">
+            <p>If Jessica Black√ and Dara Peters√ are able to have a baby, as they hope, the good news will come with a tinge of regret. They know expanding their family will mean leaving the teaching jobs they love — and leaving San Francisco altogether.
 
-              <p>Black, 34, teaches second grade at Rosa Parks Elementary in Japantown. Peters, 44, teaches third grade at Junipero Serra Elementary √in Bernal Heights. The women married recently and live in a junior one-bedroom apartment in the Lower Haight.
+            <p>Black, 34, teaches second grade at Rosa Parks Elementary in Japantown. Peters, 44, teaches third grade at Junipero Serra Elementary √in Bernal Heights. The women married recently and live in a junior one-bedroom apartment in the Lower Haight.
 
-              <p>“It’s tiny,” Black said.
+            <p>“It’s tiny,” Black said.
 
-              <p>The bedroom is actually an enclosed porch that still has exposed pipes running through it. There are no closets, and their bed fits with 6 inches to spare.
-
-            </div>
-
-            <div class="photo inset left vertical">
-              <img class="img" src="./assets/photos/teachers0515_black_PH4.jpg">
-              <div class="caption">This is a caption.</div>
-              <div class="credit">Photo: Lea Suzuki, The Chronicle</div>
-            </div>
-
-            <div class="text">
-
-              <p>There’s no place to put a baby, let alone an active toddler. Black and Peters have started looking for housing elsewhere, but are priced out of everything in San Francisco and Oakland.
-
-              <p>They’ve thought about moving to Black’s hometown of San Luis Obispo, where rent is at least 60 percent less expensive. Or to Peters’ former stomping grounds in Humboldt County, where her sister, also a teacher, bought a three-bedroom house.
-
-              <p>For now, the two women and their small dog, Jimmy Niblet, are staying put, but they’ve both seen an increasing number of co-workers leave. Young teachers are excited to work in San Francisco until they want to rent a bigger place or buy a house or have children, the women said, and then they’re gone.
-
-              <p>Now it’s not just the hardest-to-staff, poorest schools that struggle with teacher turnover. Many of the more popular ones do, too.
-
-              <p>“It’s impacting everyone,” Black said.
-
-              <p>“We both love the city. We moved from our homes to live and work here,” Peters said. “It’s kind of strange to fight to be a teacher in a place that needs you.”
-
-            </div>
-
-            <div class="credits">
-                <div class="entry">Heather Knight  &bull; <a href="mailto:hknight@sfchronicle.com">hknight@sfchronicle.com</a>   &bull; <a href = "https://twitter.com/hknightsf" target="_blank">@hknightsf</a></div>
-                <div class="entry">Joaquin Palomino  &bull; <a href="mailto:jpalomino@sfchronicle.com">jpalomino@sfchronicle.com</a>  &bull; <a href = "https://twitter.com/JoaquinPalomino" target="_blank">@JoaquinPalomino</a></div>
-            </div>
+            <p>The bedroom is actually an enclosed porch that still has exposed pipes running through it. There are no closets, and their bed fits with 6 inches to spare.
 
           </div>
-        </div>
 
-        <div class="text">
+          <div class="photo inset left vertical">
+            <img class="img" src="./assets/photos/teachers0515_black_PH4.jpg">
+            <div class="caption">This is a caption.</div>
+            <div class="credit">Photo: Lea Suzuki, The Chronicle</div>
+          </div>
+
+          <div class="text">
+
+            <p>There’s no place to put a baby, let alone an active toddler. Black and Peters have started looking for housing elsewhere, but are priced out of everything in San Francisco and Oakland.
+
+            <p>They’ve thought about moving to Black’s hometown of San Luis Obispo, where rent is at least 60 percent less expensive. Or to Peters’ former stomping grounds in Humboldt County, where her sister, also a teacher, bought a three-bedroom house.
+
+            <p>For now, the two women and their small dog, Jimmy Niblet, are staying put, but they’ve both seen an increasing number of co-workers leave. Young teachers are excited to work in San Francisco until they want to rent a bigger place or buy a house or have children, the women said, and then they’re gone.
+
+            <p>Now it’s not just the hardest-to-staff, poorest schools that struggle with teacher turnover. Many of the more popular ones do, too.
+
+            <p>“It’s impacting everyone,” Black said.
+
+            <p>“We both love the city. We moved from our homes to live and work here,” Peters said. “It’s kind of strange to fight to be a teacher in a place that needs you.”
+
+          </div>
+
+          <div class="credits">
+              <div class="entry">Heather Knight  &bull; <a href="mailto:hknight@sfchronicle.com">hknight@sfchronicle.com</a>   &bull; <a href = "https://twitter.com/hknightsf" target="_blank">@hknightsf</a></div>
+              <div class="entry">Joaquin Palomino  &bull; <a href="mailto:jpalomino@sfchronicle.com">jpalomino@sfchronicle.com</a>  &bull; <a href = "https://twitter.com/JoaquinPalomino" target="_blank">@JoaquinPalomino</a></div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="text">
 
         <p>“I feel like I live in a place where there’s so much to do, but I can’t afford to do any of it,” Sheehan-Stross said. “I don’t see any way to make it work.”
 
@@ -227,60 +221,60 @@
 
         <p>In Santa Monica, which also has an increasingly expensive rental market, nine percent of teachers plan on resigning at the end of the school year. At Santa Clara Unified, about seven percent of the teaching force is quitting. And just three percent of teachers resigned from Los Angeles Unified in the 2014-15 school year. National estimates place non-retirement related resignations between 4 and 8 percent.
 
-        </div>
+      </div>
 
-        <div class="sidebar">
-          <div class="sidebar-click left" ng-click="toggleSidebarVaralli()">
-            <i class="fa fa-expand" aria-hidden="true"></i>
-            <img class="img" src="./assets/photos/teachers0515_varalli_web1.jpg">
+      <div class="sidebar">
+        <div class="sidebar-click left" ng-click="toggleSidebarVaralli()">
+          <div class="click-here">Read profile<i class="fa fa-long-arrow-right" aria-hidden="true"></i></div>
+          <img class="img" src="./assets/photos/teachers0515_varalli_web1.jpg">
+          <div class="caption">This is a caption.</div>
+          <div class="credit">Photo: Lea Suzuki, The Chronicle</div>
+        </div>
+        <div class="sidebar-content" ng-show="sidebar_varalli">
+          <div class="sidebar-heading hed">This is a sidebar heading
+            <i class="fa fa-times" aria-hidden="true" ng-click="toggleSidebarVaralli()"></i>
+          </div>
+          <div class="photo sidebar vertical">
+            <img class="img" src="./assets/photos/teachers0515_varalli_PH1.jpg">
             <div class="caption">This is a caption.</div>
             <div class="credit">Photo: Lea Suzuki, The Chronicle</div>
           </div>
-          <div class="sidebar-content" ng-show="sidebar_varalli">
-            <div class="sidebar-heading hed">This is a sidebar heading
-              <i class="fa fa-times" aria-hidden="true" ng-click="toggleSidebarVaralli()"></i>
-            </div>
-            <div class="photo sidebar vertical">
-              <img class="img" src="./assets/photos/teachers0515_varalli_PH1.jpg">
-              <div class="caption">This is a caption.</div>
-              <div class="credit">Photo: Lea Suzuki, The Chronicle</div>
-            </div>
-            <div class="text">
+          <div class="text">
 
-              <p>All eight of Marisa Varalli’s√ great-grandparents — four of them Mexican, four Filipino — moved to San Francisco as children. Three generations later, Varalli is the last family member left.
+            <p>All eight of Marisa Varalli’s√ great-grandparents — four of them Mexican, four Filipino — moved to San Francisco as children. Three generations later, Varalli is the last family member left.
 
-              <p>The 39-year-old world languages teacher at Balboa High School has stayed put as her mother moved to Santa Rosa and cousins moved to San Jose, Daly City, Sebastopol and elsewhere. All of them were priced out of their hometown.
+            <p>The 39-year-old world languages teacher at Balboa High School has stayed put as her mother moved to Santa Rosa and cousins moved to San Jose, Daly City, Sebastopol and elsewhere. All of them were priced out of their hometown.
 
-              <p>“If they want to own a house and have a family, they have to move elsewhere,” Varalli explained. “They can’t be here.”
+            <p>“If they want to own a house and have a family, they have to move elsewhere,” Varalli explained. “They can’t be here.”
 
-              <p>For now, Varalli has a comparatively sweet deal renting an in-law unit a few blocks from Balboa for $1,480 a month. The landlords are kind, and she has access to a backyard. But it’s her last gasp at staying in San Francisco.
+            <p>For now, Varalli has a comparatively sweet deal renting an in-law unit a few blocks from Balboa for $1,480 a month. The landlords are kind, and she has access to a backyard. But it’s her last gasp at staying in San Francisco.
 
-              <p>Varalli and her boyfriend want to move in together, but neither of their leases allows it. They can’t afford the city’s highest-in-the-nation rents, so they’ve toyed with buying.
+            <p>Varalli and her boyfriend want to move in together, but neither of their leases allows it. They can’t afford the city’s highest-in-the-nation rents, so they’ve toyed with buying.
 
-              <p>“There was a trailer home next to a cemetery in Daly City,” she said with a laugh. “That was $400,000. That was doable for us.”
+            <p>“There was a trailer home next to a cemetery in Daly City,” she said with a laugh. “That was $400,000. That was doable for us.”
 
-              <p>Doable, but not appealing. She’s considered applying for the Teacher Next Door program, which would give her $20,000 toward a down payment — but that gets her nowhere in this market. So Varalli hangs tight.
+            <p>Doable, but not appealing. She’s considered applying for the Teacher Next Door program, which would give her $20,000 toward a down payment — but that gets her nowhere in this market. So Varalli hangs tight.
 
-              <p>She wants to stay in San Francisco because she believes that the public schools, which are composed of just 11 percent white students, need more teachers of color. She attended public schools and almost always had white teachers.
+            <p>She wants to stay in San Francisco because she believes that the public schools, which are composed of just 11 percent white students, need more teachers of color. She attended public schools and almost always had white teachers.
 
-              <p>“There were very few I could connect with,” she said. “It was really one, maybe two, and they were from San Francisco and they were teachers of color.”
+            <p>“There were very few I could connect with,” she said. “It was really one, maybe two, and they were from San Francisco and they were teachers of color.”
 
-              <p>Varalli grew up in Bernal Heights and the Excelsior, the daughter of a taxi driver dad and cashier mom. Her neighbors were black, Filipino, Japanese and Mexican. She said there aren’t blocks like those in San Francisco anymore.
+            <p>Varalli grew up in Bernal Heights and the Excelsior, the daughter of a taxi driver dad and cashier mom. Her neighbors were black, Filipino, Japanese and Mexican. She said there aren’t blocks like those in San Francisco anymore.
 
-              <p>If so, how about, “That’s who we want to be having around our students,” she said — “folks who can relate to them at least in some way, of having a common experience of growing up in the same place.”
+            <p>If so, how about, “That’s who we want to be having around our students,” she said — “folks who can relate to them at least in some way, of having a common experience of growing up in the same place.”
 
-              <p>The students have her. For now.
-
-            </div>
-
-            <div class="credits">
-                <div class="entry">Heather Knight  &bull; <a href="mailto:hknight@sfchronicle.com">hknight@sfchronicle.com</a>   &bull; <a href = "https://twitter.com/hknightsf" target="_blank">@hknightsf</a></div>
-            </div>
+            <p>The students have her. For now.
 
           </div>
-        </div>
 
-        <div class="text">
+          <div class="credits">
+              <div class="entry">Heather Knight  &bull; <a href="mailto:hknight@sfchronicle.com">hknight@sfchronicle.com</a>   &bull; <a href = "https://twitter.com/hknightsf" target="_blank">@hknightsf</a></div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="text">
 
         <p>The San Francisco teachers union attributed the large number of teacher departures largely to the city’s high cost of housing and low pay.
 
@@ -343,7 +337,7 @@
 
       <div class="sidebar">
         <div class="sidebar-click vertical left" ng-click="toggleSidebarGraber()">
-          <i class="fa fa-expand white" aria-hidden="true" ></i>
+          <div class="click-here">Read profile<i class="fa fa-long-arrow-right" aria-hidden="true"></i></div>
           <img class="img" src="./assets/photos/teachers0515_graber_PH1.jpg">
           <div class="caption">This is a caption.</div>
           <div class="credit">Photo: Lea Suzuki, The Chronicle</div>
@@ -428,7 +422,6 @@
         <div class="credit">Photo: Elizabeth Hafalia, The Chronicle</div>
       </div>
 
-
       <div class="text">
 
         <p>Brian Raber√, a special education teacher at Cesar Chavez, moved here from Long Beach two years ago. Desperate for housing, he stayed in a hostel in Union Square for $70 a night before finding a dingy room North of the Panhandle for $1,120 a month. The tiny, closetless space once housed a staircase. It was ripped out and the space was used for storage before being rented as a room.
@@ -461,181 +454,181 @@
 
       </div>
 
-    <div class="sidebar">
-      <div class="sidebar-click" ng-click="toggleSidebarTigerman()">
-        <i class="fa fa-expand white" aria-hidden="true"></i>
-        <img class="img" src="./assets/photos/teachers0515_tigerman_web4.jpg" >
-        <div class="caption">This is a caption.</div>
-        <div class="credit">Photo: Liz Hafalia, The Chronicle</div>
-      </div>
-      <div class="sidebar-content" ng-show="sidebar_tigerman">
-        <div class="sidebar-heading hed">This is a sidebar heading
-          <i class="fa fa-times" aria-hidden="true" ng-click="toggleSidebarTigerman()"></i>
-        </div>
-        <div class="photo sidebar">
-          <img class="img" src="./assets/photos/teachers0515_tigerman_PH1.jpg">
+      <div class="sidebar">
+        <div class="sidebar-click" ng-click="toggleSidebarTigerman()">
+          <div class="click-here">Read profile<i class="fa fa-long-arrow-right" aria-hidden="true"></i></div>
+          <img class="img" src="./assets/photos/teachers0515_tigerman_web2.jpg" >
           <div class="caption">This is a caption.</div>
           <div class="credit">Photo: Liz Hafalia, The Chronicle</div>
         </div>
-        <div class="text">
+        <div class="sidebar-content" ng-show="sidebar_tigerman">
+          <div class="sidebar-heading hed">This is a sidebar heading
+            <i class="fa fa-times" aria-hidden="true" ng-click="toggleSidebarTigerman()"></i>
+          </div>
+          <div class="photo sidebar">
+            <img class="img" src="./assets/photos/teachers0515_tigerman_PH1.jpg">
+            <div class="caption">This is a caption.</div>
+            <div class="credit">Photo: Liz Hafalia, The Chronicle</div>
+          </div>
+          <div class="text">
 
-          <p>Amy Tigerman√ waits every afternoon in the parking lot of her apartment complex for her son, Max, to come home.
+            <p>Amy Tigerman√ waits every afternoon in the parking lot of her apartment complex for her son, Max, to come home.
 
-          <p>Every day, a white Whistlestop shuttle pulls into the South San Francisco lot, and Tigerman climbs aboard to greet her son and help him get down the shuttle stairs and back to their apartment.
+            <p>Every day, a white Whistlestop shuttle pulls into the South San Francisco lot, and Tigerman climbs aboard to greet her son and help him get down the shuttle stairs and back to their apartment.
 
-          <p>“Mama!” he calls amid grunting noises. “Mama!”
+            <p>“Mama!” he calls amid grunting noises. “Mama!”
 
-          <p>“Lead the way, dude!” she tells him. “It’s all you!”
+            <p>“Lead the way, dude!” she tells him. “It’s all you!”
 
-          <p>Max Brown√ is 26, but a 2½-hour seizure he suffered as a toddler left him with just a few words and a halting, shaky walk.
+            <p>Max Brown√ is 26, but a 2½-hour seizure he suffered as a toddler left him with just a few words and a halting, shaky walk.
+
+            </div>
+
+            <div style="position: relative; padding-bottom: 56.25%; height: 0px;"><iframe src="//player.hearstdigitalstudios.com/572bc451d559305883d4193a?width=100%25&autostart=0&aratio=16:9&duration=&cc%5B%5D=" frameborder="0" allowfullscreen="true" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;"></iframe></div>
+
+            <div class="text">
+
+            <p>Tigerman, 55, spends her days teaching second grade at Lawton Elementary in the Outer Sunset. Brown spends his days at the Janet Pomeroy Center, a recreation and rehabilitation center for disabled people near the San Francisco Zoo. They reunite joyfully at 4:20 p.m. in the parking lot.
+
+            <p>Tigerman, who has been with San Francisco Unified for 27 years, hopes she can hang onto their two-bedroom apartment in South San Francisco, at least until she retires in five years — if not longer. All of Max’s services, paid by the state, are nearby. Her ex-husband lives in an apartment in the same complex so they can care for Max together.
 
           </div>
 
-          <div style="position: relative; padding-bottom: 56.25%; height: 0px;"><iframe src="//player.hearstdigitalstudios.com/572bc451d559305883d4193a?width=100%25&autostart=0&aratio=16:9&duration=&cc%5B%5D=" frameborder="0" allowfullscreen="true" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;"></iframe></div>
+          <div class="photo inset left">
+            <img class="img" src="./assets/photos/teachers0515_tigerman_PH2.jpg">
+            <div class="caption">This is a caption.</div>
+            <div class="credit">Photo: Scott Strazzante, The Chronicle</div>
+          </div>
 
           <div class="text">
 
-          <p>Tigerman, 55, spends her days teaching second grade at Lawton Elementary in the Outer Sunset. Brown spends his days at the Janet Pomeroy Center, a recreation and rehabilitation center for disabled people near the San Francisco Zoo. They reunite joyfully at 4:20 p.m. in the parking lot.
+            <p>But like most less-expensive options outside San Francisco, South San Francisco lacks rent control. When Tigerman moved there in 1998, she paid $1,075 a month. Now, her rent is $2,200 a month. And her landlord has warned her to expect monthly rent hikes of $150 to $250 every year, meaning that when she’s up for retirement, her rent could be $3,200 a month or higher.
 
-          <p>Tigerman, who has been with San Francisco Unified for 27 years, hopes she can hang onto their two-bedroom apartment in South San Francisco, at least until she retires in five years — if not longer. All of Max’s services, paid by the state, are nearby. Her ex-husband lives in an apartment in the same complex so they can care for Max together.
+            <p>But finding another two-bedroom apartment that costs less is impossible. And so she’s stuck. And worried.
 
-        </div>
+            <p>“I didn’t necessarily plan on being wealthy, but I expected to be able to survive,” Tigerman said. “To see it each year becoming less and less tangible, it makes you feel so very unimportant for such an important job.”
 
-        <div class="photo inset left">
-          <img class="img" src="./assets/photos/teachers0515_tigerman_web2.jpg">
-          <div class="caption">This is a caption.</div>
-          <div class="credit">Photo: Scott Strazzante, The Chronicle</div>
-        </div>
+          </div>
 
-        <div class="text">
-
-          <p>But like most less-expensive options outside San Francisco, South San Francisco lacks rent control. When Tigerman moved there in 1998, she paid $1,075 a month. Now, her rent is $2,200 a month. And her landlord has warned her to expect monthly rent hikes of $150 to $250 every year, meaning that when she’s up for retirement, her rent could be $3,200 a month or higher.
-
-          <p>But finding another two-bedroom apartment that costs less is impossible. And so she’s stuck. And worried.
-
-          <p>“I didn’t necessarily plan on being wealthy, but I expected to be able to survive,” Tigerman said. “To see it each year becoming less and less tangible, it makes you feel so very unimportant for such an important job.”
+          <div class="credits">
+              <div class="entry">Heather Knight  &bull; <a href="mailto:hknight@sfchronicle.com">hknight@sfchronicle.com</a>   &bull; <a href = "https://twitter.com/hknightsf" target="_blank">@hknightsf</a></div>
+          </div>
 
         </div>
+      </div>
 
-        <div class="credits">
-            <div class="entry">Heather Knight  &bull; <a href="mailto:hknight@sfchronicle.com">hknight@sfchronicle.com</a>   &bull; <a href = "https://twitter.com/hknightsf" target="_blank">@hknightsf</a></div>
-        </div>
+      <div class="text">
+
+        <p>The jump was particularly large in San Francisco, which experienced a 76 percent increase in non-credentialed teachers over the period, going from 116 to 204.
+
+        <p>“This is a crisis, and it’s going to get worse and worse,” said Ken Tray, political director for the teachers union. “What kind of city and school district do we want five years from now? It’s a bleak picture at this point.”
+
+        <p>At Cesar Chavez, a school whose 439 students are primarily Latino and low-income, the walls are covered in murals of children, butterflies and balloons. A garden runs alongside the front wall. Red graffiti on the sidewalk outside reads: “Bang on the system.”
+
+        <p>That’s what the school has tried to do, gradually improving the education it offers students, many the children of Mexican and Central American immigrants who have little or no schooling. Some families are packed into SRO hotel rooms, a few live in cars or homeless shelters. Nine out of ten students qualify for free or reduced-price lunch, and 82 percent are learning the English language.
+
+        <p>Catalina Rico√ has been Cesar Chavez’s principal since 2010. She’s proud of the strides the school has made, especially students’ improvements in reading, writing and English-language development assessments.
+
+        <p>But the cost of housing is working against the school’s ambitions. With five teacher openings to fill next year, Rico spends a lot of time at recruitment fairs. Her teachers say the school’s improvement had contributed to a more stable staff — until the city’s housing crisis struck and turnover worsened.
+
+        <p>“I am deliberate and conscientious when hiring,” Rico wrote in an email with the help of a school district spokeswoman. “We serve a population of children whose poverty precludes them from being as ready for school as some other communities, so the work is difficult and requires exceptional perseverance.”
 
       </div>
-    </div>
 
-    <div class="text">
-
-      <p>The jump was particularly large in San Francisco, which experienced a 76 percent increase in non-credentialed teachers over the period, going from 116 to 204.
-
-      <p>“This is a crisis, and it’s going to get worse and worse,” said Ken Tray, political director for the teachers union. “What kind of city and school district do we want five years from now? It’s a bleak picture at this point.”
-
-      <p>At Cesar Chavez, a school whose 439 students are primarily Latino and low-income, the walls are covered in murals of children, butterflies and balloons. A garden runs alongside the front wall. Red graffiti on the sidewalk outside reads: “Bang on the system.”
-
-      <p>That’s what the school has tried to do, gradually improving the education it offers students, many the children of Mexican and Central American immigrants who have little or no schooling. Some families are packed into SRO hotel rooms, a few live in cars or homeless shelters. Nine out of ten students qualify for free or reduced-price lunch, and 82 percent are learning the English language.
-
-      <p>Catalina Rico√ has been Cesar Chavez’s principal since 2010. She’s proud of the strides the school has made, especially students’ improvements in reading, writing and English-language development assessments.
-
-      <p>But the cost of housing is working against the school’s ambitions. With five teacher openings to fill next year, Rico spends a lot of time at recruitment fairs. Her teachers say the school’s improvement had contributed to a more stable staff — until the city’s housing crisis struck and turnover worsened.
-
-      <p>“I am deliberate and conscientious when hiring,” Rico wrote in an email with the help of a school district spokeswoman. “We serve a population of children whose poverty precludes them from being as ready for school as some other communities, so the work is difficult and requires exceptional perseverance.”
-
-    </div>
-
-    <div class="photo inset left">
-      <img class="img" src="./assets/photos/teachers0515_PH6.JPG">
-      <div class="caption">This is a caption.</div>
-      <div class="credit">Photo: Elizabeth Hafalia, The Chronicle</div>
-    </div>
-
-    <div class="text">
-
-      <p>Sheehan-Stross pledges to stay one more year because she doesn’t want two kindergarten classes to have new teachers in the fall. A school full of kids whose lives are often unstable needs a consistent teaching staff, she says.
-
-      <p>“It’s important for students to see the same faces at school every day and every year,” she said. “It’s important that they know their teachers will still be here.”
-
-      <p>The school district and City Hall have plans to help teachers better afford housing, but they may come too late for Sheehan-Stross and others in her predicament.
-
-      <p>Along with the teachers union, the district and mayor’s office have formed a working group to discuss remedies. In November, voters approved a housing bond, backed by Mayor Ed Lee, that includes money for teacher housing. But six months later, the group has spent no money and has made no firm decisions.
-
-      <p>The school district discussed building teacher housing as far back as 2004, but no such housing yet exists. There is a plan to use bond money to construct a facility, but no site has been selected, and there are no details on how many teachers it would accommodate or how they would be selected. Jeff Buckley√, senior adviser to Lee, said 2020 is the projected move-in date.
-
-      <p>More bond money will be spent on a program that offers down-payment loan assistance to first-time home buyers, including teachers and aides, and the city hopes to raise the current maximum loan amount from $200,000 to $375,000. If the money can’t cover all applicants’ loans, teachers will have some priority, Buckley said.
-
-      <p>The city also will spend $250,000 on a one-stop shop for eviction-prevention services for teachers that is to start later this year. The district also plans to offer rental subsidies for teachers in the next academic year, but there are no details yet.
-
-    </div>
-
-    <div class="sidebar">
-      <div class="sidebar-click" ng-click="toggleSidebarHanson()">
-        <i class="fa fa-expand white" aria-hidden="true"></i>
-        <img class="img" src="./assets/photos/teachers0515_hanson_PH1.jpg">
+      <div class="photo inset left">
+        <img class="img" src="./assets/photos/teachers0515_PH6.JPG">
         <div class="caption">This is a caption.</div>
-        <div class="credit">Photo: Michael Macor, The Chronicle</div>
+        <div class="credit">Photo: Elizabeth Hafalia, The Chronicle</div>
       </div>
-      <div class="sidebar-content" ng-show="sidebar_hanson">
-        <div class="sidebar-heading hed">This is a sidebar heading
-          <i class="fa fa-times" aria-hidden="true" ng-click="toggleSidebarHanson()"></i>
-        </div>
-        <div class="photo sidebar">
-          <img class="img" src="./assets/photos/teachers0515_hanson_PH2.jpg">
+
+      <div class="text">
+
+        <p>Sheehan-Stross pledges to stay one more year because she doesn’t want two kindergarten classes to have new teachers in the fall. A school full of kids whose lives are often unstable needs a consistent teaching staff, she says.
+
+        <p>“It’s important for students to see the same faces at school every day and every year,” she said. “It’s important that they know their teachers will still be here.”
+
+        <p>The school district and City Hall have plans to help teachers better afford housing, but they may come too late for Sheehan-Stross and others in her predicament.
+
+        <p>Along with the teachers union, the district and mayor’s office have formed a working group to discuss remedies. In November, voters approved a housing bond, backed by Mayor Ed Lee, that includes money for teacher housing. But six months later, the group has spent no money and has made no firm decisions.
+
+        <p>The school district discussed building teacher housing as far back as 2004, but no such housing yet exists. There is a plan to use bond money to construct a facility, but no site has been selected, and there are no details on how many teachers it would accommodate or how they would be selected. Jeff Buckley√, senior adviser to Lee, said 2020 is the projected move-in date.
+
+        <p>More bond money will be spent on a program that offers down-payment loan assistance to first-time home buyers, including teachers and aides, and the city hopes to raise the current maximum loan amount from $200,000 to $375,000. If the money can’t cover all applicants’ loans, teachers will have some priority, Buckley said.
+
+        <p>The city also will spend $250,000 on a one-stop shop for eviction-prevention services for teachers that is to start later this year. The district also plans to offer rental subsidies for teachers in the next academic year, but there are no details yet.
+
+      </div>
+
+      <div class="sidebar">
+        <div class="sidebar-click" ng-click="toggleSidebarHanson()">
+          <div class="click-here">Read profile<i class="fa fa-long-arrow-right" aria-hidden="true"></i></div>
+          <img class="img" src="./assets/photos/teachers0515_hanson_PH1.jpg">
           <div class="caption">This is a caption.</div>
           <div class="credit">Photo: Michael Macor, The Chronicle</div>
         </div>
-        <div class="text">
+        <div class="sidebar-content" ng-show="sidebar_hanson">
+          <div class="sidebar-heading hed">This is a sidebar heading
+            <i class="fa fa-times" aria-hidden="true" ng-click="toggleSidebarHanson()"></i>
+          </div>
+          <div class="photo sidebar">
+            <img class="img" src="./assets/photos/teachers0515_hanson_PH2.jpg">
+            <div class="caption">This is a caption.</div>
+            <div class="credit">Photo: Michael Macor, The Chronicle</div>
+          </div>
+          <div class="text">
 
-          <p>San Francisco invested a lot in Emilee Hanson√, and she wisely took that investment to El Dorado County.
+            <p>San Francisco invested a lot in Emilee Hanson√, and she wisely took that investment to El Dorado County.
 
-          <p>In 2011, Hanson joined the prestigious San Francisco Teacher Residency program, a collaboration of the school district, the teachers union, Stanford University and the University of San Francisco.
+            <p>In 2011, Hanson joined the prestigious San Francisco Teacher Residency program, a collaboration of the school district, the teachers union, Stanford University and the University of San Francisco.
 
-          <p>Started in 2010, the program aims to combat the plague of teacher burnout, particularly at the most challenging schools and in the most difficult-to-staff positions in math, science and bilingual education. Modeled on a medical residency, it places aspiring teachers in the classrooms of master teachers for a one-year apprenticeship.
+            <p>Started in 2010, the program aims to combat the plague of teacher burnout, particularly at the most challenging schools and in the most difficult-to-staff positions in math, science and bilingual education. Modeled on a medical residency, it places aspiring teachers in the classrooms of master teachers for a one-year apprenticeship.
 
-          <p>The trainees can earn their teaching credential and master’s degree at Stanford or USF at a reduced price and receive a small stipend as well as free health-care benefits. In return, they must teach in the district for three years, during which they receive coaching support.
+            <p>The trainees can earn their teaching credential and master’s degree at Stanford or USF at a reduced price and receive a small stipend as well as free health-care benefits. In return, they must teach in the district for three years, during which they receive coaching support.
 
-          <p>Hanson fulfilled her commitment, but bolted right after. She and two friends had rented a two-bedroom Twin Peaks apartment, and Hanson agreed to use the living room as her bedroom. It cost her $700 a month.
+            <p>Hanson fulfilled her commitment, but bolted right after. She and two friends had rented a two-bedroom Twin Peaks apartment, and Hanson agreed to use the living room as her bedroom. It cost her $700 a month.
 
-          <p>“I didn’t have a closet, I didn’t have doors,” said Hanson, 32. “The kitchen and the living room were all one thing, so when people were cooking, they were basically in my bedroom.”
+            <p>“I didn’t have a closet, I didn’t have doors,” said Hanson, 32. “The kitchen and the living room were all one thing, so when people were cooking, they were basically in my bedroom.”
 
-          <p>The plan was to live there for one year, but by the time she was in her second year of the program making an actual salary, the city’s rents had exploded and she was stuck.
+            <p>The plan was to live there for one year, but by the time she was in her second year of the program making an actual salary, the city’s rents had exploded and she was stuck.
 
-          <p>She taught math to seventh-graders at Martin Luther King Jr. Middle School in the Portola neighborhood. She’d go to bed early to wake up at 6 a.m. to teach, but her roommates would come home with friends at midnight and hang out where she was sleeping.
+            <p>She taught math to seventh-graders at Martin Luther King Jr. Middle School in the Portola neighborhood. She’d go to bed early to wake up at 6 a.m. to teach, but her roommates would come home with friends at midnight and hang out where she was sleeping.
 
-          <p>Exhausted and stressed out, she got another job teaching middle-school math in Georgetown in the Sierra foothills. And she bought a house on five acres for $200,000.
+            <p>Exhausted and stressed out, she got another job teaching middle-school math in Georgetown in the Sierra foothills. And she bought a house on five acres for $200,000.
 
-          <p>“The mortgage on my house — I own a house! — is $1,000 a month,” she said.
+            <p>“The mortgage on my house — I own a house! — is $1,000 a month,” she said.
 
-          <p>Jonathan Osler√, executive director of the residency program, said housing has become a huge issue for the teacher trainees. The program is partnering with the Teachers Housing Cooperative, a nonprofit, to award the participants a $4,800 rental subsidy each year for three years starting in the 2016-17 school year.
+            <p>Jonathan Osler√, executive director of the residency program, said housing has become a huge issue for the teacher trainees. The program is partnering with the Teachers Housing Cooperative, a nonprofit, to award the participants a $4,800 rental subsidy each year for three years starting in the 2016-17 school year.
 
-          <p>The stipend comes too late for Hanson, but she looks back fondly on the residency program. She was recognized by her principal at a recent Board of Supervisors meeting in El Dorado County for being an exceptional teacher.
+            <p>The stipend comes too late for Hanson, but she looks back fondly on the residency program. She was recognized by her principal at a recent Board of Supervisors meeting in El Dorado County for being an exceptional teacher.
 
-          <p>“He wants me to run professional development here — I’m really well-trained based on what SFUSD put into me,” she said. “They way they prepare you is just unlike any other teacher education program out there.”
+            <p>“He wants me to run professional development here — I’m really well-trained based on what SFUSD put into me,” she said. “They way they prepare you is just unlike any other teacher education program out there.”
 
-          <p>Unfortunately, the cost of housing in San Francisco is also unlike any other.
+            <p>Unfortunately, the cost of housing in San Francisco is also unlike any other.
+
+          </div>
+
+          <div class="credits">
+              <div class="entry">Heather Knight  &bull; <a href="mailto:hknight@sfchronicle.com">hknight@sfchronicle.com</a>   &bull; <a href = "https://twitter.com/hknightsf" target="_blank">@hknightsf</a></div>
+          </div>
 
         </div>
-
-        <div class="credits">
-            <div class="entry">Heather Knight  &bull; <a href="mailto:hknight@sfchronicle.com">hknight@sfchronicle.com</a>   &bull; <a href = "https://twitter.com/hknightsf" target="_blank">@hknightsf</a></div>
-        </div>
-
       </div>
-    </div>
 
-    <div class="text">
+      <div class="text">
 
-      <p>Leigh, the deputy superintendent, said these efforts should help 500 teachers and aides. The union supports the plans, but says they’re not being launched quickly enough.
+        <p>Leigh, the deputy superintendent, said these efforts should help 500 teachers and aides. The union supports the plans, but says they’re not being launched quickly enough.
 
-      <p>“What would have been fast enough is starting five years ago,” said Susan Solomon√, executive vice president of United Educators.
+        <p>“What would have been fast enough is starting five years ago,” said Susan Solomon√, executive vice president of United Educators.
 
-      <p>In the meantime, there are other, smaller avenues of help. The district pays teachers one-time bonuses of $2,500 for staying on the job four years and another $3,000 after eight years. The city-run Teacher Next Door program gives grants of $20,000 to teachers to buy a home.
+        <p>In the meantime, there are other, smaller avenues of help. The district pays teachers one-time bonuses of $2,500 for staying on the job four years and another $3,000 after eight years. The city-run Teacher Next Door program gives grants of $20,000 to teachers to buy a home.
 
-      <p>Teachers don’t have to repay the money if they stay in the district for 10 years, but $20,000 doesn’t go far in the Bay Area real estate market. The Board of Supervisors in April banned no-fault evictions of teachers and other school staff during the academic year.
+        <p>Teachers don’t have to repay the money if they stay in the district for 10 years, but $20,000 doesn’t go far in the Bay Area real estate market. The Board of Supervisors in April banned no-fault evictions of teachers and other school staff during the academic year.
 
-      <p>Leigh said the district is “getting more and more concerned” about housing affordability.
+        <p>Leigh said the district is “getting more and more concerned” about housing affordability.
 
-      <p>“We want to make as much of a meaningful difference to as many of our employees as we can,” he said. “But we don’t have the resources to solve it.”
+        <p>“We want to make as much of a meaningful difference to as many of our employees as we can,” he said. “But we don’t have the resources to solve it.”
 
-      <p>In Sheehan-Stross’s kindergarten classroom at Cesar Chavez, her worries about life outside are set aside for the kids’ joyful routine. She fills the day with memorable rhymes and repetition to ensure they learn English.
+        <p>In Sheehan-Stross’s kindergarten classroom at Cesar Chavez, her worries about life outside are set aside for the kids’ joyful routine. She fills the day with memorable rhymes and repetition to ensure they learn English.
 
       </div>
 
@@ -664,7 +657,6 @@
         <p>“To know you wouldn’t want your students to have that job because they wouldn’t have their basic needs met?” she said. “It’s really heart-breaking.”
 
       </div>
-
 
       <div class="credits">
           Reporters:
@@ -722,7 +714,6 @@
       </footer>
 
     </div>
-
     </responsive-child>
 
     <script>
