@@ -176,7 +176,7 @@ if (screen.width > 480) {
       .attr("text-anchor", "middle")
       .style("font-size", "15px")
       .style("fill", "white")
-      .text("annual neighborhood rent exceeds 30% of income.");
+      .text("annual local rent exceeds 30% of income.");
 }
 // } else {
 //   svg.append("text")
@@ -341,10 +341,12 @@ app.controller("TeacherController", ["$scope", function($scope) {
   $scope.setBubble = function(bubble) {
     $scope.chosenBubble = bubble;
     if ($scope.lastEl) {
+      console.log("clearing things");
       $scope.lastEl.removeClass("highlight");
       $scope.lastEltext.removeClass("highlight");
     }
     if (($scope.chosenBubble != "") & ($scope.chosenBubble != null)) {
+      console.log("we have a chosen thing");
       var chosenBubbleClass = $scope.chosenBubble.school.toString().toLowerCase().replace(/ /g,'');
       var myEl = angular.element(document.querySelector("#"+chosenBubbleClass));
       var myEltext = angular.element(document.querySelector("#"+chosenBubbleClass+"text"));
@@ -366,6 +368,7 @@ app.controller("TeacherController", ["$scope", function($scope) {
         myEltext.attr("opacity","1.0");
       }
     } else {
+      console.log("this is where we want to get");
       var circles = svg.selectAll(".dot").attr("opacity", "1.0");
       var circlestext = svg.selectAll(".dottext").attr("opacity", "1.0");
     }
@@ -406,11 +409,14 @@ app.controller("TeacherController", ["$scope", function($scope) {
   $scope.untouchedbubbles = true;
   $scope.searchbubbles = debounce(function() {
     var valuebubble = $scope.searchBubbles;
+    console.log(valuebubble);
     if (!valuebubble) {
       $scope.foundbubbles = [];
       $scope.untouchedbubbles = true;
+      $scope.chosenBubble = "";
+      $scope.setBubble();
     } else {
-      $scope.chosenBubble = [];
+      $scope.chosenBubble = "";
       valuebubble = valuebubble.toLowerCase().replace(/ /g,'');
       var filteredbubbles = allbubbles.filter(function(item) {
         return (item.school.replace(/ /g,'').toLowerCase().indexOf(valuebubble) != -1);
@@ -427,6 +433,7 @@ app.controller("TeacherController", ["$scope", function($scope) {
         $scope.untouchedbubbles = false;
       }
     }
+    console.log($scope.chosenBubble);
     $scope.$apply();
   });
   $scope.foundbubbles = [];

@@ -18,7 +18,7 @@
 @light-gray: #B2B2B2;
 
 @share-gray: lighten(#4F5C70,10%);
-@back-gray: lighten(#6C85A5,35%);
+@back-gray: lighten(#6C85A5,30%);
 
 @alamedacounty: #DE8067;
 @buttecounty: #D13D59;
@@ -64,15 +64,10 @@ body {
   right: 30%;
   overflow: auto;
   border-radius: 5px;
-  // display: none;
-  // &.display-class {
-  //   display: block;
-  // }
+  @media @mobile {
+    right: 5%;
+  }
 }
-
-
-
-
 
 .text, .interactive {
   max-width: 800px;
@@ -213,6 +208,19 @@ body {
   }
 }
 
+.text-hed {
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  text-align: center;
+  font-family: @body-bold;
+  font-weight: bold;
+  @media @mobile {
+    padding: 0 10px;
+  }
+}
+
 .special-head {
   color: darken(@gray-blue,30%);
   text-align: right;
@@ -297,10 +305,8 @@ body {
 }
 
 .title-img {
-  .credit {
+  .credit, .caption {
     @media @mobile {
-      // margin-top: -25px;
-      margin-top: -5px;
       color: @light-gray !important;
     }
   }
@@ -314,6 +320,7 @@ body {
     color: @dark-gray;
     @media @mobile {
       font-size: 10px;
+      padding-bottom: 2px;
     }
   }
   .credit {
@@ -322,6 +329,9 @@ body {
     padding-left: 5px;
     font-style: italic;
     color: @dark-gray;
+    @media @mobile {
+      font-size: 10px;
+    }
   }
 }
 .photo, .title-img {
