@@ -178,22 +178,6 @@ if (screen.width > 480) {
       .style("fill", "white")
       .text("annual local rent exceeds 30% of income.");
 }
-// } else {
-//   svg.append("text")
-//       .attr("x", (width/1.5-10))
-//       .attr("y", 36 )
-//       .attr("text-anchor", "middle")
-//       .style("font-size", "11px")
-//       .style("fill", "white")
-//       .text("For school districts in the red, annual");
-//   svg.append("text")
-//       .attr("x", (width/1.5-30))
-//       .attr("y", 50 )
-//       .attr("text-anchor", "middle")
-//       .style("font-size", "11px")
-//       .style("fill", "white")
-//       .text("neighborhood rent exceeds 30% of income.");
-// }
 
 //color in the dots
 svg.selectAll(".dot")
@@ -341,13 +325,13 @@ app.controller("TeacherController", ["$scope", function($scope) {
   $scope.setBubble = function(bubble) {
     $scope.chosenBubble = bubble;
     if ($scope.lastEl) {
-      console.log("clearing things");
       $scope.lastEl.removeClass("highlight");
       $scope.lastEltext.removeClass("highlight");
     }
     if (($scope.chosenBubble != "") & ($scope.chosenBubble != null)) {
       console.log("we have a chosen thing");
       var chosenBubbleClass = $scope.chosenBubble.school.toString().toLowerCase().replace(/ /g,'');
+      console.log(chosenBubbleClass);
       var myEl = angular.element(document.querySelector("#"+chosenBubbleClass));
       var myEltext = angular.element(document.querySelector("#"+chosenBubbleClass+"text"));
       if (myEl) {
@@ -368,7 +352,6 @@ app.controller("TeacherController", ["$scope", function($scope) {
         myEltext.attr("opacity","1.0");
       }
     } else {
-      console.log("this is where we want to get");
       var circles = svg.selectAll(".dot").attr("opacity", "1.0");
       var circlestext = svg.selectAll(".dottext").attr("opacity", "1.0");
     }
@@ -433,7 +416,6 @@ app.controller("TeacherController", ["$scope", function($scope) {
         $scope.untouchedbubbles = false;
       }
     }
-    console.log($scope.chosenBubble);
     $scope.$apply();
   });
   $scope.foundbubbles = [];
