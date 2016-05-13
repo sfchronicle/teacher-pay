@@ -53,6 +53,12 @@ body {
   margin: auto;
 }
 
+a {
+  .click-here {
+    color: black !important;
+  }
+}
+
 .list-container {
   cursor: pointer;
   max-height: 200px;
@@ -85,13 +91,13 @@ body {
 .sidebar-hed-container {
   display:block;
   text-align: center;
-  margin-bottom: 15px;
   padding-bottom: 10px;
   .sidebar-heading {
     display: inline;
     padding: 0 50px;
     @media @mobile {
       padding: 0 10px;
+      margin-bottom: 0 !important;
       width: 80%;
       margin-top: -5px;
     }
@@ -243,6 +249,9 @@ body {
   @media @mobile {
     padding: 0 10px;
   }
+  &.padded {
+    padding-top: 10px;
+  }
 }
 
 .special-head {
@@ -304,6 +313,17 @@ body {
 #social {
   text-align: center;
   margin-bottom:10px;
+
+  &.sidebar {
+    @media @mobile {
+      display: inline-block;
+      margin-left: 25%;
+      a {
+        font-size: 18px;
+      }
+    }
+    padding-bottom: 5px;
+  }
 
   a {
     font-size: 20px;

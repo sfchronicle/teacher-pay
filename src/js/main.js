@@ -358,32 +358,6 @@ app.controller("TeacherController", ["$scope", function($scope) {
     return $scope.chosenBubble == bubble;
   }
 
-  // for sidebars
-  $scope.sidebar_black = false;
-  $scope.toggleSidebarBlack = function() {
-    $scope.sidebar_black = !$scope.sidebar_black;
-  }
-
-  $scope.sidebar_graber = false;
-  $scope.toggleSidebarGraber = function() {
-    $scope.sidebar_graber = !$scope.sidebar_graber;
-  }
-
-  $scope.sidebar_hanson = false;
-  $scope.toggleSidebarHanson = function() {
-    $scope.sidebar_hanson = !$scope.sidebar_hanson;
-  }
-
-  $scope.sidebar_tigerman = false;
-  $scope.toggleSidebarTigerman = function() {
-    $scope.sidebar_tigerman = !$scope.sidebar_tigerman;
-  }
-
-  $scope.sidebar_varalli = false;
-  $scope.toggleSidebarVaralli = function() {
-    $scope.sidebar_varalli = !$scope.sidebar_varalli;
-  }
-
   // for bubble graph search bar
   $scope.bubbleschools = rentData;
   var allbubbles = rentData;
@@ -675,5 +649,51 @@ app.controller("TeacherController", ["$scope", function($scope) {
           return color(d.name);
         });
   };
+
+  // setting the sidebar visibility and toggles
+  var currentPath = window.location.hash;
+  if (currentPath == "#black") {
+    $scope.sidebar_black = true;
+  } else {
+    $scope.sidebar_black = false;
+  }
+  if (currentPath == "#graber") {
+    $scope.sidebar_graber = true;
+  } else {
+    $scope.sidebar_graber = false;
+  }
+  if (currentPath == "#hanson") {
+    $scope.sidebar_hanson = true;
+  } else {
+    $scope.sidebar_hanson = false;
+  }
+  if (currentPath == "#tigerman") {
+    $scope.sidebar_tigerman = true;
+  } else {
+    $scope.sidebar_tigerman = false;
+  }
+  if (currentPath == "#varalli") {
+    $scope.sidebar_varalli = true;
+  } else {
+    $scope.sidebar_varalli = false;
+  }
+
+  // for sidebars
+  // $scope.sidebar_black = false;
+  $scope.toggleSidebarBlack = function() {
+    $scope.sidebar_black = !$scope.sidebar_black;
+  }
+  $scope.toggleSidebarGraber = function() {
+    $scope.sidebar_graber = !$scope.sidebar_graber;
+  }
+  $scope.toggleSidebarHanson = function() {
+    $scope.sidebar_hanson = !$scope.sidebar_hanson;
+  }
+  $scope.toggleSidebarTigerman = function() {
+    $scope.sidebar_tigerman = !$scope.sidebar_tigerman;
+  }
+  $scope.toggleSidebarVaralli = function() {
+    $scope.sidebar_varalli = !$scope.sidebar_varalli;
+  }
 
 }]);
