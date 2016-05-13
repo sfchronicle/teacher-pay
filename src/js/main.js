@@ -329,9 +329,7 @@ app.controller("TeacherController", ["$scope", function($scope) {
       $scope.lastEltext.removeClass("highlight");
     }
     if (($scope.chosenBubble != "") & ($scope.chosenBubble != null)) {
-      console.log("we have a chosen thing");
       var chosenBubbleClass = $scope.chosenBubble.school.toString().toLowerCase().replace(/ /g,'');
-      console.log(chosenBubbleClass);
       var myEl = angular.element(document.querySelector("#"+chosenBubbleClass));
       var myEltext = angular.element(document.querySelector("#"+chosenBubbleClass+"text"));
       if (myEl) {
@@ -392,7 +390,6 @@ app.controller("TeacherController", ["$scope", function($scope) {
   $scope.untouchedbubbles = true;
   $scope.searchbubbles = debounce(function() {
     var valuebubble = $scope.searchBubbles;
-    console.log(valuebubble);
     if (!valuebubble) {
       $scope.foundbubbles = [];
       $scope.untouchedbubbles = true;
