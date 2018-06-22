@@ -1,5 +1,5 @@
 require("./lib/social");
-// var track = require("./lib/tracking");
+var track = require("./lib/tracking");
 
 var d3 = require('d3');
 require("angular");

@@ -17,5 +17,7 @@
   "image": "assets/photos/teachers_facebook.jpg",
   "sheets": [],
   "production": false,
-  "embedded": true
+  "embedded": false,
+  "time":"06:00:00 GMT-0700",
+  "date":"2016-05-13"
 }
