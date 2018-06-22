@@ -1,7 +1,6 @@
-// require("./lib/social");
+require("./lib/social");
 // var track = require("./lib/tracking");
 
-require("component-responsive-frame/child");
 var d3 = require('d3');
 require("angular");
 var app = angular.module("teachers", []);
@@ -14,6 +13,8 @@ var margin = {
   bottom: 25,
   left: 40
 };
+
+var formatthousands = d3.format("0,000");
 
 // colors for bubble graph
 var colors = {
@@ -49,10 +50,8 @@ var colors = {
 // bubble graph ---------------------------------------------------------------
 
 if (screen.width > 768) {
-  var width = 800 - margin.left - margin.right;
   var height = 550 - margin.top - margin.bottom;
 } else if (screen.width <= 768 && screen.width > 480) {
-  var width = 650 - margin.left - margin.right;
   var height = 400 - margin.top - margin.bottom;
 } else if (screen.width <= 480) {
   var margin = {
@@ -61,9 +60,14 @@ if (screen.width > 768) {
     bottom: 25,
     left: 30
   };
-  var width = 310 - margin.left - margin.right;
   var height = 300 - margin.top - margin.bottom;
 }
+
+var maxWidth = 800;
+var windowWidth = document.body.clientWidth;
+var width = Math.min(windowWidth,maxWidth) - 10 - margin.left - margin.right;
+console.log(width);
+console.log(margin);
 
 // convert strings to numbers
 rentData.forEach(function(d) {
@@ -209,7 +213,7 @@ svg.selectAll(".dot")
             <div>County: <b>${d.county}</b><div class="swatch ${d.countyshortcut}"></div></div>
             <div>Median annual rent: <b>$${d.rentK}K</b></div>
             <div>Average teacher salary: <b>$${d.salaryK}K</b></div>
-            <div>Number of teachers: <b>${d.num_teachers}</b></div>
+            <div>Number of teachers: <b>${formatthousands(d.num_teachers)}</b></div>
             <div>Percent income spent on rent: <b>${d.percent}%</b></div>
         `);
         tooltip.style("visibility", "visible");
@@ -218,7 +222,7 @@ svg.selectAll(".dot")
       if (screen.width <= 480) {
         return tooltip
           .style("top",(d3.event.pageY+40)+"px")//(d3.event.pageY+40)+"px")
-          .style("left",10+"px");
+          .style("left",50+"px");
       } else {
         return tooltip
           .style("top", (d3.event.pageY+20)+"px")
@@ -487,10 +491,8 @@ app.controller("TeacherController", ["$scope", function($scope) {
       left: 55
     };
     if (screen.width > 768) {
-      var width = 500 - margin.left - margin.right;
       var height = 400 - margin.top - margin.bottom;
     } else if (screen.width <= 768 && screen.width > 480) {
-      var width = 480 - margin.left - margin.right;
       var height = 300 - margin.top - margin.bottom;
     } else if (screen.width <= 480) {
       var margin = {
@@ -499,9 +501,12 @@ app.controller("TeacherController", ["$scope", function($scope) {
         bottom: 25,
         left: 55
       };
-      var width = 310 - margin.left - margin.right;
       var height = 220 - margin.top - margin.bottom;
     }
+
+    maxWidth = 800;
+    windowWidth = document.body.clientWidth;
+    width = Math.min(windowWidth,maxWidth) - 10 - margin.left - margin.right;
 
     // x-axis scale
     var x0 = d3.scale.ordinal()
@@ -611,9 +616,9 @@ app.controller("TeacherController", ["$scope", function($scope) {
         .on("mouseover", function(d) {
             bar_tooltip.html(`
                 <div>Year: <b>${d.year}</b></div>
-                <div>Average teachers salary: <b>$${d.adj_teacher}</b></div>
-                <div>Mid-career teacher salary: <b>$${d.adj_step_10}</b></div>
-                <div>Median household income: <b>$${d.adj_median}</b></div>
+                <div>Average teachers salary: <b>$${formatthousands(d.adj_teacher)}</b></div>
+                <div>Mid-career teacher salary: <b>$${formatthousands(d.adj_step_10)}</b></div>
+                <div>Median household income: <b>$${formatthousands(d.adj_median)}</b></div>
             `);
             bar_tooltip.style("visibility", "visible");
         })
@@ -654,46 +659,61 @@ app.controller("TeacherController", ["$scope", function($scope) {
   var currentPath = window.location.hash;
   if (currentPath == "#black") {
     $scope.sidebar_black = true;
+    document.body.classList.add('noscroll');
   } else {
     $scope.sidebar_black = false;
+    document.body.classList.remove('noscroll');
   }
   if (currentPath == "#graber") {
     $scope.sidebar_graber = true;
+    document.body.classList.add('noscroll');
   } else {
     $scope.sidebar_graber = false;
+    document.body.classList.remove('noscroll');
   }
   if (currentPath == "#hanson") {
     $scope.sidebar_hanson = true;
+    document.body.classList.add('noscroll');
   } else {
     $scope.sidebar_hanson = false;
+    document.body.classList.remove('noscroll');
   }
   if (currentPath == "#tigerman") {
     $scope.sidebar_tigerman = true;
+    document.body.classList.add('noscroll');
   } else {
     $scope.sidebar_tigerman = false;
+    document.body.classList.remove('noscroll');
   }
   if (currentPath == "#varalli") {
     $scope.sidebar_varalli = true;
+    document.body.classList.add('noscroll');
   } else {
     $scope.sidebar_varalli = false;
+    document.body.classList.remove('noscroll');
   }
 
   // for sidebars
   // $scope.sidebar_black = false;
   $scope.toggleSidebarBlack = function() {
     $scope.sidebar_black = !$scope.sidebar_black;
+    document.body.classList.toggle("noscroll");
   }
   $scope.toggleSidebarGraber = function() {
     $scope.sidebar_graber = !$scope.sidebar_graber;
+    document.body.classList.toggle("noscroll");
   }
   $scope.toggleSidebarHanson = function() {
     $scope.sidebar_hanson = !$scope.sidebar_hanson;
+    document.body.classList.toggle("noscroll");
   }
   $scope.toggleSidebarTigerman = function() {
     $scope.sidebar_tigerman = !$scope.sidebar_tigerman;
+    document.body.classList.toggle("noscroll");
   }
   $scope.toggleSidebarVaralli = function() {
     $scope.sidebar_varalli = !$scope.sidebar_varalli;
+    document.body.classList.toggle("noscroll");
   }
 
 }]);

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <script src="http://projects.sfchronicle.com/shared/js/jquery.min.js"></script>
+    <!-- <script src="http://projects.sfchronicle.com/shared/js/jquery.min.js"></script> -->
     <%= t.include("partials/_head.html") %>
     <%= t.include("partials/_analytics_hearst.html") %>
     <style>
@@ -18,18 +18,11 @@
   </head>
   <body>
 
-    <responsive-child>
-    <div ng-controller="TeacherController" ng-app="teachers" ng-cloak>
+    <%= t.include("partials/_nav.html") %>
 
-      <header>
-        <a class="logo" href="http://www.sfchronicle.com" target="_blank">
-          <img src="./assets/sf_logo_black.png">
-        </a>
-        <a class="mobile-logo" href="http://www.sfchronicle.com" target="_blank">
-          <img src="./assets/sfletter_c_black.png">
-        </a>
-        <div class="special-head">Special report</div>
-      </header>
+    <div class="story-content">
+
+    <div ng-controller="TeacherController" ng-app="teachers" ng-cloak>
 
       <div class="title-container">
         <div class="title-img">
@@ -37,23 +30,23 @@
           <div class="caption">Kindergarten instructor Rebecca Sheehan-Stross sits with her students at Cesar Chavez Elementary School.</div>
           <div class="credit">Photo: Michael Macor, The Chronicle</div>
         </div>
-        <div class="special-title">Teachers priced out</div>
+        <div class="special-title" id="priced-out">Teachers priced out</div>
         <div class="title">SF educators struggle to stay amid costly housing, stagnant salaries</div>
       </div>
 
       <div id="social">
-        <a id="twitter-icon" title="Share on Twitter" href="https://twitter.com/intent/tweet?url=http%3A//projects.sfchronicle.com/2016/teacher-pay/&amp;text=Priced out: SF teachers struggle to stay amid costly housing, stagnant salaries.">
+        <a id="twitter-icon" title="Share on Twitter" href="https://twitter.com/intent/tweet?url=https%3A//projects.sfchronicle.com/2016/teacher-pay/&amp;text=Priced out: SF teachers struggle to stay amid costly housing, stagnant salaries.">
       		<i class="fa fa-twitter"></i>
       	</a>
-        <a id="facebook-icon" title="Share on Facebook" href="#" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fprojects.sfchronicle.com%2F2016%2Fteacher-pay%2F', 'facebook-share-dialog', 'width=626,height=436'); return false;">
+        <a id="facebook-icon" title="Share on Facebook" href="#" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fprojects.sfchronicle.com%2F2016%2Fteacher-pay%2F', 'facebook-share-dialog', 'width=626,height=436'); return false;">
             <i class="fa fa-facebook"></i>
         </a>
-        <a id="mail-icon" href="mailto:?subject=Priced out: SF teachers struggle amid costly housing&body=With stagnant salaries, growing ranks of teachers have decided that working in San Francisco’s public schools isn’t worth the sacrifices. http://projects.sfchronicle.com/2016/teacher-pay/">
+        <a id="mail-icon" href="mailto:?subject=Priced out: SF teachers struggle amid costly housing&body=With stagnant salaries, growing ranks of teachers have decided that working in San Francisco’s public schools isn’t worth the sacrifices. https://projects.sfchronicle.com/2016/teacher-pay/">
           <i class="fa fa-envelope" aria-hidden="true"></i>
         </a>
       </div>
 
-      <div class="byline">By Heather Knight and Joaquin Palomino</div>
+      <div class="byline">By <a href="mailto:hknight@sfchronicle.com">Heather Knight</a> and <a href="mailto:jpalomino@sfchronicle.com">Joaquin Palomino</a></div>
       <div class="byline">May 13, 2016</div>
 
       <div class="text">
@@ -72,8 +65,8 @@
         <div class="hed">Doing the math: Rent costs and teacher pay</div>
         <div class="chatter">Federal guidelines recommend spending no more than 30 percent of annual income on housing, but that’s difficult for San Fancisco teachers. Out of the 115 largest school districts in the state, San Francisco teachers had by far the worst pay-to-rent proportion, with Oakland and Berkeley a distant second and third.</div>
         <div class="bubble-search">
-          <div class="graph-text">Click or hover over the graph for more information.</div>
-          <span class="search">Find your school district:</span>
+          <div class="graph-text"><i class="fa fa-hand-o-right"></i>Click or hover over the graph for more information.</div>
+          <span class="search"><i class="fa fa-search"></i>Find your school district:</span>
           <input type="text" ng-change="searchbubbles()" ng-model="searchBubbles" placeholder="Type here"></input>
         </div>
         <div class="list-container" ng-show="foundbubbles.length > 0 && !untouchedbubbles">
@@ -107,7 +100,7 @@
           <div class="chatter">See how much teachers in your community earn. A mid-career salary is someone with the equivalent of 10 years of experience. The statistics for teachers also include some other employees, like nurses and school counselors.</div>
             <div class="search-container">
               <div class="search-bar">
-                <span class="search">Search by school district or county:</span>
+                <span class="search"><i class="fa fa-search"></i>Search by school district or county:</span>
                 <input type="text" ng-change="search()" ng-model="searchText" placeholder="Type here">
               </div>
 
@@ -166,63 +159,65 @@
           <div class="credit">Photo: Lea Suzuki, The Chronicle</div>
         </div>
         <div class="sidebar-content" ng-show="sidebar_black">
-          <div class="sidebar-hed-container"><div class="sidebar-heading hed">Couple may have to move to fulfill family dream</div><i class="fa fa-times" aria-hidden="true" ng-click="toggleSidebarBlack()"></i></div>
+          <div class="sidebar-inner">
+            <div class="sidebar-hed-container"><div class="sidebar-heading hed">Couple may have to move to fulfill family dream</div><i class="fa fa-times" aria-hidden="true" ng-click="toggleSidebarBlack()"></i></div>
 
-          <div id="social" class="sidebar">
-            <a id="twitter-icon" title="Share on Twitter" href="https://twitter.com/intent/tweet?url=http%3A//projects.sfchronicle.com/2016/teacher-pay/%23black&amp;text=Teachers priced out: Couple may have to move to fulfill family dream.">
-              <i class="fa fa-twitter"></i>
-            </a>
-            <a id="facebook-icon" title="Share on Facebook" href="#" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fprojects.sfchronicle.com%2F2016%2Fteacher-pay%2F%23black', 'facebook-share-dialog', 'width=626,height=436'); return false;">
-                <i class="fa fa-facebook"></i>
-            </a>
-            <a id="mail-icon" href="mailto:?subject=Teachers priced out: Couple may have to move to fulfill family dream&body=With stagnant salaries, growing ranks of teachers have decided that working in San Francisco’s public schools isn’t worth the sacrifices.  http://projects.sfchronicle.com/2016/teacher-pay/#black">
-              <i class="fa fa-envelope" aria-hidden="true"></i>
-            </a>
+            <div id="social" class="sidebar">
+              <a id="twitter-icon" title="Share on Twitter" href="https://twitter.com/intent/tweet?url=https%3A//projects.sfchronicle.com/2016/teacher-pay/%23black&amp;text=Teachers priced out: Couple may have to move to fulfill family dream.">
+                <i class="fa fa-twitter"></i>
+              </a>
+              <a id="facebook-icon" title="Share on Facebook" href="#" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fprojects.sfchronicle.com%2F2016%2Fteacher-pay%2F%23black', 'facebook-share-dialog', 'width=626,height=436'); return false;">
+                  <i class="fa fa-facebook"></i>
+              </a>
+              <a id="mail-icon" href="mailto:?subject=Teachers priced out: Couple may have to move to fulfill family dream&body=With stagnant salaries, growing ranks of teachers have decided that working in San Francisco’s public schools isn’t worth the sacrifices.  https://projects.sfchronicle.com/2016/teacher-pay/#black">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+              </a>
+            </div>
+
+            <div class="photo sidebar">
+              <img class="img" src="./assets/photos/teachers0515_black_PH3.JPG">
+              <div class="caption">Jessica Black gives instructions during a spelling test to her second-grade students at Rosa Parks Elementary School.</div>
+              <div class="credit">Photo: Lea Suzuki, The Chronicle</div>
+            </div>
+            <div class="text">
+              <p>If Jessica Black and Dara Peters are able to have a baby, as they hope, the good news will come with a tinge of regret. They know expanding their family will mean leaving the teaching jobs they love — and leaving San Francisco altogether.
+
+              <p>Black, 34, teaches second grade at Rosa Parks Elementary in Japantown. Peters, 44, teaches third grade at Junipero Serra Elementary in Bernal Heights. The women married recently and live in a junior one-bedroom apartment in the Lower Haight.
+
+              <p>“It’s tiny,” Black said.
+
+            </div>
+
+            <div class="photo inset left vertical">
+              <img class="img" src="./assets/photos/teachers0515_black_PH4.jpg">
+              <div class="caption">Jessica Black gives a thumbs up to one of her second-grade students at Rosa Parks Elementary School.</div>
+              <div class="credit">Photo: Lea Suzuki, The Chronicle</div>
+            </div>
+
+            <div class="text">
+
+              <p>The bedroom is actually an enclosed porch that still has exposed pipes running through it. There are no closets, and their bed fits with 6 inches to spare.
+
+              <p>There’s no place to put a baby, let alone an active toddler. Black and Peters have started looking for housing elsewhere, but are priced out of everything in San Francisco and Oakland.
+
+              <p>They’ve thought about moving to Black’s hometown of San Luis Obispo, where rent is at least 60 percent less expensive. Or to Peters’ former stomping grounds in Humboldt County, where her sister, also a teacher, bought a three-bedroom house.
+
+              <p>For now, the two women and their small dog, Jimmy Niblet, are staying put, but they’ve both seen an increasing number of co-workers leave. Young teachers are excited to work in San Francisco until they want to rent a bigger place or buy a house or have children, the women said, and then they’re gone.
+
+              <p>Now it’s not just the hardest-to-staff, poorest schools that struggle with teacher turnover. Many of the more popular ones do, too.
+
+              <p>“It’s impacting everyone,” Black said.
+
+              <p>“We both love the city. We moved from our homes to live and work here,” Peters said. “It’s kind of strange to fight to be a teacher in a place that needs you.”
+
+            </div>
+
+            <div class="credits">
+                <div class="entry">Heather Knight  &bull; <a href="mailto:hknight@sfchronicle.com">hknight@sfchronicle.com</a>   &bull; <a href = "https://twitter.com/hknightsf" target="_blank">@hknightsf</a></div>
+                <div class="entry">Joaquin Palomino  &bull; <a href="mailto:jpalomino@sfchronicle.com">jpalomino@sfchronicle.com</a>  &bull; <a href = "https://twitter.com/JoaquinPalomino" target="_blank">@JoaquinPalomino</a></div>
+            </div>
+
           </div>
-
-          <div class="photo sidebar">
-            <img class="img" src="./assets/photos/teachers0515_black_PH3.JPG">
-            <div class="caption">Jessica Black gives instructions during a spelling test to her second-grade students at Rosa Parks Elementary School.</div>
-            <div class="credit">Photo: Lea Suzuki, The Chronicle</div>
-          </div>
-          <div class="text">
-            <p>If Jessica Black and Dara Peters are able to have a baby, as they hope, the good news will come with a tinge of regret. They know expanding their family will mean leaving the teaching jobs they love — and leaving San Francisco altogether.
-
-            <p>Black, 34, teaches second grade at Rosa Parks Elementary in Japantown. Peters, 44, teaches third grade at Junipero Serra Elementary in Bernal Heights. The women married recently and live in a junior one-bedroom apartment in the Lower Haight.
-
-            <p>“It’s tiny,” Black said.
-
-          </div>
-
-          <div class="photo inset left vertical">
-            <img class="img" src="./assets/photos/teachers0515_black_PH4.jpg">
-            <div class="caption">Jessica Black gives a thumbs up to one of her second-grade students at Rosa Parks Elementary School.</div>
-            <div class="credit">Photo: Lea Suzuki, The Chronicle</div>
-          </div>
-
-          <div class="text">
-
-            <p>The bedroom is actually an enclosed porch that still has exposed pipes running through it. There are no closets, and their bed fits with 6 inches to spare.
-
-            <p>There’s no place to put a baby, let alone an active toddler. Black and Peters have started looking for housing elsewhere, but are priced out of everything in San Francisco and Oakland.
-
-            <p>They’ve thought about moving to Black’s hometown of San Luis Obispo, where rent is at least 60 percent less expensive. Or to Peters’ former stomping grounds in Humboldt County, where her sister, also a teacher, bought a three-bedroom house.
-
-            <p>For now, the two women and their small dog, Jimmy Niblet, are staying put, but they’ve both seen an increasing number of co-workers leave. Young teachers are excited to work in San Francisco until they want to rent a bigger place or buy a house or have children, the women said, and then they’re gone.
-
-            <p>Now it’s not just the hardest-to-staff, poorest schools that struggle with teacher turnover. Many of the more popular ones do, too.
-
-            <p>“It’s impacting everyone,” Black said.
-
-            <p>“We both love the city. We moved from our homes to live and work here,” Peters said. “It’s kind of strange to fight to be a teacher in a place that needs you.”
-
-          </div>
-
-          <div class="credits">
-              <div class="entry">Heather Knight  &bull; <a href="mailto:hknight@sfchronicle.com">hknight@sfchronicle.com</a>   &bull; <a href = "https://twitter.com/hknightsf" target="_blank">@hknightsf</a></div>
-              <div class="entry">Joaquin Palomino  &bull; <a href="mailto:jpalomino@sfchronicle.com">jpalomino@sfchronicle.com</a>  &bull; <a href = "https://twitter.com/JoaquinPalomino" target="_blank">@JoaquinPalomino</a></div>
-          </div>
-
         </div>
       </div>
 
@@ -252,57 +247,59 @@
           <div class="credit">Photo: Lea Suzuki, The Chronicle</div>
         </div>
         <div class="sidebar-content" ng-show="sidebar_varalli">
-          <div class="sidebar-hed-container"><div class="sidebar-heading hed">Affordable home is last hope for staying in SF</div><i class="fa fa-times" aria-hidden="true" ng-click="toggleSidebarVaralli()"></i></div>
+          <div class="sidebar-inner">
+            <div class="sidebar-hed-container"><div class="sidebar-heading hed">Affordable home is last hope for staying in SF</div><i class="fa fa-times" aria-hidden="true" ng-click="toggleSidebarVaralli()"></i></div>
 
-          <div id="social" class="sidebar">
-            <a id="twitter-icon" title="Share on Twitter" href="https://twitter.com/intent/tweet?url=http%3A//projects.sfchronicle.com/2016/teacher-pay/%23varalli&amp;text=Teachers priced out: Affordable home is last hope for staying in SF">
-              <i class="fa fa-twitter"></i>
-            </a>
-            <a id="facebook-icon" title="Share on Facebook" href="#" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fprojects.sfchronicle.com%2F2016%2Fteacher-pay%2F%23varalli', 'facebook-share-dialog', 'width=626,height=436'); return false;">
-                <i class="fa fa-facebook"></i>
-            </a>
-            <a id="mail-icon" href="mailto:?subject=Teachers priced out: Affordable home is last hope for staying in SF&body=With stagnant salaries, growing ranks of teachers have decided that working in San Francisco’s public schools isn’t worth the sacrifices.  http://projects.sfchronicle.com/2016/teacher-pay/#varalli">
-              <i class="fa fa-envelope" aria-hidden="true"></i>
-            </a>
+            <div id="social" class="sidebar">
+              <a id="twitter-icon" title="Share on Twitter" href="https://twitter.com/intent/tweet?url=https%3A//projects.sfchronicle.com/2016/teacher-pay/%23varalli&amp;text=Teachers priced out: Affordable home is last hope for staying in SF">
+                <i class="fa fa-twitter"></i>
+              </a>
+              <a id="facebook-icon" title="Share on Facebook" href="#" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fprojects.sfchronicle.com%2F2016%2Fteacher-pay%2F%23varalli', 'facebook-share-dialog', 'width=626,height=436'); return false;">
+                  <i class="fa fa-facebook"></i>
+              </a>
+              <a id="mail-icon" href="mailto:?subject=Teachers priced out: Affordable home is last hope for staying in SF&body=With stagnant salaries, growing ranks of teachers have decided that working in San Francisco’s public schools isn’t worth the sacrifices.  https://projects.sfchronicle.com/2016/teacher-pay/#varalli">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+              </a>
+            </div>
+
+            <div class="photo sidebar vertical">
+              <img class="img" src="./assets/photos/teachers0515_varalli_PH1.jpg">
+              <div class="caption">Marisa Varalli, world languages teacher at Balboa High School, has stayed put as her relatives moved to other cities.</div>
+              <div class="credit">Photo: Lea Suzuki, The Chronicle</div>
+            </div>
+            <div class="text clearleft">
+
+              <p>All eight of Marisa Varalli’s great-grandparents — four of them Mexican, four Filipino — moved to San Francisco as children. Three generations later, Varalli is the last family member left.
+
+              <p>The 39-year-old world languages teacher at Balboa High School has stayed put as her mother moved to Santa Rosa and cousins to San Jose, Daly City, Sebastopol and elsewhere. All of them were priced out of their hometown.
+
+              <p>“If they want to own a house and have a family, they have to move elsewhere,” Varalli explained. “They can’t be here.”
+
+              <p>For now, Varalli has a comparatively sweet deal renting an in-law unit a few blocks from Balboa for $1,480 a month. The landlords are kind, and she has access to a backyard. But it’s her last gasp at staying in San Francisco.
+
+              <p>Varalli and her boyfriend want to move in together, but neither of their leases allows it. They can’t afford the city’s highest-in-the-nation rents, so they’ve toyed with buying.
+
+              <p>“There was a trailer home next to a cemetery in Daly City,” she said with a laugh. “That was $400,000. That was doable for us.”
+
+              <p>Doable, but not appealing. She’s considered applying for the Teacher Next Door program, which would give her $20,000 toward a down payment — but that gets her nowhere in this market. So Varalli hangs tight.
+
+              <p>She wants to stay in San Francisco because she believes that the public schools, which are composed of just 11 percent white students, need more teachers of color. She attended public schools and almost always had white teachers.
+
+              <p>“There were very few I could connect with,” she said. “It was really one, maybe two, and they were from San Francisco and they were teachers of color.”
+
+              <p>Varalli grew up in Bernal Heights and the Excelsior, the daughter of a taxi driver dad and cashier mom. Her neighbors were black, Filipino, Japanese and Mexican. She said there aren’t blocks like those in San Francisco anymore.
+
+              <p>“That’s who we want to be having around our students,” she said, “folks who can relate to them at least in some way, of having a common experience of growing up in the same place.”
+
+              <p>The students have her. For now.
+
+            </div>
+
+            <div class="credits">
+                <div class="entry">Heather Knight  &bull; <a href="mailto:hknight@sfchronicle.com">hknight@sfchronicle.com</a>   &bull; <a href = "https://twitter.com/hknightsf" target="_blank">@hknightsf</a></div>
+            </div>
+
           </div>
-
-          <div class="photo sidebar vertical">
-            <img class="img" src="./assets/photos/teachers0515_varalli_PH1.jpg">
-            <div class="caption">Marisa Varalli, world languages teacher at Balboa High School, has stayed put as her relatives moved to other cities.</div>
-            <div class="credit">Photo: Lea Suzuki, The Chronicle</div>
-          </div>
-          <div class="text clearleft">
-
-            <p>All eight of Marisa Varalli’s great-grandparents — four of them Mexican, four Filipino — moved to San Francisco as children. Three generations later, Varalli is the last family member left.
-
-            <p>The 39-year-old world languages teacher at Balboa High School has stayed put as her mother moved to Santa Rosa and cousins to San Jose, Daly City, Sebastopol and elsewhere. All of them were priced out of their hometown.
-
-            <p>“If they want to own a house and have a family, they have to move elsewhere,” Varalli explained. “They can’t be here.”
-
-            <p>For now, Varalli has a comparatively sweet deal renting an in-law unit a few blocks from Balboa for $1,480 a month. The landlords are kind, and she has access to a backyard. But it’s her last gasp at staying in San Francisco.
-
-            <p>Varalli and her boyfriend want to move in together, but neither of their leases allows it. They can’t afford the city’s highest-in-the-nation rents, so they’ve toyed with buying.
-
-            <p>“There was a trailer home next to a cemetery in Daly City,” she said with a laugh. “That was $400,000. That was doable for us.”
-
-            <p>Doable, but not appealing. She’s considered applying for the Teacher Next Door program, which would give her $20,000 toward a down payment — but that gets her nowhere in this market. So Varalli hangs tight.
-
-            <p>She wants to stay in San Francisco because she believes that the public schools, which are composed of just 11 percent white students, need more teachers of color. She attended public schools and almost always had white teachers.
-
-            <p>“There were very few I could connect with,” she said. “It was really one, maybe two, and they were from San Francisco and they were teachers of color.”
-
-            <p>Varalli grew up in Bernal Heights and the Excelsior, the daughter of a taxi driver dad and cashier mom. Her neighbors were black, Filipino, Japanese and Mexican. She said there aren’t blocks like those in San Francisco anymore.
-
-            <p>“That’s who we want to be having around our students,” she said, “folks who can relate to them at least in some way, of having a common experience of growing up in the same place.”
-
-            <p>The students have her. For now.
-
-          </div>
-
-          <div class="credits">
-              <div class="entry">Heather Knight  &bull; <a href="mailto:hknight@sfchronicle.com">hknight@sfchronicle.com</a>   &bull; <a href = "https://twitter.com/hknightsf" target="_blank">@hknightsf</a></div>
-          </div>
-
         </div>
       </div>
 
@@ -380,67 +377,69 @@
           <div class="credit">Photo: Lea Suzuki, The Chronicle</div>
         </div>
         <div class="sidebar-content" ng-show="sidebar_graber">
-          <div class="sidebar-hed-container"><div class="sidebar-heading hed">Family loses out on city grant for home</div><i class="fa fa-times" aria-hidden="true" ng-click="toggleSidebarGraber()"></i></div>
+          <div class="sidebar-inner">
+            <div class="sidebar-hed-container"><div class="sidebar-heading hed">Family loses out on city grant for home</div><i class="fa fa-times" aria-hidden="true" ng-click="toggleSidebarGraber()"></i></div>
 
-          <div id="social" class="sidebar">
-            <a id="twitter-icon" title="Share on Twitter" href="https://twitter.com/intent/tweet?url=http%3A//projects.sfchronicle.com/2016/teacher-pay/%23graber&amp;text=Teachers priced out: Family loses out on city grant for home">
-              <i class="fa fa-twitter"></i>
-            </a>
-            <a id="facebook-icon" title="Share on Facebook" href="#" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fprojects.sfchronicle.com%2F2016%2Fteacher-pay%2F%23graber', 'facebook-share-dialog', 'width=626,height=436'); return false;">
-                <i class="fa fa-facebook"></i>
-            </a>
-            <a id="mail-icon" href="mailto:?subject=Teachers priced out: Family loses out on city grant for home&body=With stagnant salaries, growing ranks of teachers have decided that working in San Francisco’s public schools isn’t worth the sacrifices.  http://projects.sfchronicle.com/2016/teacher-pay/#graber">
-              <i class="fa fa-envelope" aria-hidden="true"></i>
-            </a>
+            <div id="social" class="sidebar">
+              <a id="twitter-icon" title="Share on Twitter" href="https://twitter.com/intent/tweet?url=https%3A//projects.sfchronicle.com/2016/teacher-pay/%23graber&amp;text=Teachers priced out: Family loses out on city grant for home">
+                <i class="fa fa-twitter"></i>
+              </a>
+              <a id="facebook-icon" title="Share on Facebook" href="#" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fprojects.sfchronicle.com%2F2016%2Fteacher-pay%2F%23graber', 'facebook-share-dialog', 'width=626,height=436'); return false;">
+                  <i class="fa fa-facebook"></i>
+              </a>
+              <a id="mail-icon" href="mailto:?subject=Teachers priced out: Family loses out on city grant for home&body=With stagnant salaries, growing ranks of teachers have decided that working in San Francisco’s public schools isn’t worth the sacrifices.  https://projects.sfchronicle.com/2016/teacher-pay/#graber">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+              </a>
+            </div>
+
+            <div class="photo sidebar">
+              <img class="img" src="./assets/photos/teachers0515_graber_web2.jpg">
+              <div class="caption">Meghan Graber (center), social worker at Everett Middle School, commutes to work with her family.</div>
+              <div class="credit">Photo: Lea Suzuki, The Chronicle</div>
+            </div>
+            <div class="text">
+
+              <p>For a San Francisco family that rents, life is like a house of cards — and an eviction notice can topple everything.
+
+              <p>That’s what Meghan Graber and Patrick Hennessey learned after they received a 60-day owner move-in eviction notice in March on their two-bedroom flat in the Inner Richmond.
+
+              <p>Graber, 36, works as a social worker at Everett Middle School in the Mission. Her 38-year-old husband is a teacher coach who works out of the central district office and helps teachers all over the city.
+
+              <p>They have two children, one a kindergartner at New Traditions, a public school North of the Panhandle, and one in preschool near Everett. The eviction notice meant that not only was their housing in jeopardy, but that their jobs and children’s schools were likely to change, too.
+
+              <p>They now pay $2,469 a month in rent and are already behind every month but looked for apartments in the city as high as $3,200 a month. They found nothing. They posted pleas on Facebook and Nextdoor and asked the teachers union and the Mayor’s Office of Housing for help.
+
+              <p>Despite the long odds, their story just might have a happy ending.
+
+              <p>Graber and Hennessey are in contract to buy a two-unit building near their apartment with another family of four. Both parents in that family also work in the school district. Theirs was one of four offers, and the seller chose them.
+
+              <p>“It’s very rare,” Graber said with a sigh of relief. “I know it’s not typical.”
+
+              <p>The mortgage will be “a lot more than their rent,” Graber said, though she didn’t want to specify how much more or the cost of the building until the deal closes. She and Hennessey will both probably take side jobs, such as tutoring, to pay the bills.
+
+              <p>Although they’re cautiously optimistic they’ll soon be property owners in San Francisco, the couple were disappointed by the city’s inability to help them put together their down payment.
+
+              <p>Graber and Hennessey hoped to each qualify for separate $20,000 grants from the Teacher Next Door program for home purchases. The money doesn’t have to be paid back if the teachers stay in the district for 10 years. But they learned they didn’t qualify because the money is available only for single-family homes or condos, not for tenancy-in-common purchases. The mayor’s office told them they could get the $40,000 if they bought the multiunit building themselves, but not with another family.
+
+              <p>“To me, it doesn’t make any sense,” Graber said, noting teachers aren’t likely to be able to afford single-family homes, condos or multiunit buildings in this city.
+
+              <p>Jeff Buckley, a senior adviser to Mayor Ed Lee, said the Mayor’s Office of Housing never offers TIC loans and couldn’t make an exception this time.
+
+              <p>“Why would we do something special for Teacher Next Door that we’re not doing for other programs?” Buckley said, adding that underwriting a TIC loan is more complicated than other types of purchases.
+
+              <p>“The loan evaluation process is very different,” he said. “We’re concerned that it’s a system that could potentially be gamed.”
+
+              <p>Despite missing out on the $40,000, Graber and Hennessey are mostly thrilled.
+
+              <p>“We love this city,” Graber said. “We’ve made our community here, and we really love our jobs.”
+
+            </div>
+
+            <div class="credits">
+                <div class="entry">Heather Knight  &bull; <a href="mailto:hknight@sfchronicle.com">hknight@sfchronicle.com</a>   &bull; <a href = "https://twitter.com/hknightsf" target="_blank">@hknightsf</a></div>
+            </div>
+
           </div>
-
-          <div class="photo sidebar">
-            <img class="img" src="./assets/photos/teachers0515_graber_web2.jpg">
-            <div class="caption">Meghan Graber (center), social worker at Everett Middle School, commutes to work with her family.</div>
-            <div class="credit">Photo: Lea Suzuki, The Chronicle</div>
-          </div>
-          <div class="text">
-
-            <p>For a San Francisco family that rents, life is like a house of cards — and an eviction notice can topple everything.
-
-            <p>That’s what Meghan Graber and Patrick Hennessey learned after they received a 60-day owner move-in eviction notice in March on their two-bedroom flat in the Inner Richmond.
-
-            <p>Graber, 36, works as a social worker at Everett Middle School in the Mission. Her 38-year-old husband is a teacher coach who works out of the central district office and helps teachers all over the city.
-
-            <p>They have two children, one a kindergartner at New Traditions, a public school North of the Panhandle, and one in preschool near Everett. The eviction notice meant that not only was their housing in jeopardy, but that their jobs and children’s schools were likely to change, too.
-
-            <p>They now pay $2,469 a month in rent and are already behind every month but looked for apartments in the city as high as $3,200 a month. They found nothing. They posted pleas on Facebook and Nextdoor and asked the teachers union and the Mayor’s Office of Housing for help.
-
-            <p>Despite the long odds, their story just might have a happy ending.
-
-            <p>Graber and Hennessey are in contract to buy a two-unit building near their apartment with another family of four. Both parents in that family also work in the school district. Theirs was one of four offers, and the seller chose them.
-
-            <p>“It’s very rare,” Graber said with a sigh of relief. “I know it’s not typical.”
-
-            <p>The mortgage will be “a lot more than their rent,” Graber said, though she didn’t want to specify how much more or the cost of the building until the deal closes. She and Hennessey will both probably take side jobs, such as tutoring, to pay the bills.
-
-            <p>Although they’re cautiously optimistic they’ll soon be property owners in San Francisco, the couple were disappointed by the city’s inability to help them put together their down payment.
-
-            <p>Graber and Hennessey hoped to each qualify for separate $20,000 grants from the Teacher Next Door program for home purchases. The money doesn’t have to be paid back if the teachers stay in the district for 10 years. But they learned they didn’t qualify because the money is available only for single-family homes or condos, not for tenancy-in-common purchases. The mayor’s office told them they could get the $40,000 if they bought the multiunit building themselves, but not with another family.
-
-            <p>“To me, it doesn’t make any sense,” Graber said, noting teachers aren’t likely to be able to afford single-family homes, condos or multiunit buildings in this city.
-
-            <p>Jeff Buckley, a senior adviser to Mayor Ed Lee, said the Mayor’s Office of Housing never offers TIC loans and couldn’t make an exception this time.
-
-            <p>“Why would we do something special for Teacher Next Door that we’re not doing for other programs?” Buckley said, adding that underwriting a TIC loan is more complicated than other types of purchases.
-
-            <p>“The loan evaluation process is very different,” he said. “We’re concerned that it’s a system that could potentially be gamed.”
-
-            <p>Despite missing out on the $40,000, Graber and Hennessey are mostly thrilled.
-
-            <p>“We love this city,” Graber said. “We’ve made our community here, and we really love our jobs.”
-
-          </div>
-
-          <div class="credits">
-              <div class="entry">Heather Knight  &bull; <a href="mailto:hknight@sfchronicle.com">hknight@sfchronicle.com</a>   &bull; <a href = "https://twitter.com/hknightsf" target="_blank">@hknightsf</a></div>
-          </div>
-
         </div>
       </div>
 
@@ -519,67 +518,69 @@
           <div class="credit">Photo: Scott Strazzante, The Chronicle</div>
         </div>
         <div class="sidebar-content" ng-show="sidebar_tigerman">
-          <div class="sidebar-hed-container"><div class="sidebar-heading hed">Rent rising, but teacher can’t afford to move</div><i class="fa fa-times" aria-hidden="true" ng-click="toggleSidebarTigerman()"></i></div>
+          <div class="sidebar-inner">
+            <div class="sidebar-hed-container"><div class="sidebar-heading hed">Rent rising, but teacher can’t afford to move</div><i class="fa fa-times" aria-hidden="true" ng-click="toggleSidebarTigerman()"></i></div>
 
-          <div id="social" class="sidebar">
-            <a id="twitter-icon" title="Share on Twitter" href="https://twitter.com/intent/tweet?url=http%3A//projects.sfchronicle.com/2016/teacher-pay/%23tigerman&amp;text=Teachers priced out: Rent rising, but teacher can’t afford to move">
-              <i class="fa fa-twitter"></i>
-            </a>
-            <a id="facebook-icon" title="Share on Facebook" href="#" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fprojects.sfchronicle.com%2F2016%2Fteacher-pay%2F%23tigerman', 'facebook-share-dialog', 'width=626,height=436'); return false;">
-                <i class="fa fa-facebook"></i>
-            </a>
-            <a id="mail-icon" href="mailto:?subject=Teachers priced out: Rent rising, but teacher can’t afford to move&body=With stagnant salaries, growing ranks of teachers have decided that working in San Francisco’s public schools isn’t worth the sacrifices.  http://projects.sfchronicle.com/2016/teacher-pay/#tigerman">
-              <i class="fa fa-envelope" aria-hidden="true"></i>
-            </a>
+            <div id="social" class="sidebar">
+              <a id="twitter-icon" title="Share on Twitter" href="https://twitter.com/intent/tweet?url=https%3A//projects.sfchronicle.com/2016/teacher-pay/%23tigerman&amp;text=Teachers priced out: Rent rising, but teacher can’t afford to move">
+                <i class="fa fa-twitter"></i>
+              </a>
+              <a id="facebook-icon" title="Share on Facebook" href="#" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fprojects.sfchronicle.com%2F2016%2Fteacher-pay%2F%23tigerman', 'facebook-share-dialog', 'width=626,height=436'); return false;">
+                  <i class="fa fa-facebook"></i>
+              </a>
+              <a id="mail-icon" href="mailto:?subject=Teachers priced out: Rent rising, but teacher can’t afford to move&body=With stagnant salaries, growing ranks of teachers have decided that working in San Francisco’s public schools isn’t worth the sacrifices.  https://projects.sfchronicle.com/2016/teacher-pay/#tigerman">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+              </a>
+            </div>
+
+            <div class="photo sidebar">
+              <div style="position: relative; padding-bottom: 56.25%; height: 0px;"><iframe src="//player.hearstdigitalstudios.com/572bc451d559305883d4193a?width=100%25&autostart=0&aratio=16:9&duration=&cc%5B%5D=" frameborder="0" allowfullscreen="true" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; padding-top: 5px; padding-bottom: 10px"></iframe></div>
+            </div>
+            <div class="text">
+
+              <p>Amy Tigerman waits every afternoon in the parking lot of her apartment complex for her son, Max, to come home.
+
+              <p>Every day, a white Whistlestop shuttle pulls into the South San Francisco lot, and Tigerman climbs aboard to greet her son and help him get down the shuttle stairs and back to their apartment.
+
+              <p>“Mama!” he calls amid grunting noises. “Mama!”
+
+              <p>“Lead the way, dude!” she tells him. “It’s all you!”
+
+              <p>Max Brown is 26, but a 2½-hour seizure he suffered as a toddler left him with just a few words and a halting, shaky walk.
+
+              <p>Tigerman, 55, spends her days teaching second grade at Lawton Alternative School in the Outer Sunset. Brown spends his days at the Janet Pomeroy Center, a recreation and rehabilitation center for disabled people near the San Francisco Zoo. They reunite joyfully at 4:20 p.m. in the parking lot.
+
+            </div>
+
+            <div class="photo inset left">
+              <img class="img" src="./assets/photos/teachers0515_tigerman_PH2.jpg">
+              <div class="caption">Second-grade teacher Amy Tigerman and son Max Brown rent an apartment in South San Francisco.</div>
+              <div class="credit">Photo: Scott Strazzante, The Chronicle</div>
+            </div>
+
+            <div class="text">
+
+              <p>Tigerman, who has been with San Francisco Unified for 27 years, hopes she can hang onto their two-bedroom apartment in South San Francisco, at least until she retires in five years — if not longer. All of Max’s services, paid by the state, are nearby. Her ex-husband lives in an apartment in the same complex so they can care for Max together.
+
+              <p>But like most less-expensive options outside San Francisco, South San Francisco lacks rent control. When Tigerman moved there in 1998, she paid $1,075 a month. Now, her rent is $2,200 a month. And her landlord has warned her to expect yearly rent hikes of $150 to $250 per month, meaning that when she’s up for retirement, her rent could be $3,200 a month or higher.
+
+              <p>But finding another two-bedroom apartment that costs less is impossible. And so she’s stuck. And worried.
+
+              <p>“I didn’t necessarily plan on being wealthy, but I expected to be able to survive,” Tigerman said. “To see it each year becoming less and less tangible, it makes you feel so very unimportant for such an important job.”
+
+            </div>
+
+            <div class="photo">
+              <img class="img" src="./assets/photos/teachers0515_tigerman_PH1.jpg">
+              <div class="caption">Lawton Alternative elementary school teacher Amy Tigerman greets her second-grade class. The rent keeps rising on the South San Francisco apartment she shares with her disabled son, but they can’t afford to move.</div>
+              <div class="credit">Photo: Liz Hafalia, The Chronicle</div>
+            </div>
+
+            <div class="credits">
+                <div class="entry">Heather Knight  &bull; <a href="mailto:hknight@sfchronicle.com">hknight@sfchronicle.com</a>   &bull; <a href = "https://twitter.com/hknightsf" target="_blank">@hknightsf</a></div>
+            </div>
+
           </div>
-
-          <div class="photo sidebar">
-            <div style="position: relative; padding-bottom: 56.25%; height: 0px;"><iframe src="//player.hearstdigitalstudios.com/572bc451d559305883d4193a?width=100%25&autostart=0&aratio=16:9&duration=&cc%5B%5D=" frameborder="0" allowfullscreen="true" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; padding-top: 5px; padding-bottom: 10px"></iframe></div>
-          </div>
-          <div class="text">
-
-            <p>Amy Tigerman waits every afternoon in the parking lot of her apartment complex for her son, Max, to come home.
-
-            <p>Every day, a white Whistlestop shuttle pulls into the South San Francisco lot, and Tigerman climbs aboard to greet her son and help him get down the shuttle stairs and back to their apartment.
-
-            <p>“Mama!” he calls amid grunting noises. “Mama!”
-
-            <p>“Lead the way, dude!” she tells him. “It’s all you!”
-
-            <p>Max Brown is 26, but a 2½-hour seizure he suffered as a toddler left him with just a few words and a halting, shaky walk.
-
-            <p>Tigerman, 55, spends her days teaching second grade at Lawton Alternative School in the Outer Sunset. Brown spends his days at the Janet Pomeroy Center, a recreation and rehabilitation center for disabled people near the San Francisco Zoo. They reunite joyfully at 4:20 p.m. in the parking lot.
-
-          </div>
-
-          <div class="photo inset left">
-            <img class="img" src="./assets/photos/teachers0515_tigerman_PH2.jpg">
-            <div class="caption">Second-grade teacher Amy Tigerman and son Max Brown rent an apartment in South San Francisco.</div>
-            <div class="credit">Photo: Scott Strazzante, The Chronicle</div>
-          </div>
-
-          <div class="text">
-
-            <p>Tigerman, who has been with San Francisco Unified for 27 years, hopes she can hang onto their two-bedroom apartment in South San Francisco, at least until she retires in five years — if not longer. All of Max’s services, paid by the state, are nearby. Her ex-husband lives in an apartment in the same complex so they can care for Max together.
-
-            <p>But like most less-expensive options outside San Francisco, South San Francisco lacks rent control. When Tigerman moved there in 1998, she paid $1,075 a month. Now, her rent is $2,200 a month. And her landlord has warned her to expect yearly rent hikes of $150 to $250 per month, meaning that when she’s up for retirement, her rent could be $3,200 a month or higher.
-
-            <p>But finding another two-bedroom apartment that costs less is impossible. And so she’s stuck. And worried.
-
-            <p>“I didn’t necessarily plan on being wealthy, but I expected to be able to survive,” Tigerman said. “To see it each year becoming less and less tangible, it makes you feel so very unimportant for such an important job.”
-
-          </div>
-
-          <div class="photo">
-            <img class="img" src="./assets/photos/teachers0515_tigerman_PH1.jpg">
-            <div class="caption">Lawton Alternative elementary school teacher Amy Tigerman greets her second-grade class. The rent keeps rising on the South San Francisco apartment she shares with her disabled son, but they can’t afford to move.</div>
-            <div class="credit">Photo: Liz Hafalia, The Chronicle</div>
-          </div>
-
-          <div class="credits">
-              <div class="entry">Heather Knight  &bull; <a href="mailto:hknight@sfchronicle.com">hknight@sfchronicle.com</a>   &bull; <a href = "https://twitter.com/hknightsf" target="_blank">@hknightsf</a></div>
-          </div>
-
         </div>
       </div>
 
@@ -645,61 +646,63 @@
           <div class="credit">Photo: Michael Macor, The Chronicle</div>
         </div>
         <div class="sidebar-content" ng-show="sidebar_hanson">
-          <div class="sidebar-hed-container"><div class="sidebar-heading hed">New job, big home in El Dorado County</div><i class="fa fa-times" aria-hidden="true" ng-click="toggleSidebarHanson()"></i></div>
+          <div class="sidebar-inner">
+            <div class="sidebar-hed-container"><div class="sidebar-heading hed">New job, big home in El Dorado County</div><i class="fa fa-times" aria-hidden="true" ng-click="toggleSidebarHanson()"></i></div>
 
-          <div id="social" class="sidebar">
-            <a id="twitter-icon" title="Share on Twitter" href="https://twitter.com/intent/tweet?url=http%3A//projects.sfchronicle.com/2016/teacher-pay/%23hanson&amp;text=Teachers priced out: New job, big home in El Dorado County">
-              <i class="fa fa-twitter"></i>
-            </a>
-            <a id="facebook-icon" title="Share on Facebook" href="#" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fprojects.sfchronicle.com%2F2016%2Fteacher-pay%2F%23hanson', 'facebook-share-dialog', 'width=626,height=436'); return false;">
-                <i class="fa fa-facebook"></i>
-            </a>
-            <a id="mail-icon" href="mailto:?subject=Teachers priced out: New job, big home in El Dorado County&body=With stagnant salaries, growing ranks of teachers have decided that working in San Francisco’s public schools isn’t worth the sacrifices.  http://projects.sfchronicle.com/2016/teacher-pay/#hanson">
-              <i class="fa fa-envelope" aria-hidden="true"></i>
-            </a>
+            <div id="social" class="sidebar">
+              <a id="twitter-icon" title="Share on Twitter" href="https://twitter.com/intent/tweet?url=https%3A//projects.sfchronicle.com/2016/teacher-pay/%23hanson&amp;text=Teachers priced out: New job, big home in El Dorado County">
+                <i class="fa fa-twitter"></i>
+              </a>
+              <a id="facebook-icon" title="Share on Facebook" href="#" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fprojects.sfchronicle.com%2F2016%2Fteacher-pay%2F%23hanson', 'facebook-share-dialog', 'width=626,height=436'); return false;">
+                  <i class="fa fa-facebook"></i>
+              </a>
+              <a id="mail-icon" href="mailto:?subject=Teachers priced out: New job, big home in El Dorado County&body=With stagnant salaries, growing ranks of teachers have decided that working in San Francisco’s public schools isn’t worth the sacrifices.  https://projects.sfchronicle.com/2016/teacher-pay/#hanson">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+              </a>
+            </div>
+
+            <div class="photo sidebar">
+              <img class="img" src="./assets/photos/teachers0515_hanson_PH2.jpg">
+              <div class="caption">Former San Francisco teacher Emilee Hanson walks with her dog, Skillet, on the trail near her home in Georgetown (El Dorado County).</div>
+              <div class="credit">Photo: Michael Macor, The Chronicle</div>
+            </div>
+            <div class="text">
+
+              <p>San Francisco invested a lot in Emilee Hanson, and she wisely took that investment to El Dorado County.
+
+              <p>In 2011, Hanson joined the prestigious San Francisco Teacher Residency program, a collaboration of the school district, the teachers union, Stanford University and the University of San Francisco.
+
+              <p>Started in 2010, the program aims to combat the plague of teacher burnout, particularly at the most challenging schools and in the most difficult-to-staff positions in math, science and bilingual education. Modeled on a medical residency, it places aspiring teachers in the classrooms of master teachers for a one-year apprenticeship.
+
+              <p>The trainees can earn their teaching credential and master’s degree at Stanford or USF at a reduced price and receive a small stipend as well as free health care benefits. In return, they must teach in the district for three years, during which they receive coaching support.
+
+              <p>Hanson fulfilled her commitment but bolted right after. She and two friends had rented a two-bedroom Twin Peaks apartment, and Hanson agreed to use the living room as her bedroom. It cost her $700 a month.
+
+              <p>“I didn’t have a closet, I didn’t have doors,” said Hanson, 32. “The kitchen and the living room were all one thing, so when people were cooking, they were basically in my bedroom.”
+
+              <p>The plan was to live there for one year, but by the time she was in her second year of the program making an actual salary, the city’s rents had exploded and she was stuck.
+
+              <p>She taught math to seventh-graders at Martin Luther King Jr. Middle School in the Portola neighborhood. She’d go to bed early to wake up at 6 a.m. to teach, but her roommates would come home with friends at midnight and hang out where she was sleeping.
+
+              <p>Exhausted and stressed out, she got another job teaching middle school math in Georgetown in the Sierra foothills. And she bought a house on five acres for $200,000.
+
+              <p>“The mortgage on my house — I own a house! — is $1,000 a month,” she said.
+
+              <p>Jonathan Osler, executive director of the residency program, said housing has become a huge issue for the teacher trainees. The program is partnering with the nonprofit Teachers Housing Cooperative to award the participants a $4,800 rental subsidy each year for three years starting in the 2016-17 school year.
+
+              <p>The stipend comes too late for Hanson, but she looks back fondly on the residency program. She was recognized by her principal at a recent Board of Supervisors meeting in El Dorado County for being an exceptional teacher.
+
+              <p>“He wants me to run professional development here — I’m really well trained based on what SFUSD put into me,” she said. “The way they prepare you is just unlike any other teacher education program out there.”
+
+              <p>Unfortunately, the cost of housing in San Francisco is also unlike any other.
+
+            </div>
+
+            <div class="credits">
+                <div class="entry">Heather Knight  &bull; <a href="mailto:hknight@sfchronicle.com">hknight@sfchronicle.com</a>   &bull; <a href = "https://twitter.com/hknightsf" target="_blank">@hknightsf</a></div>
+            </div>
+
           </div>
-
-          <div class="photo sidebar">
-            <img class="img" src="./assets/photos/teachers0515_hanson_PH2.jpg">
-            <div class="caption">Former San Francisco teacher Emilee Hanson walks with her dog, Skillet, on the trail near her home in Georgetown (El Dorado County).</div>
-            <div class="credit">Photo: Michael Macor, The Chronicle</div>
-          </div>
-          <div class="text">
-
-            <p>San Francisco invested a lot in Emilee Hanson, and she wisely took that investment to El Dorado County.
-
-            <p>In 2011, Hanson joined the prestigious San Francisco Teacher Residency program, a collaboration of the school district, the teachers union, Stanford University and the University of San Francisco.
-
-            <p>Started in 2010, the program aims to combat the plague of teacher burnout, particularly at the most challenging schools and in the most difficult-to-staff positions in math, science and bilingual education. Modeled on a medical residency, it places aspiring teachers in the classrooms of master teachers for a one-year apprenticeship.
-
-            <p>The trainees can earn their teaching credential and master’s degree at Stanford or USF at a reduced price and receive a small stipend as well as free health care benefits. In return, they must teach in the district for three years, during which they receive coaching support.
-
-            <p>Hanson fulfilled her commitment but bolted right after. She and two friends had rented a two-bedroom Twin Peaks apartment, and Hanson agreed to use the living room as her bedroom. It cost her $700 a month.
-
-            <p>“I didn’t have a closet, I didn’t have doors,” said Hanson, 32. “The kitchen and the living room were all one thing, so when people were cooking, they were basically in my bedroom.”
-
-            <p>The plan was to live there for one year, but by the time she was in her second year of the program making an actual salary, the city’s rents had exploded and she was stuck.
-
-            <p>She taught math to seventh-graders at Martin Luther King Jr. Middle School in the Portola neighborhood. She’d go to bed early to wake up at 6 a.m. to teach, but her roommates would come home with friends at midnight and hang out where she was sleeping.
-
-            <p>Exhausted and stressed out, she got another job teaching middle school math in Georgetown in the Sierra foothills. And she bought a house on five acres for $200,000.
-
-            <p>“The mortgage on my house — I own a house! — is $1,000 a month,” she said.
-
-            <p>Jonathan Osler, executive director of the residency program, said housing has become a huge issue for the teacher trainees. The program is partnering with the nonprofit Teachers Housing Cooperative to award the participants a $4,800 rental subsidy each year for three years starting in the 2016-17 school year.
-
-            <p>The stipend comes too late for Hanson, but she looks back fondly on the residency program. She was recognized by her principal at a recent Board of Supervisors meeting in El Dorado County for being an exceptional teacher.
-
-            <p>“He wants me to run professional development here — I’m really well trained based on what SFUSD put into me,” she said. “The way they prepare you is just unlike any other teacher education program out there.”
-
-            <p>Unfortunately, the cost of housing in San Francisco is also unlike any other.
-
-          </div>
-
-          <div class="credits">
-              <div class="entry">Heather Knight  &bull; <a href="mailto:hknight@sfchronicle.com">hknight@sfchronicle.com</a>   &bull; <a href = "https://twitter.com/hknightsf" target="_blank">@hknightsf</a></div>
-          </div>
-
         </div>
       </div>
 
@@ -737,7 +740,7 @@
 
       </div>
 
-      <a class="sidebar" href="http://www.sfchronicle.com/education/article/Teacher-housing-helps-educators-stay-put-amid-7463584.php?t=edc108591c" target="_blank" color="black">
+      <a class="sidebar" href="https://www.sfchronicle.com/education/article/Teacher-housing-helps-educators-stay-put-amid-7463584.php?t=edc108591c" target="_blank" color="black">
         <div class="sidebar-click">
           <div class="click-here">Read more<i class="fa fa-long-arrow-right" aria-hidden="true"></i></div>
           <img class="img" src="./assets/photos/teachers_casamaestro.jpg">
@@ -764,7 +767,7 @@
           Reporters:
           <div class="entry">Heather Knight  &bull; <a href="mailto:hknight@sfchronicle.com">hknight@sfchronicle.com</a>   &bull; <a href = "https://twitter.com/hknightsf" target="_blank">@hknightsf</a></div>
           <div class="entry">Joaquin Palomino  &bull; <a href="mailto:jpalomino@sfchronicle.com">jpalomino@sfchronicle.com</a>  &bull; <a href = "https://twitter.com/JoaquinPalomino" target="_blank">@JoaquinPalomino</a></div>
-          Interactive producer:
+          <div class="entry-hed">Interactive producer:</div>
           <div class="entry">Emma O'Neill  &bull; <a href="mailto:eoneill@sfchronicle.com">eoneill@sfchronicle.com</a>   &bull; <a href = "https://twitter.com/emmaruthoneill" target="_blank">@emmaruthoneill</a></div>
       </div>
 
@@ -798,23 +801,17 @@
         </div>
         <div class="story">
           <div class="padded">
-          <a href="http://projects.sfchronicle.com/2016/drought-status/" target="_blank">
-            <img src="./assets/dont-miss-drought.jpg"></img>
+          <a href="https://www.sfchronicle.com/bayarea/article/A-breakdown-of-BART-s-broken-down-escalators-11180030.php" target="_blank">
+            <img src="./assets/bart-crop.png"></img>
           </a>
-            <div class="small">Check the California drought status</div>
+            <div class="small">A breakdown of BART's broken down escalators</div>
           </div>
         </div>
       </div>
 
-
-      <footer>
-        <a class="logo" href="http://www.sfchronicle.com" target="_blank">
-          <img src="./assets/sf_logo_white.png">
-        </a>
-      </footer>
+    </div>
 
     </div>
-    </responsive-child>
 
     <script>
       var allSchoolData = <%= JSON.stringify(csv.all_school_data) %>;
@@ -823,10 +820,8 @@
       var rentData = <%= JSON.stringify(csv.USD_CITY_RENT_emma) %>;
     </script>
 
-    <script type="text/javascript" async src="//platform.twitter.com/widgets.js"></script>
-
     <script src="app.js" async></script>
-    <%= t.include("partials/_foot.html") %>
-    <%= t.include("partials/_helloSFC.html") %>
+
+    <%= t.include("partials/_footer.html") %>
   </body>
 </html>
