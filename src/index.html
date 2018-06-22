@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="__sync_contentCategory" content="meterA">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="style.css?2">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <%= t.include("partials/_head.html") %>
     <%= t.include("partials/_analytics_hearst.html") %>
@@ -21,32 +21,32 @@
 
     <div class="story-content">
 
+    <div class="title-container">
+      <div class="title-img">
+        <img class="img" src="./assets/photos/teachers0515_PH3.jpg">
+        <div class="caption">Kindergarten instructor Rebecca Sheehan-Stross sits with her students at Cesar Chavez Elementary School.</div>
+        <div class="credit">Photo: Michael Macor, The Chronicle</div>
+      </div>
+      <div class="special-title" id="priced-out">Teachers priced out</div>
+      <div class="title">SF educators struggle to stay amid costly housing, stagnant salaries</div>
+    </div>
+
+    <div id="social">
+      <a id="twitter-icon" title="Share on Twitter" href="https://twitter.com/intent/tweet?url=https%3A//projects.sfchronicle.com/2016/teacher-pay/&amp;text=Priced out: SF teachers struggle to stay amid costly housing, stagnant salaries.">
+        <i class="fa fa-twitter"></i>
+      </a>
+      <a id="facebook-icon" title="Share on Facebook" href="#" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fprojects.sfchronicle.com%2F2016%2Fteacher-pay%2F', 'facebook-share-dialog', 'width=626,height=436'); return false;">
+          <i class="fa fa-facebook"></i>
+      </a>
+      <a id="mail-icon" href="mailto:?subject=Priced out: SF teachers struggle amid costly housing&body=With stagnant salaries, growing ranks of teachers have decided that working in San Francisco’s public schools isn’t worth the sacrifices. https://projects.sfchronicle.com/2016/teacher-pay/">
+        <i class="fa fa-envelope" aria-hidden="true"></i>
+      </a>
+    </div>
+
+    <div class="byline">By <a href="mailto:hknight@sfchronicle.com">Heather Knight</a> and <a href="mailto:jpalomino@sfchronicle.com">Joaquin Palomino</a></div>
+    <div class="byline">May 13, 2016</div>
+
     <div ng-controller="TeacherController" ng-app="teachers" ng-cloak>
-
-      <div class="title-container">
-        <div class="title-img">
-          <img class="img" src="./assets/photos/teachers0515_PH3.jpg">
-          <div class="caption">Kindergarten instructor Rebecca Sheehan-Stross sits with her students at Cesar Chavez Elementary School.</div>
-          <div class="credit">Photo: Michael Macor, The Chronicle</div>
-        </div>
-        <div class="special-title" id="priced-out">Teachers priced out</div>
-        <div class="title">SF educators struggle to stay amid costly housing, stagnant salaries</div>
-      </div>
-
-      <div id="social">
-        <a id="twitter-icon" title="Share on Twitter" href="https://twitter.com/intent/tweet?url=https%3A//projects.sfchronicle.com/2016/teacher-pay/&amp;text=Priced out: SF teachers struggle to stay amid costly housing, stagnant salaries.">
-      		<i class="fa fa-twitter"></i>
-      	</a>
-        <a id="facebook-icon" title="Share on Facebook" href="#" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fprojects.sfchronicle.com%2F2016%2Fteacher-pay%2F', 'facebook-share-dialog', 'width=626,height=436'); return false;">
-            <i class="fa fa-facebook"></i>
-        </a>
-        <a id="mail-icon" href="mailto:?subject=Priced out: SF teachers struggle amid costly housing&body=With stagnant salaries, growing ranks of teachers have decided that working in San Francisco’s public schools isn’t worth the sacrifices. https://projects.sfchronicle.com/2016/teacher-pay/">
-          <i class="fa fa-envelope" aria-hidden="true"></i>
-        </a>
-      </div>
-
-      <div class="byline">By <a href="mailto:hknight@sfchronicle.com">Heather Knight</a> and <a href="mailto:jpalomino@sfchronicle.com">Joaquin Palomino</a></div>
-      <div class="byline">May 13, 2016</div>
 
       <div class="text">
 
@@ -127,10 +127,10 @@
                   <td>{{row.school}}
                   <td>{{row.county}}
                   <td>{{row.full_time_teachers}}
-                  <td>{{row.lowest_salary_offered}}
-                  <td>{{row.average_salary}}
-                  <td>{{row.highest_salary_offered}}
-                  <td class="step10">{{row.step_10_salary}}
+                  <td>${{row.lowest_salary_offered}}
+                  <td>${{row.average_salary}}
+                  <td>${{row.highest_salary_offered}}
+                  <td class="step10">${{row.step_10_salary}}
                 </tr>
             </table>
 
@@ -795,7 +795,7 @@
           <a href="https://www.sfchronicle.com/bayarea/article/Every-second-counts-SF-emergency-dispatchers-10839076.php" target="_blank">
             <img src="./assets/response-times_crop.png"></img>
           </a>
-            <div class="small">911 dispatchers fall behind</div>
+            <div class="small">911 dispatchers in S.F. fall behind</div>
           </div>
         </div>
         <div class="story">
@@ -813,13 +813,13 @@
     </div>
 
     <script>
-      var allSchoolData = <%= JSON.stringify(csv.all_school_data) %>;
+      var allSchoolData = <%= JSON.stringify(csv.all_school_data_withcommas) %>;
       var sfPayData = <%= JSON.stringify(csv.sf_pay) %>;
       var payData = <%= JSON.stringify(csv.new_adjusted_median_incomes) %>;
       var rentData = <%= JSON.stringify(csv.USD_CITY_RENT_emma) %>;
     </script>
 
-    <script src="app.js" async></script>
+    <script src="app.js?2" async></script>
 
     <%= t.include("partials/_footer.html") %>
   </body>

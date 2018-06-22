@@ -66,8 +66,6 @@ if (screen.width > 768) {
 var maxWidth = 800;
 var windowWidth = document.body.clientWidth;
 var width = Math.min(windowWidth,maxWidth) - 10 - margin.left - margin.right;
-console.log(width);
-console.log(margin);
 
 // convert strings to numbers
 rentData.forEach(function(d) {
